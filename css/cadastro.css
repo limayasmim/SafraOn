@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  padding-right: 0.625em;
+  padding-left: 0.625em;
+  padding-top: 0.625em;
+  padding-bottom: 0.625em;
+  background-color: #F5EED7;
+}
+body article {
+  width: 100%;
+  height: 42em;
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+}
+body div {
+  background-color: #648a34;
+  width: 82%;
+  height: 2em;
+}
+body header {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  justify-items: center;
+  align-items: center;
+}
+body header h1 {
+  font-size: 3em;
+}
+body img {
+  width: 10em;
+  height: 10em;
+}/*# sourceMappingURL=cadastro.css.map */
