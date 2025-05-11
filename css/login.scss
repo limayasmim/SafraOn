@@ -1,0 +1,56 @@
+@import 'variables';
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url(/imagem/imagem\ cadastro.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-right: 0.6250em;
+    padding-left: 0.6250em;
+
+    & section {
+        background-color: #F5EED7;
+        width: 35em;
+        height: 45.5em;
+        position: absolute;
+        right: 0;
+        display: grid;
+        justify-content: center;
+        grid-template-rows: 15em 9em 5em 7em 3em;
+        align-items: end;
+        justify-items: center;
+
+
+        & div {
+            background-color: #648a34;
+            width: 20em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    & img {
+        width: 10em;
+        height: 10em;
+    }
+
+    & p {
+        font-family: $principalConteudo_font_family;       
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 0.8em;
+    }
+
+    & h1 {
+        font-size: 1em;
+        font-weight: normal;
+    }
+}
+   
+

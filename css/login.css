@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-image: url(/imagem/imagem\ cadastro.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-right: 0.625em;
+  padding-left: 0.625em;
+}
+body section {
+  background-color: #F5EED7;
+  width: 35em;
+  height: 45.5em;
+  position: absolute;
+  right: 0;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 15em 9em 5em 7em 3em;
+  align-items: end;
+  justify-items: center;
+}
+body section div {
+  background-color: #648a34;
+  width: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body img {
+  width: 10em;
+  height: 10em;
+}
+body p {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.8em;
+}
+body h1 {
+  font-size: 1em;
+  font-weight: normal;
+}/*# sourceMappingURL=login.css.map */
