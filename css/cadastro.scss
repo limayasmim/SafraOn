@@ -5,6 +5,11 @@
     padding: 0px;
 }
 
+img {
+    width: 10em;
+    height: 10em;
+}
+
 body {
     padding-right: 0.6250em;
     padding-left: 0.6250em;
@@ -22,11 +27,40 @@ body {
         flex-direction: column;
     }
 
-    & div {
+    & input,
+    select {
         background-color: #648a34;
         width: 82%;
-        height: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #648a34;
+        border-radius: 0.5em;
+        height: 2.5em;
+        color: #F5EED7;
+
+        &::placeholder {
+            color: #F5EED7;
+            margin-left: 2em;
+        }
     }
+
+    & button {
+        margin-top: 2em;
+        background-color: $title_color;
+        width: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid $title_color;
+        border-radius: 0.5em;
+        color: #F5EED7;
+
+        & button:hover {
+            background-color: #648a34;
+        }
+    }
+
 
     & header {
         display: grid;
@@ -37,10 +71,5 @@ body {
         & h1 {
             font-size: 3em;
         }
-    }
-
-    & img {
-        width: 10em;
-        height: 10em;
     }
 }

@@ -1,0 +1,44 @@
+@import 'variables';
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+img {
+    width: 10em;
+    height: 10em;
+}
+
+body {
+
+    & aside {
+        background-color: $title_color;
+        width: 10em;
+        height: 78vh;
+        margin-top: -0.5vh;
+    }
+
+    & p {
+        color: $blocoTerciario_color;
+    }
+
+    & section {
+        color: $blocoTerciario_color;
+        width: 70%;
+    }
+
+    & article {
+        background-color: $blocoSecundario_color;
+        width: 70%;
+        height: 35vh;
+        margin-top: -550vh;
+        margin-left: 40vh;
+        border-radius: 2em;
+    }
+
+    & h1 {
+        margin-top: 1vh;
+        margin-left: 40vh;
+    }
+}
