@@ -20,25 +20,32 @@ body {
     }
 
     & p {
-        color: $blocoTerciario_color;
+        margin-left: 10vh;
+        margin-top: 2vh
     }
 
-    & section {
+    & input {
         color: $blocoTerciario_color;
-        width: 70%;
+        width: 92%;
+        margin-left: 5vh;
+        margin-top: 2vh;
     }
 
     & article {
         background-color: $blocoSecundario_color;
         width: 70%;
         height: 35vh;
-        margin-top: -550vh;
+        margin-top: 5vh;
         margin-left: 40vh;
         border-radius: 2em;
     }
 
+    & main {
+        margin-top: -80vh
+    }
+
     & h1 {
-        margin-top: 1vh;
-        margin-left: 40vh;
+        margin-left: 45vh;
+        font-family: $titulos_font_family;
     }
 }
