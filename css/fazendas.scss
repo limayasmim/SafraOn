@@ -12,16 +12,17 @@ img {
 
 body {
 
-    & aside {
+    & ul {
         background-color: $title_color;
         width: 10em;
         height: 78vh;
         margin-top: -0.5vh;
-    }
 
-    & p {
-        margin-left: 10vh;
-        margin-top: 2vh
+        & li {
+            color: $blocoTerciario_color;
+            padding-top: 1vh;
+            padding-left: 1vh;
+        }
     }
 
     & input {
@@ -34,18 +35,62 @@ body {
     & article {
         background-color: $blocoSecundario_color;
         width: 70%;
-        height: 35vh;
+        height: 40vh;
         margin-top: 5vh;
         margin-left: 40vh;
         border-radius: 2em;
     }
 
     & main {
-        margin-top: -80vh
+        margin-top: -80vh;
+
+        & p {
+            margin-left: 10vh;
+            margin-top: 3vh;
+        }
     }
 
     & h1 {
         margin-left: 45vh;
         font-family: $titulos_font_family;
     }
+
+    & button {
+        text-decoration: none;
+        background-color: $blocoSecundario_color;
+        border: none;
+        margin-left: 4vh;
+        margin-top: 4vh;
+    }
+
+    & h4 {
+        margin-left: 7vh;
+        margin-top: 0.5vw;
+
+        & button {
+            margin-left: 0vh;
+            margin-top: 1.5vh;
+        }
+    }
+
+        & div {
+            display: none;
+            margin-left: 29vw;
+            margin-top: -28vh;
+            width: 10vw;
+            height: 20vh;
+            background-color: #fff;
+            border-radius: 10%;
+
+            & h5 {
+                margin-left: 1vh;
+                padding-top: 0.8vw;
+            }
+
+            & button {
+                margin-left: 0.5vw;
+                background-color: #fff;
+                margin-top: 1vh;
+            }
+        }
 }
