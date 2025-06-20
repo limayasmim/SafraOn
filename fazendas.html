@@ -23,35 +23,104 @@
         <input type="text" id="pesquisa" placeholder="Pesquisa" required>
       </section>
       <p>Local</p>
-      <h4>Fazenda-1<button class="toggle-button" onclick="toggleTalhões()">▼</button></h4>
-      <h4>Fazenda-2<button class="toggle-button" onclick="toggleTalhões()">▼</button></h4>
-      <h4>Fazenda-3<button class="toggle-button" onclick="toggleTalhões()">▼</button></h4>
-      <h4>Fazenda-4<button class="toggle-button" onclick="toggleTalhões()">▼</button></h4>
+      <h4>Fazenda-1<button class="toggle-button1" onclick="toggleTalhões1()">▼</button></h4>
+      <h4>Fazenda-2<button class="toggle-button2" onclick="toggleTalhões2()">▼</button></h4>
+      <h4>Fazenda-3<button class="toggle-button3" onclick="toggleTalhões3()">▼</button></h4>
+      <h4>Fazenda-4<button class="toggle-button4" onclick="toggleTalhões4()">▼</button></h4>
       <button> Adicionar fazenda + </button>
     </article>
 
-      <script>
-      function toggleTalhões() {
-      const talhão = document.getElementById("talhões");
-      const botao = document.querySelector(".toggle-button");
-
-      if (talhão.style.display === "none" || talhão.style.display === "") {
-        talhão.style.display = "block";
-        botao.innerHTML = "▲";
-      } else {
-        painel.style.display = "none";
-        botao.innerHTML = "▼";
-      }
-    }
-  </script>
-
-    <div id="talhões">
+    <div id="talhões-1">
       <h5>Talhão 1</h5>
       <h5>Talhão 2</h5>
       <h5>Talhão 3</h5>
       <h5>Talhão 4</h5>
       <button> Adicionar talhão + </button>
     </div>
+
+    <script>
+      function toggleTalhões1() {
+      const talhão1 = document.getElementById("talhões-1");
+      const botao1 = document.querySelector(".toggle-button1");
+
+      if (talhão1.style.display === "none" || talhão1.style.display === "") {
+        talhão1.style.display = "block";
+        botao1.innerHTML = "▲";
+      } else {
+        talhão1.style.display = "none";
+        botao1.innerHTML = "▼";
+      }
+    }
+  </script>
+
+    <div id="talhões-2">
+      <h5>Talhão 1</h5>
+      <h5>Talhão 2</h5>
+      <h5>Talhão 3</h5>
+      <h5>Talhão 4</h5>
+      <button> Adicionar talhão + </button>
+    </div>
+
+    <script>
+      function toggleTalhões2() {
+      const talhão2 = document.getElementById("talhões-2");
+      const botao2 = document.querySelector(".toggle-button2");
+
+      if (talhão2.style.display === "none" || talhão2.style.display === "") {
+        talhão2.style.display = "block";
+        botao2.innerHTML = "▲";
+      } else {
+        talhão2.style.display = "none";
+        botao2.innerHTML = "▼";
+      }
+    }
+  </script>
+
+    <div id="talhões-3">
+      <h5>Talhão 1</h5>
+      <h5>Talhão 2</h5>
+      <h5>Talhão 3</h5>
+      <h5>Talhão 4</h5>
+      <button> Adicionar talhão + </button>
+    </div>
+
+    <script>
+      function toggleTalhões3() {
+      const talhão3 = document.getElementById("talhões-3");
+      const botao3 = document.querySelector(".toggle-button3");
+
+      if (talhão3.style.display === "none" || talhão3.style.display === "") {
+        talhão3.style.display = "block";
+        botao3.innerHTML = "▲";
+      } else {
+        talhão3.style.display = "none";
+        botao3.innerHTML = "▼";
+      }
+    }
+  </script>
+
+    <div id="talhões-4">
+      <h5>Talhão 1</h5>
+      <h5>Talhão 2</h5>
+      <h5>Talhão 3</h5>
+      <h5>Talhão 4</h5>
+      <button> Adicionar talhão + </button>
+    </div>
+
+    <script>
+      function toggleTalhões4() {
+      const talhão4 = document.getElementById("talhões-4");
+      const botao4 = document.querySelector(".toggle-button4");
+
+      if (talhão4.style.display === "none" || talhão4.style.display === "") {
+        talhão4.style.display = "block";
+        botao4.innerHTML = "▲";
+      } else {
+        talhão4.style.display = "none";
+        botao4.innerHTML = "▼";
+      }
+    }
+  </script>
   </main>
 </body>
 
