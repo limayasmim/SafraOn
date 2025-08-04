@@ -1,0 +1,43 @@
+@import 'variables';
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+img {
+    width: 10em;
+    height: 10em;
+}
+
+body {
+
+    & ul {
+        background-color: $title_color;
+        width: 10em;
+        height: 78vh;
+        margin-top: -0.5vh;
+
+        & li {
+            color: $blocoTerciario_color;
+            padding-top: 1vh;
+            padding-left: 1vh;
+        }
+    }
+
+    & main{
+        margin-top: -78vh;
+        margin-left: 40vh;
+        display: grid;
+
+        & button {
+            border-radius: 50px;
+            
+        }
+    }
+
+    & h1 {
+        font-family: $titulos_font_family;
+        margin-bottom: 3vh;
+    }
+}
