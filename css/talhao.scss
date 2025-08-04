@@ -19,25 +19,35 @@ body {
         margin-top: -0.5vh;
 
         & li {
-            color: $blocoTerciario_color;
+            color: $blocoTerciario_color; 
             padding-top: 1vh;
             padding-left: 1vh;
         }
     }
 
-    & main{
+    & main {
         margin-top: -78vh;
         margin-left: 40vh;
         display: grid;
 
         & button {
             border-radius: 50px;
-            
+            width: 24vh;
+            height: 5vh;
+            margin-bottom: 2vh;    
+            background-color: $blocoSecundario_color;
+        }
+
+        & h1 {
+
+            font-family: $titulos_font_family;
+            font-weight: 400;
+            margin-bottom: 3vh;
+            width: 25vh;
+            margin-left: 2.5vh;
+            color: $title_color;
         }
     }
 
-    & h1 {
-        font-family: $titulos_font_family;
-        margin-bottom: 3vh;
-    }
+
 }

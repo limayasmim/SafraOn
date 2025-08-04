@@ -28,8 +28,16 @@ body main {
 }
 body main button {
   border-radius: 50px;
+  width: 24vh;
+  height: 5vh;
+  margin-bottom: 2vh;
+  background-color: #D9D9D9;
 }
-body h1 {
+body main h1 {
   font-family: "Lexend";
+  font-weight: 400;
   margin-bottom: 3vh;
+  width: 25vh;
+  margin-left: 2.5vh;
+  color: #0D4E19;
 }/*# sourceMappingURL=talhao.css.map */
