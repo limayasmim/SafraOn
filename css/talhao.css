@@ -25,6 +25,7 @@ body main {
   margin-top: -78vh;
   margin-left: 40vh;
   display: grid;
+  grid-template-columns: 34vh 34vh;
 }
 body main button {
   border-radius: 50px;
@@ -39,6 +40,9 @@ body main h1 {
   font-weight: 400;
   margin-bottom: 3vh;
   width: 25vh;
-  margin-left: 2.5vh;
+  text-align: center;
   color: #0D4E19;
+}
+body section {
+  display: grid;
 }/*# sourceMappingURL=talhao.css.map */
