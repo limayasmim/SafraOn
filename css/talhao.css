@@ -25,7 +25,7 @@ body main {
   margin-top: -78vh;
   margin-left: 40vh;
   display: grid;
-  grid-template-columns: 50vh 50vh;
+  grid-template-columns: 34vh 34vh;
 }
 body main button {
   border-radius: 50px;
