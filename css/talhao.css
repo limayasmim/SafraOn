@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  width: 10em;
+  height: 10em;
+}
+
+body ul {
+  background-color: #0D4E19;
+  width: 10em;
+  height: 78vh;
+  margin-top: -0.5vh;
+}
+body ul li {
+  color: #E9E1C3;
+  padding-top: 1vh;
+  padding-left: 1vh;
+}
+body main {
+  margin-top: -78vh;
+  margin-left: 40vh;
+  display: grid;
+}
+body main button {
+  border-radius: 50px;
+  width: 24vh;
+  height: 5vh;
+  margin-bottom: 2vh;
+  background-color: #D9D9D9;
+}
+body main h1 {
+  font-family: "Lexend";
+  font-weight: 400;
+  margin-bottom: 3vh;
+  width: 25vh;
+  margin-left: 2.5vh;
+  color: #0D4E19;
+}/*# sourceMappingURL=talhao.css.map */
