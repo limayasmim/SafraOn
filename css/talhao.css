@@ -32,6 +32,7 @@ body main button {
   height: 5vh;
   margin-bottom: 2vh;
   background-color: #D9D9D9;
+  border: none;
 }
 body main h1 {
   font-family: "Lexend";
