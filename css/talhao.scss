@@ -29,6 +29,7 @@ body {
         margin-top: -78vh;
         margin-left: 40vh;
         display: grid;
+        grid-template-columns: 50vh 50vh;
 
         & button {
             border-radius: 50px;
@@ -44,10 +45,13 @@ body {
             font-weight: 400;
             margin-bottom: 3vh;
             width: 25vh;
-            margin-left: 2.5vh;
+            text-align: center;
             color: $title_color;
         }
     }
 
+    & section {
+    display: grid;
+    }
 
 }
