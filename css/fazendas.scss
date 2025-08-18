@@ -1,160 +1,280 @@
+// @import 'variables';
+
+// * {
+//     margin: 0px;
+//     padding: 0px;
+// }
+
+// img {
+//     width: 10em;
+//     height: 10em;
+// }
+
+// body {
+
+//     & ul {
+//         background-color: $title_color;
+//         width: 10em;
+//         height: 78vh;
+//         margin-top: -0.5vh;
+
+//         & li {
+//             color: $blocoTerciario_color;
+//             padding-top: 1vh;
+//             padding-left: 1vh;
+//         }
+//     }
+
+//     & input {
+//         color: $blocoTerciario_color;
+//         width: 92%;
+//         margin-left: 5vh;
+//         margin-top: 2vh;
+//     }
+
+//     & article {
+//         background-color: $blocoSecundario_color;
+//         width: 70%;
+//         height: 40vh;
+//         margin-top: 5vh;
+//         margin-left: 40vh;
+//         border-radius: 2em;
+//     }
+
+//     & main {
+//         margin-top: -80vh;
+
+//         & p {
+//             margin-left: 10vh;
+//             margin-top: 3vh;
+//         }
+//     }
+
+//     & h1 {
+//         margin-left: 45vh;
+//         font-family: $titulos_font_family;
+//     }
+
+//     & button {
+//         text-decoration: none;
+//         background-color: $blocoSecundario_color;
+//         border: none;
+//         margin-left: 4vh;
+//         margin-top: 4vh;
+//     }
+
+//     & h4 {
+//         margin-left: 7vh;
+//         margin-top: 0.5vw;
+//         font-family: $titulos_font_family;
+
+//         & button {
+//             margin-left: 0vh;
+//             margin-top: 1.5vh;
+//         }
+//     }
+
+//     & #talhoes-1 {
+//         display: none;
+//         margin-left: 29vw;
+//         margin-top: -28vh;
+//         width: 10vw;
+//         height: 20vh;
+//         background-color: $blocoTerciario_color;
+//         border-radius: 10%;
+
+//         & h5 {
+//             margin-left: 1vh;
+//             padding-top: 0.8vw;
+//         }
+
+//         & button {
+//             margin-left: 0.5vw;
+//             background-color: $blocoTerciario_color;
+//             margin-top: 1vh;
+//         }
+//     }
+
+//     & #talhoes-2 {
+//         display: none;
+//         margin-left: 29vw;
+//         margin-top: -23vh;
+//         width: 10vw;
+//         height: 20vh;
+//         background-color: $blocoTerciario_color;
+//         border-radius: 10%;
+
+//         & h5 {
+//             margin-left: 1vh;
+//             padding-top: 0.8vw;
+//         }
+
+//         & button {
+//             margin-left: 0.5vw;
+//             background-color: $blocoTerciario_color;
+//             margin-top: 1vh;
+//         }
+//     }
+
+//     & #talhoes-3 {
+//         display: none;
+//         margin-left: 29vw;
+//         margin-top: -18vh;
+//         width: 10vw;
+//         height: 20vh;
+//         background-color: $blocoTerciario_color;
+//         border-radius: 10%;
+
+//         & h5 {
+//             margin-left: 1vh;
+//             padding-top: 0.8vw;
+//         }
+
+//         & button {
+//             margin-left: 0.5vw;
+//             background-color: $blocoTerciario_color;
+//             margin-top: 1vh;
+//         }
+//     }
+
+//     & #talhoes-4 {
+//         display: none;
+//         margin-left: 29vw;
+//         margin-top: -13vh;
+//         width: 10vw;
+//         height: 20vh;
+//         background-color: $blocoTerciario_color;
+//         border-radius: 10%;
+
+//         & h5 {
+//             margin-left: 1vh;
+//             padding-top: 0.8vw;
+//         }
+
+//         & button {
+//             margin-left: 0.5vw;
+//             background-color: $blocoTerciario_color;
+//             margin-top: 1vh;
+//         }
+//     }
+// }
+
 @import 'variables';
 
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 img {
-    width: 10em;
-    height: 10em;
+  width: 10em;
+  height: 10em;
 }
 
 body {
+  font-family: $titulos_font_family;
 
-    & ul {
-        background-color: $title_color;
-        width: 10em;
-        height: 78vh;
-        margin-top: -0.5vh;
+  ul {
+    background-color: $title_color;
+    width: 10em;
+    height: 78vh;
+    margin-top: -0.5vh;
+    padding: 1vh;
 
-        & li {
-            color: $blocoTerciario_color;
-            padding-top: 1vh;
-            padding-left: 1vh;
-        }
+    li {
+      color: $blocoTerciario_color;
+      padding: 1vh;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  main {
+    margin-top: -80vh;
+
+    h1 {
+      margin-left: 45vh;
     }
 
-    & input {
+    article {
+      background-color: $blocoSecundario_color;
+      width: 70%;
+      min-height: 40vh;
+      margin: 5vh auto;
+      border-radius: 2em;
+      padding: 2vh;
+
+      input#pesquisa {
         color: $blocoTerciario_color;
         width: 92%;
-        margin-left: 5vh;
-        margin-top: 2vh;
-    }
+        margin: 2vh 0 2vh 5vh;
+        padding: 0.5em;
+        border-radius: 0.5em;
+        border: 1px solid #ccc;
+      }
 
-    & article {
-        background-color: $blocoSecundario_color;
-        width: 70%;
-        height: 40vh;
-        margin-top: 5vh;
-        margin-left: 40vh;
-        border-radius: 2em;
-    }
+      p {
+        margin-left: 10vh;
+        margin-top: 3vh;
+      }
 
-    & main {
-        margin-top: -80vh;
+      h4 {
+        margin-left: 7vh;
+        margin-top: 1vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 15em;
 
-        & p {
-            margin-left: 10vh;
-            margin-top: 3vh;
+        button {
+          margin: 0;
+          background: none;
+          border: none;
+          font-size: 1.2em;
+          cursor: pointer;
         }
-    }
+      }
 
-    & h1 {
-        margin-left: 45vh;
-        font-family: $titulos_font_family;
-    }
-
-    & button {
+      button#adicionarBtn {
         text-decoration: none;
         background-color: $blocoSecundario_color;
         border: none;
-        margin-left: 4vh;
-        margin-top: 4vh;
+        margin: 4vh 0 0 4vh;
+        cursor: pointer;
+      }
+    }
+  }
+
+  // 🔽 Talhões (todos os ids talhoes-1, talhoes-2...)
+  [id^="talhoes-"] {
+    display: none;
+    margin-left: 29vw;
+    margin-top: 1vh;
+    width: 12vw;
+    min-height: 20vh;
+    background-color: $blocoTerciario_color;
+    border-radius: 10%;
+    padding: 1vh;
+
+    h5 {
+      margin-left: 1vh;
+      padding-top: 0.8vw;
     }
 
-    & h4 {
-        margin-left: 7vh;
-        margin-top: 0.5vw;
-        font-family: $titulos_font_family;
+    button {
+      margin-left: 0.5vw;
+      background-color: $blocoTerciario_color;
+      margin-top: 1vh;
+      cursor: pointer;
+      border: none;
 
-        & button {
-            margin-left: 0vh;
-            margin-top: 1.5vh;
-        }
+      &:hover {
+        opacity: 0.8;
+      }
     }
-
-    & #talhões-1 {
-        display: none;
-        margin-left: 29vw;
-        margin-top: -28vh;
-        width: 10vw;
-        height: 20vh;
-        background-color: $blocoTerciario_color;
-        border-radius: 10%;
-
-        & h5 {
-            margin-left: 1vh;
-            padding-top: 0.8vw;
-        }
-
-        & button {
-            margin-left: 0.5vw;
-            background-color: $blocoTerciario_color;
-            margin-top: 1vh;
-        }
-    }
-
-    & #talhões-2 {
-        display: none;
-        margin-left: 29vw;
-        margin-top: -23vh;
-        width: 10vw;
-        height: 20vh;
-        background-color: $blocoTerciario_color;
-        border-radius: 10%;
-
-        & h5 {
-            margin-left: 1vh;
-            padding-top: 0.8vw;
-        }
-
-        & button {
-            margin-left: 0.5vw;
-            background-color: $blocoTerciario_color;
-            margin-top: 1vh;
-        }
-    }
-
-    & #talhões-3 {
-        display: none;
-        margin-left: 29vw;
-        margin-top: -18vh;
-        width: 10vw;
-        height: 20vh;
-        background-color: $blocoTerciario_color;
-        border-radius: 10%;
-
-        & h5 {
-            margin-left: 1vh;
-            padding-top: 0.8vw;
-        }
-
-        & button {
-            margin-left: 0.5vw;
-            background-color: $blocoTerciario_color;
-            margin-top: 1vh;
-        }
-    }
-
-    & #talhões-4 {
-        display: none;
-        margin-left: 29vw;
-        margin-top: -13vh;
-        width: 10vw;
-        height: 20vh;
-        background-color: $blocoTerciario_color;
-        border-radius: 10%;
-
-        & h5 {
-            margin-left: 1vh;
-            padding-top: 0.8vw;
-        }
-
-        & button {
-            margin-left: 0.5vw;
-            background-color: $blocoTerciario_color;
-            margin-top: 1vh;
-        }
-    }
+  }
 }
