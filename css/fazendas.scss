@@ -157,7 +157,7 @@
 //             margin-top: 1vh;
 //         }
 //     }
-// }
+//}
 
 @import 'variables';
 
@@ -165,22 +165,31 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: auto;
 }
 
 img {
-  width: 10em;
-  height: 10em;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
 }
 
 body {
   font-family: $titulos_font_family;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 10.5% 89%;
+  grid-template-rows: 23% 77%;
 
-  ul {
+  aside {
     background-color: $title_color;
-    width: 10em;
+    // width: 10em;
     height: 78vh;
-    margin-top: -0.5vh;
-    padding: 1vh;
+    // margin-top: -0.5vh;
+    // padding: 1vh;
+    grid-column: 1;
+    grid-row: 2;
 
     li {
       color: $blocoTerciario_color;
@@ -194,19 +203,31 @@ body {
   }
 
   main {
-    margin-top: -80vh;
+    // margin-top: -80vh;
+    // width: 100%;
+    // height: 100%;
+    display: grid;
+    grid-template-rows: 101% 336%;
+
 
     h1 {
-      margin-left: 45vh;
+      margin-top: auto;
+      margin-left: 13.5vw;
     }
 
     article {
       background-color: $blocoSecundario_color;
-      width: 70%;
-      min-height: 40vh;
+      width: 89%;
+      height: 45vh;
       margin: 5vh auto;
       border-radius: 2em;
       padding: 2vh;
+      grid-row: 2;
+
+      display: grid;
+      grid-template-rows: 23% 13% 13% 13% 13% 13% auto;
+
+      
 
       input#pesquisa {
         color: $blocoTerciario_color;
@@ -223,12 +244,13 @@ body {
       }
 
       h4 {
-        margin-left: 7vh;
-        margin-top: 1vh;
+        // margin-left: 7vh;
+        // margin-top: 1vh;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 15em;
+        width: 7.3em;
+        position: relative;
 
         button {
           margin: 0;
@@ -243,7 +265,7 @@ body {
         text-decoration: none;
         background-color: $blocoSecundario_color;
         border: none;
-        margin: 4vh 0 0 4vh;
+        width: 8vw;
         cursor: pointer;
       }
     }
@@ -252,14 +274,16 @@ body {
   // 🔽 Talhões (todos os ids talhoes-1, talhoes-2...)
   [id^="talhoes-"] {
     display: none;
-    margin-left: 29vw;
-    margin-top: 1vh;
+    margin-left: 12vw;
+    // margin-top: 1vh;
     width: 12vw;
-    min-height: 20vh;
+    min-height: 23vh;
     background-color: $blocoTerciario_color;
     border-radius: 10%;
     padding: 1vh;
-
+    position: absolute;
+    // left: 110%;
+    
     h5 {
       margin-left: 1vh;
       padding-top: 0.8vw;
