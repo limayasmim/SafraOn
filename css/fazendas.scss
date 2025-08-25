@@ -226,21 +226,22 @@ body {
 
       display: grid;
       grid-template-rows: 23% 13% 13% 13% 13% 13% auto;
+      
 
       
 
       input#pesquisa {
         color: $blocoTerciario_color;
         width: 92%;
-        margin: 2vh 0 2vh 5vh;
+        margin: 2vh 0 2vh 2vw;
         padding: 0.5em;
         border-radius: 0.5em;
         border: 1px solid #ccc;
+        
       }
 
       p {
-        margin-left: 10vh;
-        margin-top: 3vh;
+        text-align: center;
       }
 
       h4 {
@@ -248,17 +249,16 @@ body {
         // margin-top: 1vh;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        width: 7.3em;
         position: relative;
 
+        
         button {
-          margin: 0;
+          // margin: 0;
           background: none;
           border: none;
           font-size: 1.2em;
           cursor: pointer;
-        }
+         }
       }
 
       button#adicionarBtn {
@@ -274,15 +274,18 @@ body {
   // 🔽 Talhões (todos os ids talhoes-1, talhoes-2...)
   [id^="talhoes-"] {
     display: none;
-    margin-left: 12vw;
-    // margin-top: 1vh;
+    margin-left: 8.5vw;
+    margin-top: 8vh;
     width: 12vw;
     min-height: 23vh;
     background-color: $blocoTerciario_color;
     border-radius: 10%;
     padding: 1vh;
     position: absolute;
-    // left: 110%;
+   
+   
+
+
     
     h5 {
       margin-left: 1vh;

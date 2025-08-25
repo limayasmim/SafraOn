@@ -57,24 +57,20 @@ body main article {
 body main article input#pesquisa {
   color: #E9E1C3;
   width: 92%;
-  margin: 2vh 0 2vh 5vh;
+  margin: 2vh 0 2vh 2vw;
   padding: 0.5em;
   border-radius: 0.5em;
   border: 1px solid #ccc;
 }
 body main article p {
-  margin-left: 10vh;
-  margin-top: 3vh;
+  text-align: center;
 }
 body main article h4 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 7.3em;
   position: relative;
 }
 body main article h4 button {
-  margin: 0;
   background: none;
   border: none;
   font-size: 1.2em;
@@ -89,7 +85,8 @@ body main article button#adicionarBtn {
 }
 body [id^=talhoes-] {
   display: none;
-  margin-left: 12vw;
+  margin-left: 8.5vw;
+  margin-top: 8vh;
   width: 12vw;
   min-height: 23vh;
   background-color: #E9E1C3;
