@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +16,6 @@ img {
 }
 
 body {
-  font-family: "Lexend";
   height: 100vh;
   display: grid;
   grid-template-columns: 10.5% 89%;
@@ -31,6 +31,7 @@ body aside li {
   color: #E9E1C3;
   padding: 1vh;
   cursor: pointer;
+  font-family: "Inter";
 }
 body aside li:hover {
   text-decoration: underline;
@@ -38,6 +39,7 @@ body aside li:hover {
 body main {
   display: grid;
   grid-template-rows: 101% 336%;
+  font-family: "Lexend";
 }
 body main h1 {
   margin-top: auto;
@@ -97,6 +99,7 @@ body [id^=talhoes-] {
 body [id^=talhoes-] h5 {
   margin-left: 1vh;
   padding-top: 0.8vw;
+  font-family: "Lusitna";
 }
 body [id^=talhoes-] button {
   margin-left: 0.5vw;
