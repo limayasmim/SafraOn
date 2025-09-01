@@ -39,16 +39,17 @@ body {
         margin-left: 40vh;
         border-radius: 2em;
         display: grid;
-        grid-template-rows: 1em;
+        grid-template-rows: 1em;     
     }
 
     & section {
         justify-items: center;
-        display: flex;
-        flex-direction: row;
         margin-top: 3.5em;
         padding-left: 2em;
         padding-right: 2em;
+        display: grid;
+        grid-template-columns:25% 25% 25% 25%;
+        grid-template-rows: 5% 70%;
     }
 
     & main {
@@ -63,13 +64,14 @@ body {
     & h4 {
         margin-top: 0.5vw;
         font-family: $titulos_font_family;
-        width: 20%;
         text-align: center;
+        grid-row: 1;
+
     }
 
     & p {
         margin-top: 3vh;
-        width: 20%;
         text-align: center;
+        grid-row: 2;
     }
 }

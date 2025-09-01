@@ -49,6 +49,9 @@ body {
         margin-top: 3.5em;
         padding-left: 2em;
         padding-right: 2em;
+        display: grid;
+        grid-template-columns:25% 25% 25% 25%;
+        grid-template-rows: 5% 70%;
     }
 
     & main {
@@ -63,13 +66,13 @@ body {
     & h4 {
         margin-top: 0.5vw;
         font-family: $titulos_font_family;
-        width: 20%;
         text-align: center;
+        grid-row: 1;
     }
 
     & p {
         margin-top: 3vh;
-        width: 20%;
         text-align: center;
+        grid-row: 2;
     }
 }
