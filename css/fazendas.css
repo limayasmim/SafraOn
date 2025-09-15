@@ -68,7 +68,6 @@ body main article p {
   text-align: center;
 }
 body main article h4 {
-  display: flex;
   align-items: center;
   position: relative;
 }

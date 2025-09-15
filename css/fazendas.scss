@@ -79,15 +79,11 @@ body {
       }
 
       h4 {
-        // margin-left: 7vh;
-        // margin-top: 1vh;
-        display: flex;
         align-items: center;
         position: relative;
 
         
         button {
-          // margin: 0;
           background: none;
           border: none;
           font-size: 1.2em;
@@ -105,7 +101,7 @@ body {
     }
   }
 
-  // 🔽 Talhões (todos os ids talhoes-1, talhoes-2...)
+
   [id^="talhoes-"] {
     display: none;
     margin-left: 8.5vw;
