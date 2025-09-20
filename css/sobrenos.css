@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  width: 10em;
+  height: 10em;
+}
+
+body ul {
+  background-color: #0D4E19;
+  width: 10em;
+  height: 78vh;
+  margin-top: -0.5vh;
+}
+body ul li {
+  color: #E9E1C3;
+  padding-top: 1vh;
+  padding-left: 1vh;
+}
+body main {
+  margin-top: -80vh;
+  margin-left: 25vw;
+  display: grid;
+  grid-template-columns: 40vw 40vw;
+  grid-template-rows: 30% 80%;
+}
+body main h1 {
+  grid-row: 1;
+  font-family: "Lexend";
+  color: #0D4E19;
+  font-size: 3vw;
+}
+body main section {
+  grid-row: 2;
+  width: 45%;
+  height: 97%;
+  background-color: #D9D9D9;
+  border-radius: 5%;
+}
+body main section p {
+  text-align: center;
+  align-items: center;
+  font-family: "Inter";
+  font-size: medium;
+}
+body main section p img {
+  width: 5%;
+  height: 5%;
+}
+body main section img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+}
+body footer {
+  text-align: center;
+  width: 100%;
+  height: 5%;
+  background-color: #0D4E19;
+  margin-top: 25vh;
+}
+body footer img {
+  width: 1%;
+  height: 1%;
+}/*# sourceMappingURL=sobrenos.css.map */
