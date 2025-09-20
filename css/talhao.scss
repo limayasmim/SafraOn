@@ -17,9 +17,10 @@ body {
         width: 10em;
         height: 78vh;
         margin-top: -0.5vh;
+        font-family: $principalConteudo_font_family;
 
         & li {
-            color: $blocoTerciario_color; 
+            color: $blocoTerciario_color;
             padding-top: 1vh;
             padding-left: 1vh;
         }
@@ -30,18 +31,19 @@ body {
         margin-left: 40vh;
         display: grid;
         grid-template-columns: 34vh 34vh;
+        
 
         & button {
             border-radius: 50px;
             width: 24vh;
             height: 5vh;
-            margin-bottom: 2vh;    
+            margin-bottom: 2vh;
             background-color: $blocoSecundario_color;
             border: none;
+            font-family: $titulos_font_family;
         }
 
         & h1 {
-
             font-family: $titulos_font_family;
             font-weight: 400;
             margin-bottom: 3vh;
@@ -52,7 +54,7 @@ body {
     }
 
     & section {
-    display: grid;
+        display: grid;
     }
 
 }

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 * {
   margin: 0px;
   padding: 0px;
@@ -43,6 +44,9 @@ body section {
   margin-top: 3.5em;
   padding-left: 2em;
   padding-right: 2em;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 5% 70%;
 }
 body main {
   margin-top: -80vh;
@@ -54,11 +58,11 @@ body h1 {
 body h4 {
   margin-top: 0.5vw;
   font-family: "Lexend";
-  width: 20%;
   text-align: center;
+  grid-row: 1;
 }
 body p {
   margin-top: 3vh;
-  width: 20%;
   text-align: center;
+  grid-row: 2;
 }/*# sourceMappingURL=manejos.css.map */
