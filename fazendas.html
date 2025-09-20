@@ -74,23 +74,49 @@
   </main>
 
   <script>
-    function toggleTalhoes(num) {
-      const selecionado = document.getElementById("talhoes-" + num);
-      const botao = document.querySelectorAll(".toggle-button")[num - 1];
-      const isOpen = selecionado.style.display === "block";
+function toggleTalhoes(num) {
+  const selecionado = document.getElementById("talhoes-" + num);
+  const botao = document.querySelectorAll(".toggle-button")[num - 1];
+  const isOpen = selecionado.style.display === "block";
 
-      // Fecha todos
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById("talhoes-" + i).style.display = "none";
-        document.querySelectorAll(".toggle-button")[i - 1].innerHTML = "▼";
-      }
+  // Fecha todos os containers de talhão
+  document.querySelectorAll('div[id^="talhoes-"]').forEach(container => {
+    container.style.display = "none";
+  });
+  
+  // Reseta todos os botões para ▼
+  document.querySelectorAll(".toggle-button").forEach(btn => {
+    btn.innerHTML = "▼";
+  });
 
-      // Abre somente se não estava aberto
-      if (!isOpen) {
-        selecionado.style.display = "block";
-        botao.innerHTML = "▲";
-      }
-    }
+  // Abre somente se não estava aberto
+  if (!isOpen) {
+    selecionado.style.display = "block";
+    botao.innerHTML = "▲";
+  }
+}
+
+// Adiciona evento ao botão de adicionar fazenda
+document.getElementById('adicionarBtn').addEventListener('click', function() {
+  const inputSection = document.getElementById('inputFazenda');
+  inputSection.style.display = inputSection.style.display === 'none' ? 'block' : 'none';
+});
+
+// Fecha os containers de talhão ao clicar fora deles
+document.addEventListener('click', function(event) {
+  const isToggleButton = event.target.matches('.toggle-button');
+  const isInsideTalhoes = event.target.closest('div[id^="talhoes-"]');
+  
+  // Se não clicou em um botão toggle nem dentro de um container de talhões
+  if (!isToggleButton && !isInsideTalhoes) {
+    document.querySelectorAll('div').forEach(container => {
+      container.style.display = "none";
+    });
+    document.querySelectorAll(".toggle-button").forEach(btn => {
+      btn.innerHTML = "▼";
+    });
+  }
+});
   </script>
 </body>
 

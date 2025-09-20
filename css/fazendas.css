@@ -53,6 +53,7 @@ body main article {
   border-radius: 2em;
   padding: 2vh;
   grid-row: 2;
+  position: relative;
   display: grid;
   grid-template-rows: 23% 13% 13% 13% 13% 13% auto;
 }
@@ -69,7 +70,6 @@ body main article p {
 }
 body main article h4 {
   align-items: center;
-  position: relative;
 }
 body main article h4 button {
   background: none;
@@ -87,13 +87,12 @@ body main article button#adicionarBtn {
 body [id^=talhoes-] {
   display: none;
   margin-left: 8.5vw;
-  margin-top: 8vh;
+  margin-top: -2vh;
   width: 12vw;
   min-height: 23vh;
   background-color: #E9E1C3;
   border-radius: 10%;
   padding: 1vh;
-  position: absolute;
 }
 body [id^=talhoes-] h5 {
   margin-left: 1vh;
