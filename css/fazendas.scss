@@ -12,22 +12,24 @@ img {
   grid-row: 1;
   width: 100%;
   height: 100%;
+  border-bottom: 2px solid #626261;
 }
 
 body {
+  background-color:$title_color;
   height: 100vh;
   display: grid;
   grid-template-columns: 10.5% 89%;
   grid-template-rows: 23% 77%;
 
   aside {
-    background-color: $title_color;
-    height: 78vh;
+    background-color: $blocoTerciario_color;
+    height: 77vh;
     grid-column: 1;
     grid-row: 2;
 
     li {
-      color: $blocoTerciario_color;
+      color: #648a34;
       padding: 1vh;
       cursor: pointer;
       font-family: $principalConteudo_font_family;
@@ -50,7 +52,7 @@ body {
     }
 
     article {
-      background-color: $blocoSecundario_color;
+      background-color: #F5F1E6;
       width: 89%;
       height: 45vh;
       margin: 5vh auto;
@@ -60,78 +62,111 @@ body {
       position: relative;
       display: grid;
       grid-template-rows: 23% 13% 13% 13% 13% 13% auto;
-      
 
-      
+
+
 
       input#pesquisa {
-        color: $blocoTerciario_color;
-        width: 92%;
-        margin: 2vh 0 2vh 2vw;
-        padding: 0.5em;
-        border-radius: 0.5em;
-        border: 1px solid #ccc;
-        
-      }
-
-      p {
-        text-align: center;
-      }
-
-      h4 {
+        background-color: #b5dc84;
+        width: 22em;
+        display: flex;
         align-items: center;
-        // position: relative;
+        justify-content: center;
+        border: 1px solid #648a34;
+        border-radius: 0.5em;
+        height: 2.5em;
 
-        
-        button {
-          background: none;
-          border: none;
-          font-size: 1.2em;
-          cursor: pointer;
-         }
+        &::placeholder {
+          color: #626261;
+          margin-left: 2em;
+          padding-left: 0.5em;
+          font-style: italic;
+          opacity: 0.7;
+        }
       }
 
-      button#adicionarBtn {
-        text-decoration: none;
-        background-color: $blocoSecundario_color;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    h4 {
+      align-items: center;
+      // position: relative;
+
+
+      button {
+        background: none;
         border: none;
-        width: 8vw;
+        font-size: 1.2em;
         cursor: pointer;
       }
     }
+
+    button#adicionarBtn {
+      text-decoration: none;
+      background-color: $blocoSecundario_color;
+      border: none;
+      width: 8vw;
+      cursor: pointer;
+    }
+  }
+}
+
+#inputFazenda {
+  margin-top: -5vh;
+  margin-left: 10vw;
+  input {
+
+    background-color: #b5dc84;
+    width: 22em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #648a34;
+    border-radius: 0.5em;
+    height: 2.5em;
+
+    &::placeholder {
+      color: #626261;
+      padding-left: 0.5em;
+      font-style: italic;
+      opacity: 0.7;
+    }
+  }
+}
+
+
+[id^="talhoes-"] {
+  display: none;
+  margin-left: 8.5vw;
+  margin-top: -2vh;
+  width: 12vw;
+  min-height: 23vh;
+  background-color: $blocoTerciario_color;
+  border-radius: 10%;
+  padding: 1vh;
+
+
+
+
+
+  h5 {
+    margin-left: 1vh;
+    padding-top: 0.8vw;
+    font-family: $aberturaTalhao_Fazenda;
   }
 
-
-  [id^="talhoes-"] {
-    display: none;
-    margin-left: 8.5vw;
-    margin-top: -2vh;
-    width: 12vw;
-    min-height: 23vh;
+  button {
+    margin-left: 0.5vw;
     background-color: $blocoTerciario_color;
-    border-radius: 10%;
-    padding: 1vh;
-   
-   
+    margin-top: 1vh;
+    cursor: pointer;
+    border: none;
 
-
-    
-    h5 {
-      margin-left: 1vh;
-      padding-top: 0.8vw;
-      font-family: $aberturaTalhao_Fazenda;
-    }
-
-    button {
-      margin-left: 0.5vw;
-      background-color: $blocoTerciario_color;
-      margin-top: 1vh;
-      cursor: pointer;
-      border: none;
-
-      &:hover {
-        opacity: 0.8;
-      }
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
