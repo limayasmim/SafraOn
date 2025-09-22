@@ -66,9 +66,9 @@ body {
 
 
 
-      input#pesquisa {
+      & input#pesquisa {
         background-color: #b5dc84;
-        width: 22em;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;

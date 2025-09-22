@@ -47,10 +47,10 @@ main {
 main h1 {
   grid-column: 1/-1;
   text-align: center;
-  margin-bottom: 20px;
   font-family: "Lexend";
   font-weight: 600;
   color: #0D4E19;
+  font-size: 3.5em;
 }
 main section {
   display: flex;
