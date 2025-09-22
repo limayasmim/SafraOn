@@ -32,44 +32,8 @@ aside img {
   height: 10em;
 }
 
-<<<<<<< HEAD
-body ul {
-  background-color: #0D4E19;
-  width: 10em;
-  height: 78vh;
-  margin-top: -0.5vh;
-}
-body ul li {
-  color: #F5EED7;
-  padding-top: 1vh;
-  padding-left: 1vh;
-}
-body main {
-  margin-top: -80vh;
-  margin-left: 25vw;
-  display: grid;
-  grid-template-columns: 40vw 40vw;
-  grid-template-rows: 30% 80%;
-}
-body main h1 {
-  grid-row: 1;
-  font-family: "Lexend";
-  color: #0D4E19;
-  font-size: 3vw;
-}
-body main section {
-  grid-row: 2;
-  width: 45%;
-  height: 97%;
-  background-color: #D9D9D9;
-  border-radius: 5%;
-}
-body main section p {
-  text-align: center;
-=======
 main {
   display: flex;
->>>>>>> 6b237dabfc7f116cf63155e2647257fab2975161
   align-items: center;
   flex: 1;
   margin-left: 200px;
