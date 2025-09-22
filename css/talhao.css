@@ -16,36 +16,111 @@ body ul {
   width: 10em;
   height: 78vh;
   margin-top: -0.5vh;
-  font-family: "Inter";
 }
 body ul li {
-  color: #E9E1C3;
+  color: #F5EED7;
   padding-top: 1vh;
   padding-left: 1vh;
 }
 body main {
-  margin-top: -78vh;
-  margin-left: 40vh;
+  padding: 2em;
+  margin-left: 10em;
+  margin-top: -47.5em;
+}
+body main div {
   display: grid;
-  grid-template-columns: 34vh 34vh;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em;
+  margin-bottom: 2em;
 }
-body main button {
-  border-radius: 50px;
-  width: 24vh;
-  height: 5vh;
-  margin-bottom: 2vh;
-  background-color: #D9D9D9;
-  border: none;
-  font-family: "Lexend";
-}
-body main h1 {
-  font-family: "Lexend";
-  font-weight: 400;
-  margin-bottom: 3vh;
-  width: 25vh;
-  text-align: center;
+body main div button {
+  border-radius: 3.5em;
+  height: 3em;
+  background-color: #F5EED7;
+  border: 2px solid #0D4E19;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
   color: #0D4E19;
 }
-body section {
-  display: grid;
+body main div button:hover,
+body main div button .ativo {
+  background: #0D4E19;
+  color: #F5EED7;
+  transform: scale(0.97);
+}
+body main section {
+  display: none;
+}
+body main section.ativo {
+  display: block;
+}
+body main section article {
+  background-color: #F5EED7;
+  padding: 20px;
+  margin-top: 20px;
+}
+body main section article h3 {
+  margin-bottom: 15px;
+  color: #0D4E19;
+}
+body main section article input,
+body main section article select {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #0D4E19;
+  border-radius: 4px;
+}
+body main section article button {
+  background-color: #0D4E19;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+body main section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+body main section table th {
+  background-color: #F5EED7;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #0D4E19;
+}
+body main section table td {
+  padding: 15px;
+  border-bottom: 1px solid #0D4E19;
+}
+body main section table tr:last-child td {
+  border-bottom: none;
+}
+body h1 {
+  margin: 0.2em;
+  color: #0D4E19;
+  font-size: 1.5em;
+}
+body h2 {
+  font-size: 1.4rem;
+  color: #0D4E19;
+  margin: 30px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0D4E19;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  nav {
+    display: none;
+  }
+  .botoes-navegacao {
+    grid-template-columns: 1fr;
+  }
 }/*# sourceMappingURL=talhao.css.map */
