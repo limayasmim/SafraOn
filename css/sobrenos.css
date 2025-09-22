@@ -1,16 +1,38 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
-* {
-  margin: 0px;
-  padding: 0px;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-img {
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 10em;
+  background: #0D4E19;
+  box-sizing: border-box;
+  list-style: none;
+  flex-shrink: 0;
+}
+aside li {
+  margin-top: 1%;
+  margin-left: 4%;
+  cursor: pointer;
+}
+aside img {
   width: 10em;
   height: 10em;
 }
 
+<<<<<<< HEAD
 body ul {
   background-color: #0D4E19;
   width: 10em;
@@ -44,27 +66,118 @@ body main section {
 }
 body main section p {
   text-align: center;
+=======
+main {
+  display: flex;
+>>>>>>> 6b237dabfc7f116cf63155e2647257fab2975161
   align-items: center;
-  font-family: "Inter";
-  font-size: medium;
+  flex: 1;
+  margin-left: 200px;
+  padding: 40px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 40px;
+  justify-items: center;
 }
-body main section p img {
-  width: 5%;
-  height: 5%;
-}
-body main section img {
-  width: 100%;
-  height: 100%;
-  border-radius: 5%;
-}
-body footer {
+main h1 {
+  grid-column: 1/-1;
   text-align: center;
-  width: 100%;
-  height: 5%;
-  background-color: #0D4E19;
-  margin-top: 25vh;
+  margin-bottom: 20px;
+  font-family: "Lexend";
+  font-weight: 600;
+  color: #0D4E19;
 }
-body footer img {
+main section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #D9D9D9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  overflow: hidden;
+}
+main section img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+main section:hover img {
+  transform: scale(1.05);
+  /* Zoom suave */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Sombra suave */
+  filter: brightness(0.7);
+  /* Aumenta o brilho */
+}
+main section:hover p {
+  opacity: 1;
+  transform: translateY(0);
+  /* Move o texto para a posição normal */
+}
+main section:hover h3 {
+  opacity: 1;
+  transform: translateY(0);
+  /* Move o texto para a posição normal */
+}
+main p {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  color: black;
+  opacity: 0;
+  /* Invisível por padrão */
+  transform: translateY(20px);
+  /* Começa deslocado para baixo */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+main p img {
+  width: 1vw;
+  height: 2vh;
+  border-radius: 0px;
+  margin-right: 4%;
+}
+main h3 {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  color: black;
+  opacity: 0;
+  /* Invisível por padrão */
+  transform: translateY(20px);
+  /* Começa deslocado para baixo */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+footer {
+  background: #0D4E19;
+  padding: -10em 20px 10px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  width: calc(100% - 10em);
+  /* largura total menos a do aside fixo */
+  margin-left: 10em;
+  /* evita sobrepor o aside */
+}
+footer img {
   width: 1%;
   height: 1%;
 }/*# sourceMappingURL=sobrenos.css.map */
