@@ -11,7 +11,6 @@ body {
   flex-direction: column;
 }
 
-/* Menu lateral fixo */
 aside {
   position: fixed;
   top: 0;
@@ -33,7 +32,6 @@ aside img {
   height: 10em;
 }
 
-/* Conteúdo principal ocupa o espaço restante */
 main {
   display: flex;
   align-items: center;
@@ -45,7 +43,6 @@ main {
   grid-template-columns: 50% 50%;
   gap: 40px;
   justify-items: center;
-  /* Seções de integrantes */
 }
 main h1 {
   grid-column: 1/-1;
@@ -132,9 +129,8 @@ main h3 {
   pointer-events: none;
 }
 
-/* Footer sempre no final do conteúdo */
 footer {
-  background: #ccc;
+  background: #0D4E19;
   padding: -10em 20px 10px;
   text-align: center;
   box-sizing: border-box;

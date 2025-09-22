@@ -10,7 +10,7 @@
      flex-direction: column;
  }
 
- /* Menu lateral fixo */
+
  aside {
      position: fixed;
      top: 0;
@@ -34,7 +34,7 @@
      }
  }
 
- /* Conteúdo principal ocupa o espaço restante */
+
  main {
      display: flex;
      align-items: center;
@@ -57,7 +57,7 @@
          color: $title_color;
      }
 
-     /* Seções de integrantes */
+
      & section {
          display: flex;
          flex-direction: column;
@@ -109,7 +109,6 @@
 
 
      & p {
-         //  text-align: center;
          display: flex;
          flex-direction: row;
          bottom: 0;
@@ -125,6 +124,7 @@
          /* Começa deslocado para baixo */
          transition: opacity 0.3s ease, transform 0.3s ease;
          pointer-events: none;
+
 
 
          & img {
@@ -155,9 +155,9 @@
 
 
 
- /* Footer sempre no final do conteúdo */
+
  footer {
-     background: #ccc;
+     background: $title_color;
      padding: -10em 20px 10px;
      text-align: center;
      box-sizing: border-box;
