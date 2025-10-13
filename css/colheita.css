@@ -22,11 +22,6 @@ body ul li {
   padding-top: 1vh;
   padding-left: 1vh;
 }
-body h2 {
-  position: absolute;
-  margin-left: 5vh;
-  margin-top: 1.5vw;
-}
 body article {
   background-color: #D9D9D9;
   width: 70%;
@@ -35,16 +30,79 @@ body article {
   margin-left: 40vh;
   border-radius: 2em;
   display: grid;
-  grid-template-rows: 1em;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "titulo titulo titulo titulo" "t1 t2 t3 t4";
+  gap: 1em;
+  padding: 2em;
+  align-items: start;
 }
-body section {
-  justify-items: center;
-  margin-top: 3.5em;
-  padding-left: 2em;
-  padding-right: 2em;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 5% 70%;
+body article h2 {
+  grid-area: titulo;
+}
+body article section:nth-of-type(1) {
+  grid-area: t1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+body article section:nth-of-type(1) h4 {
+  font-family: "Lexend";
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(1) p {
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(2) {
+  grid-area: t2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+body article section:nth-of-type(2) h4 {
+  font-family: "Lexend";
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(2) p {
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(3) {
+  grid-area: t3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+body article section:nth-of-type(3) h4 {
+  font-family: "Lexend";
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(3) p {
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(4) {
+  grid-area: t4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+body article section:nth-of-type(4) h4 {
+  font-family: "Lexend";
+  width: 100%;
+  text-align: center;
+}
+body article section:nth-of-type(4) p {
+  width: 100%;
+  text-align: center;
 }
 body main {
   margin-top: -80vh;
@@ -52,15 +110,4 @@ body main {
 body h1 {
   margin-left: 45vh;
   font-family: "Lexend";
-}
-body h4 {
-  margin-top: 0.5vw;
-  font-family: "Lexend";
-  text-align: center;
-  grid-row: 1;
-}
-body p {
-  margin-top: 3vh;
-  text-align: center;
-  grid-row: 2;
 }/*# sourceMappingURL=colheita.css.map */
