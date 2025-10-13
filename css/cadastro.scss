@@ -15,7 +15,7 @@ body {
     padding-left: 0.6250em;
     padding-top: 0.6250em;
     padding-bottom: 0.6250em;
-    background-color: #F5EED7;
+    background-color: $color-text;
 
     & article {
         width: 100%;
@@ -27,37 +27,56 @@ body {
         flex-direction: column;
     }
 
-    & input,
-    select {
-        background-color: #648a34;
+    & input, select {
+        background-color: $color-secondary;
         width: 82%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #648a34;
+        border: 1px solid $color-secondary;
         border-radius: 0.5em;
         height: 2.5em;
-        color: #F5EED7;
+        color: $color-text;
+        padding-left: 0.5em;
 
         &::placeholder {
-            color: #F5EED7;
+            color: $color-text;
             margin-left: 2em;
         }
+        
+        &:hover {
+            background-color: $color-accent;
+            border-color: $color-accent;
+        }
+        
+        &:focus {
+            outline: none;
+            border-color: $color-button;
+            background-color: $color-accent;
+        }
+
     }
 
     & button {
-        margin-top: 2em;
-        background-color: $title_color;
-        width: 15%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid $title_color;
+        background-color: $color-button;
+        border: none;
+        padding: 0.2em 1.5625em;
         border-radius: 0.5em;
-        color: #F5EED7;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 1.25em;
+        display: block;
+        font-family: "Inter", sans-serif;
+        transition: all 0.3s ease;
+        width: 13em;
+        margin-left: auto;
+        margin-right: auto;
+        color: $color-text;
 
-        & button:hover {
-            background-color: #648a34;
+        &:hover {
+            background-color: $color-accent;
+            transform: translateY(-0.125em);
+            box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
         }
     }
 
