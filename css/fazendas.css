@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
@@ -5,153 +7,284 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: auto;
-}
-
-img {
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-  height: 100%;
-  border-bottom: 2px solid #626261;
 }
 
 body {
+  font-family: "Lexend", sans-serif;
+  background-color: #E9E1C3;
+  min-height: 100vh;
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+img {
+  width: 10em;
+  height: 10em;
+  position: absolute;
+  z-index: 1000;
+}
+
+aside:first-of-type {
   background-color: #0D4E19;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 10.5% 89%;
-  grid-template-rows: 23% 77%;
+  width: 10em;
+  min-height: 25vh;
+  padding: 10em 0 0 0;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
 }
-body aside {
-  background-color: #F5EED7;
-  height: 77vh;
-  grid-column: 1;
-  grid-row: 2;
+aside:first-of-type ul {
+  list-style: none;
 }
-body aside li {
-  color: #648a34;
-  padding: 1vh;
+aside:first-of-type ul li {
+  color: #E9E1C3;
+  padding: 0.9375em 1.25em;
   cursor: pointer;
-  font-family: "Inter";
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+  position: relative;
 }
-body aside li:hover {
+aside:first-of-type ul li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
   text-decoration: underline;
 }
-body main {
-  display: grid;
-  grid-template-rows: 101% 336%;
-  font-family: "Lexend";
+
+main {
+  flex: 1;
+  padding: 2.5em;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-body main h1 {
-  margin-top: auto;
-  margin-left: 13.5vw;
+main h1 {
+  color: #648a34;
+  font-size: 2.5em;
+  margin-bottom: 1.875em;
+  text-align: center;
+  width: 100%;
 }
-body main article {
-  background-color: #F5F1E6;
-  width: 89%;
-  height: 45vh;
-  margin: 5vh auto;
-  border-radius: 2em;
-  padding: 2vh;
-  grid-row: 2;
-  position: relative;
-  display: grid;
-  grid-template-rows: 23% 13% 13% 13% 13% 13% auto;
+main article {
+  background-color: #fff8e6;
+  border-radius: 1.25em;
+  padding: 1.875em;
+  width: 90%;
+  max-width: 50em;
+  margin: 0 auto;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
-body main article input#pesquisa {
+main article h4 {
+  font-weight: 600;
+}
+main h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375em 0.625em;
+  border-bottom: 0.0625em solid #fff8e6;
+  margin: 0;
+  font-family: "Lexend", sans-serif;
+  color: #333;
+}
+
+#pesquisa {
   background-color: #b5dc84;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #648a34;
+  padding: 0.75em 0.9375em;
+  border: 0.0625em solid #648a34;
   border-radius: 0.5em;
-  height: 2.5em;
+  margin-bottom: 1.25em;
+  font-size: 1em;
+  font-family: "Inter", sans-serif;
+  color: #333;
 }
-body main article input#pesquisa::-moz-placeholder {
+#pesquisa::-moz-placeholder {
   color: #626261;
-  margin-left: 2em;
-  padding-left: 0.5em;
   font-style: italic;
   opacity: 0.7;
 }
-body main article input#pesquisa::placeholder {
+#pesquisa::placeholder {
   color: #626261;
-  margin-left: 2em;
-  padding-left: 0.5em;
   font-style: italic;
   opacity: 0.7;
 }
-body main p {
-  text-align: center;
+#pesquisa:focus {
+  outline: none;
+  border-color: #4a6a25;
+  box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.3);
 }
-body main h4 {
-  align-items: center;
-}
-body main h4 button {
+
+.toggle-button {
   background: none;
   border: none;
   font-size: 1.2em;
   cursor: pointer;
+  padding: 0.3125em;
+  color: #648a34;
+  transition: transform 0.3s ease;
 }
-body main button#adicionarBtn {
-  text-decoration: none;
-  background-color: #D9D9D9;
+.toggle-button:hover {
+  transform: scale(1.5);
+}
+
+[id^=talhoes-] {
+  display: none;
+  background-color: #648a34;
+  border-radius: 0.625em;
+  padding: 0.9375em;
+  margin: 0.625em 0 1.25em 0;
+  color: #fff8e6;
+  animation: fadeIn 0.3s ease;
+}
+[id^=talhoes-] h5 {
+  padding: 0.5em 0.625em;
+  margin: 0.3125em 0;
+  font-family: "Lusitana", serif;
+  border-bottom: 0.0625em solid rgba(255, 255, 255, 0.3);
+  font-weight: normal;
+}
+[id^=talhoes-] p {
+  color: #E9E1C3;
+  margin-bottom: 0.625em;
+  font-style: italic;
+  font-family: "Inter", sans-serif;
+}
+[id^=talhoes-] button {
+  background-color: #4a6a25;
+  color: #fff8e6;
   border: none;
-  width: 8vw;
+  padding: 0.5em 0.9375em;
+  border-radius: 0.3125em;
   cursor: pointer;
+  margin-top: 0.625em;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease;
+}
+[id^=talhoes-] button:hover {
+  background-color: #3a551d;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#adicionarBtn {
+  background-color: #578424;
+  border: none;
+  padding: 0.75em 1.5625em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 1.25em;
+  display: block;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+  width: 13em;
+  margin-left: auto;
+  margin-right: auto;
+  color: #E9E1C3;
+}
+#adicionarBtn:hover {
+  background-color: #4a6a25;
+  transform: translateY(-0.125em);
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
 }
 
 #inputFazenda {
-  margin-top: -5vh;
-  margin-left: 10vw;
+  display: none;
+  margin-top: 0.9375em;
+  animation: slideDown 0.3s ease;
 }
 #inputFazenda input {
   background-color: #b5dc84;
-  width: 22em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #648a34;
+  width: 100%;
+  padding: 0.75em 0.9375em;
+  border: 0.0625em solid #648a34;
   border-radius: 0.5em;
-  height: 2.5em;
+  font-size: 1em;
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+#inputFazenda input:focus {
+  outline: none;
+  border-color: #4a6a25;
+  box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.3);
 }
 #inputFazenda input::-moz-placeholder {
   color: #626261;
-  padding-left: 0.5em;
   font-style: italic;
   opacity: 0.7;
 }
 #inputFazenda input::placeholder {
   color: #626261;
-  padding-left: 0.5em;
   font-style: italic;
   opacity: 0.7;
 }
-
-[id^=talhoes-] {
-  display: none;
-  margin-left: 8.5vw;
-  margin-top: -2vh;
-  width: 12vw;
-  min-height: 23vh;
-  background-color: #F5EED7;
-  border-radius: 10%;
-  padding: 1vh;
-}
-[id^=talhoes-] h5 {
-  margin-left: 1vh;
-  padding-top: 0.8vw;
-  font-family: "Lusitna";
-}
-[id^=talhoes-] button {
-  margin-left: 0.5vw;
-  background-color: #F5EED7;
-  margin-top: 1vh;
-  cursor: pointer;
+#inputFazenda button {
+  background-color: #4a6a25;
+  color: #fff8e6;
   border: none;
+  padding: 0.5em 1em;
+  border-radius: 0.3125em;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease;
 }
-[id^=talhoes-] button:hover {
-  opacity: 0.8;
+#inputFazenda button:hover {
+  background-color: #3a551d;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Responsividade */
+@media (max-width: 48em) {
+  body {
+    flex-direction: column;
+  }
+  aside:first-of-type {
+    width: 100%;
+    min-height: auto;
+    padding: 6.25em 0 1.25em 0;
+  }
+  aside:first-of-type ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  aside:first-of-type ul li {
+    padding: 0.625em 0.9375em;
+  }
+  main {
+    padding: 1.25em;
+  }
+  main article {
+    width: 100%;
+    padding: 1.25em;
+  }
+  img {
+    width: 7.5em;
+    height: 7.5em;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* Efeitos de transição para todos os elementos interativos */
+button,
+input,
+[id^=talhoes-] {
+  transition: all 0.3s ease;
 }/*# sourceMappingURL=fazendas.css.map */
