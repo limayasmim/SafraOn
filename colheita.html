@@ -1,45 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafraOn</title>
+    <title>SafraOn - Gestão de Colheitas</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png">
     <link rel="stylesheet" href="css/colheita.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png" style="border-radius: 50px;">
 </head>
-
 <body>
-    <img src="/imagem/logo.png" alt="">
-    <ul>
-        <li>Início</li>
-        <li>Talhões</li>
-        <li>Dicas</li>
-        <li>Sobre Nós</li>
-    </ul>
+    <button class="menu-toggle" title="Abrir menu">☰</button>
+    
+    <nav>
+        <img src="/imagem/logo.png" alt="Logo SafraOn">
+        <ul>
+            <li>Início</li>
+            <li>Talhões</li>
+            <li>Dicas</li>
+            <li>Sobre Nós</li>
+        </ul>
+    </nav>
+    
     <main>
-        <h1>Talhão 1</h1>
-        <article>
-            <h2>Colheita</h2>
-            <section>
-                <h4>Data</h4>
-                <p>00/00/00</p>
-            </section>
-            <section>
-                <h4>Planta</h4>
-                <p>Planta</p>
-            </section>
-            <section>
-                <h4>Umidade</h4>
-                <p>Grau de umidade</p>
-            </section>
-            <section>
-                <h4>Produção por alqueire</h4>
-                <p>Produção</p>
-            </section>
-        </article>
+        <header>
+            <h1>Talhão 1</h1>
+        </header>
+        
+        <section>
+            <article>
+                <header>
+                    <h2>Colheita #1</h2>
+                </header>
+                
+                <section class="campos-container">
+                    <header class="campos-header">
+                        <span>Data</span>
+                        <span>Planta</span>
+                        <span>Umidade</span>
+                        <span>Produção</span>
+                    </header>
+                    
+                    <section class="valores-container" id="valoresContainer">
+                        <article class="valores-linha">
+                            <span class="valor-campo">15/03/2024</span>
+                            <span class="valor-campo">Soja</span>
+                            <span class="valor-campo">14.5%</span>
+                            <span class="valor-campo">60 sacas</span>
+                            
+                            <menu class="acoes-linha">
+                                <button class="btn-acao btn-editar" title="Editar">✎</button>
+                                <button class="btn-acao btn-remover" title="Remover">×</button>
+                            </menu>
+                        </article>
+                    </section>
 
+                    <!-- Botão Adicionar Linha -->
+                    <button class="btn-adicionar-linha">+ Adicionar Linha</button>
+                </section>
+            </article>
+        </section>
     </main>
-</body>
 
+    <!-- Modal de Edição -->
+    <dialog id="modalEdicao">
+        <article>
+            <header>
+                <h3>Editar Dados da Colheita</h3>
+                <button class="btn-fechar">&times;</button>
+            </header>
+            
+            <form id="formEdicao">
+                <input type="hidden" id="linhaId">
+                
+                <fieldset>
+                    <label for="dataEdicao">Data da Colheita:</label>
+                    <input type="text" id="dataEdicao" placeholder="DD/MM/AAAA">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="plantaEdicao">Tipo de Planta:</label>
+                    <input type="text" id="plantaEdicao" placeholder="Nome da planta">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="umidadeEdicao">Umidade:</label>
+                    <input type="text" id="umidadeEdicao" placeholder="% de umidade">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="producaoEdicao">Produção por Alqueire:</label>
+                    <input type="text" id="producaoEdicao" placeholder="Quantidade em sacas">
+                </fieldset>
+                
+                <footer>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit">Salvar Alterações</button>
+                </footer>
+            </form>
+        </article>
+    </dialog>
+
+    <!-- Modal de Adição -->
+    <dialog id="modalAdicao">
+        <article>
+            <header>
+                <h3>Adicionar Nova Linha</h3>
+                <button class="btn-fechar-adicao">&times;</button>
+            </header>
+            
+            <form id="formAdicao">
+                <fieldset>
+                    <label for="dataAdicao">Data da Colheita:</label>
+                    <input type="text" id="dataAdicao" placeholder="DD/MM/AAAA" value="">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="plantaAdicao">Tipo de Planta:</label>
+                    <input type="text" id="plantaAdicao" placeholder="Nome da planta" value="">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="umidadeAdicao">Umidade:</label>
+                    <input type="text" id="umidadeAdicao" placeholder="% de umidade" value="">
+                </fieldset>
+                
+                <fieldset>
+                    <label for="producaoAdicao">Produção por Alqueire:</label>
+                    <input type="text" id="producaoAdicao" placeholder="Quantidade em sacas" value="">
+                </fieldset>
+                
+                <footer>
+                    <button type="button" class="btn-cancelar-adicao">Cancelar</button>
+                    <button type="submit">Adicionar Linha</button>
+                </footer>
+            </form>
+        </article>
+    </dialog>
+
+    <script src="js/colheita.js"></script>
+</body>
 </html>
