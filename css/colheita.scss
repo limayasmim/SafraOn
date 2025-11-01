@@ -1,22 +1,5 @@
-// Variáveis de cores e fontes
-:root {
-    --color-primary: #0D4E19;
-    --color-secondary: #648a34;
-    --color-accent: #4a6a25;
-    --color-dark: #3a551d;
-    --color-light: #b5dc84;
-    --color-background: #E9E1C3;
-    --color-background-light: #fff8e6;
-    --color-text: #F5EED7;
-    --color-button: #578424;
-    --color-gray: #6c757d;
-    --color-gray-dark: #5a6268;
-    --color-error: #ff6b6b;
-    --sidebar-width: 12rem;
-    --header-height: 4rem;
-}
+@import 'variables';
 
-// Reset e configurações base
 * {
     margin: 0;
     padding: 0;
@@ -24,35 +7,22 @@
 }
 
 body {
-    font-family: "Lexend", sans-serif;
-    background-color: var(--color-background);
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: $color-background;
     display: flex;
-    flex-direction: column;
+    min-height: 100vh;
 }
 
-// Sidebar Responsiva
 nav {
-    background-color: var(--color-primary);
-    width: var(--sidebar-width);
-    min-height: 100vh;
+    background-color: $color-primary;
+    width: $sidebar-width;
     padding: 1rem 0;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-    height: 100vh;
-    overflow-y: auto;
 
     img {
-        width: 6rem;
-        height: 6rem;
+        width: 11rem;
+        height: 10.5rem;
         display: block;
-        margin: 0 auto 2rem auto;
-        border-radius: 0;
-        object-fit: cover;
+        margin: 0.5% auto 1rem;
     }
 
     ul {
@@ -60,238 +30,131 @@ nav {
     }
 
     li {
-        color: var(--color-text);
-        padding: 0.9375rem 1.25rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: "Inter", sans-serif;
-        position: relative;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: $color-text;
+        text-decoration: none;
+        display: block;
+        padding: 0.9375rem 1.25rem;
+        transition: background-color 0.3s;
 
         &:hover {
-            background-color: var(--color-accent);
-            text-decoration: underline;
+            background-color: $color-accent;
         }
     }
 }
 
-// Menu Mobile
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1100;
-    background: var(--color-background-light);
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-// Conteúdo principal responsivo
 main {
     flex: 1;
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-background-light);
-    position: relative;
-    margin-left: var(--sidebar-width);
-    min-height: 100vh;
+    background-color: $color-background-light;
 }
 
-main > header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 1rem;
 
     h1 {
-        color: var(--color-primary);
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        margin-bottom: 0;
-        font-family: "Lexend", serif;
+        color: $color-primary;
+        font-size: 2.5rem;
     }
 }
 
-// Botões responsivos
 button {
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 0.5rem;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+    font-weight: bold;
+    transition: all 0.3s;
 }
 
-// Botão de adicionar linha (estilo diferente)
-.btn-adicionar-linha {
-    background-color: var(--color-button);
-    color: var(--color-text);
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
-    margin-top: 1rem;
-    width: 100%;
-    max-width: 200px;
-    align-self: center;
+.btn-adicionar {
+    background-color: $color-button;
+    color: $color-text;
 
     &:hover {
-        background-color: var(--color-primary);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-}
-
-// Seção de colheitas responsiva
-main > section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-}
-
-main > section > article {
-    background-color: var(--color-secondary);
-    width: 100%;
-    border-radius: 1rem;
-    padding: clamp(1rem, 3vw, 2rem);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-main > section > article > header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    h2 {
-        color: var(--color-text);
-        font-family: "Lexend", serif;
-        font-size: clamp(1.2rem, 3vw, 1.5rem);
-        margin: 0;
-    }
-}
-
-// Campos e valores responsivos
-.campos-container {
-    background-color: var(--color-accent);
-    border-radius: 1rem;
-    padding: clamp(1rem, 3vw, 2rem);
-    transition: all 0.3s ease;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    &:hover {
-        background-color: var(--color-dark);
+        background-color: $color-primary;
         transform: translateY(-2px);
     }
 }
 
-.campos-header {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-    gap: 0.5rem;
-    margin-bottom: 0;
-    text-align: center;
-    min-width: 500px;
-
-    span {
-        font-family: "Lexend", serif;
-        color: var(--color-text);
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
-        font-weight: 600;
-        padding: 0.5rem;
-        word-break: break-word;
-    }
-}
-
-.valores-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    min-width: 500px;
-}
-
-.valores-linha {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-    gap: 0.5rem;
-    width: 100%;
-    background-color: var(--color-dark);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    border: 2px dashed var(--color-light);
+.dados-container {
+    background-color: $color-accent;
+    border-radius: 1rem;
+    padding: 2rem;
     transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    padding-right: 4rem;
 
-    .campos-container:hover & {
-        background-color: var(--color-primary);
-        border: 2px solid var(--color-light);
+    &:hover {
+        background-color: $color-dark;
+        transform: translateY(-2px);
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: bold;
+        color: $color-text;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        article {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            background-color: $color-dark;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            position: relative;
+            align-items: center;
+            border: 2px dashed $color-light;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: $color-primary;
+                border: 2px solid $color-light;
+
+                .acoes {
+                    opacity: 1;
+                }
+            }
+
+            span {
+                text-align: center;
+                color: $color-light;
+                font-weight: 600;
+            }
+        }
+    }
+
+    menu {
+        position: absolute;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s;
     }
 }
 
-.valor-campo {
-    text-align: center;
-    color: var(--color-light);
-    font-family: "Inter", sans-serif;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    font-weight: 600;
-    padding: 0.5rem;
-    min-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    word-break: break-word;
-}
-
-// Ações da linha responsivas
-.acoes-linha {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 0.3rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.valores-linha:hover .acoes-linha {
-    opacity: 1;
-}
-
-.btn-acao {
+.btn-editar,
+.btn-remover {
     background: none;
-    border: none;
-    color: var(--color-light);
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    cursor: pointer;
+    color: $color-light;
     padding: 0.3rem;
-    border-radius: 0.3rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 2rem;
     height: 2rem;
-    min-width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
@@ -299,74 +162,75 @@ main > section > article > header {
     }
 }
 
-.btn-editar:hover {
-    color: var(--color-background-light);
-}
-
 .btn-remover:hover {
-    color: var(--color-error);
+    color: $color-error;
 }
 
-// Modal responsivo
 dialog {
     border: none;
     border-radius: 1rem;
     padding: 0;
-    width: 95%;
+    width: 90%;
     max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    margin: auto;
+    margin: 5em 34%;
 
     &::backdrop {
         background-color: rgba(0, 0, 0, 0.7);
     }
 
     article {
-        background-color: var(--color-background-light);
+        background-color: $color-background-light;
         border-radius: 1rem;
-        padding: clamp(1rem, 3vw, 2rem);
+        padding: 2rem;
     }
 
     header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-        border-bottom: 2px solid var(--color-primary);
+        border-bottom: 2px solid $color-primary;
         padding-bottom: 1rem;
-        flex-wrap: wrap;
-        gap: 1rem;
+        margin-bottom: 1.5rem;
 
         h3 {
-            color: var(--color-primary);
-            font-family: "Lexend", serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin: 0;
+            color: $color-primary;
         }
 
-        button {
+        .btn-fechar {
             background: none;
-            border: none;
             font-size: 1.5rem;
-            color: var(--color-primary);
-            cursor: pointer;
             padding: 0;
             width: 2rem;
             height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            color: $color-primary;
 
             &:hover {
-                color: var(--color-dark);
+                color: $color-dark;
             }
         }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
+    fieldset {
+        border: none;
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $color-primary;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid $color-accent;
+        border-radius: 0.5rem;
+        transition: all 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: $color-primary;
+            box-shadow: 0 0 5px rgba(13, 78, 25, 0.3);
+        }
     }
 
     footer {
@@ -374,220 +238,25 @@ dialog {
         justify-content: flex-end;
         gap: 1rem;
         margin-top: 2rem;
-        flex-wrap: wrap;
     }
 }
 
-// Formulário responsivo
-fieldset {
-    margin-bottom: 1.5rem;
-    border: none;
-    padding: 0;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--color-primary);
-    font-family: "Lexend", serif;
-    font-weight: 600;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-}
-
-input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 2px solid var(--color-accent);
-    border-radius: 0.5rem;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-
-    &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 5px rgba(13, 78, 25, 0.3);
-    }
-}
-
-// Botões do modal responsivos
-dialog footer button {
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
-}
-
-dialog footer button:first-child {
-    background-color: var(--color-gray);
+.btn-cancelar {
+    background-color: $color-gray;
     color: white;
 
     &:hover {
-        background-color: var(--color-gray-dark);
+        background-color: $color-gray-dark;
         transform: translateY(-2px);
     }
 }
 
-dialog footer button:last-child {
-    background-color: var(--color-button);
-    color: var(--color-text);
+#btnSubmit {
+    background-color: $color-button;
+    color: $color-text;
 
     &:hover {
-        background-color: var(--color-primary);
+        background-color: $color-primary;
         transform: translateY(-2px);
     }
-}
-
-// Media Queries para responsividade
-@media (max-width: 1024px) {
-    :root {
-        --sidebar-width: 10rem;
-    }
-    
-    nav img {
-        width: 5rem;
-        height: 5rem;
-    }
-    
-    nav li {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --sidebar-width: 0;
-    }
-    
-    nav {
-        transform: translateX(-100%);
-        width: 16rem;
-        
-        &.active {
-            transform: translateX(0);
-        }
-    }
-    
-    .menu-toggle {
-        display: block;
-    }
-    
-    main {
-        margin-left: 0;
-        padding: 1rem;
-    }
-    
-    main > header {
-        margin-top: 3rem;
-    }
-    
-    .campos-header,
-    .valores-container {
-        min-width: 400px;
-    }
-    
-    .campos-header {
-        grid-template-columns: repeat(4, minmax(80px, 1fr));
-    }
-    
-    .valores-linha {
-        grid-template-columns: repeat(4, minmax(80px, 1fr));
-        padding-right: 3.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    main {
-        padding: 0.5rem;
-    }
-    
-    main > header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
-    }
-    
-    main > header h1 {
-        text-align: center;
-    }
-    
-    .campos-header,
-    .valores-container {
-        min-width: 320px;
-    }
-    
-    .campos-header {
-        grid-template-columns: repeat(4, minmax(70px, 1fr));
-        gap: 0.25rem;
-    }
-    
-    .valores-linha {
-        grid-template-columns: repeat(4, minmax(70px, 1fr));
-        padding: 0.75rem;
-        padding-right: 3rem;
-        gap: 0.25rem;
-    }
-    
-    .acoes-linha {
-        right: 0.25rem;
-        gap: 0.2rem;
-    }
-    
-    .btn-acao {
-        width: 1.75rem;
-        height: 1.75rem;
-        min-width: 1.75rem;
-    }
-    
-    dialog {
-        width: 98%;
-        margin: 1rem;
-    }
-    
-    dialog footer {
-        justify-content: center;
-    }
-    
-    dialog footer button {
-        flex: 1;
-        min-width: 120px;
-    }
-}
-
-@media (max-width: 360px) {
-    .campos-header,
-    .valores-container {
-        min-width: 280px;
-    }
-    
-    .campos-header {
-        grid-template-columns: repeat(4, minmax(60px, 1fr));
-    }
-    
-    .valores-linha {
-        grid-template-columns: repeat(4, minmax(60px, 1fr));
-    }
-    
-    .menu-toggle {
-        top: 0.5rem;
-        left: 0.5rem;
-    }
-}
-
-// Scrollbar personalizada
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--color-background);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--color-accent);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
 }

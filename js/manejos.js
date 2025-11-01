@@ -41,7 +41,7 @@ class GerenciadorColheitas {
 
     abrirModal() {
         this.itemEditando = null;
-        document.querySelector('#modalTitulo').textContent = 'Adicionar Colheita';
+        document.querySelector('#modalTitulo').textContent = 'Adicionar Manejo';
         document.querySelector('#btnSubmit').textContent = 'Adicionar';
         this.limparFormulario();
         document.querySelector('#modalForm').showModal();
@@ -53,9 +53,9 @@ class GerenciadorColheitas {
 
     limparFormulario() {
         document.querySelector('#data').value = '';
-        document.querySelector('#planta').value = '';
-        document.querySelector('#umidade').value = '';
-        document.querySelector('#producao').value = '';
+        document.querySelector('#tipo').value = '';
+        document.querySelector('#motivos').value = '';
+        document.querySelector('#descricao').value = '';
     }
 
     editarItem(item) {
@@ -63,11 +63,11 @@ class GerenciadorColheitas {
         const dados = item.querySelectorAll('span');
         
         document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#planta').value = dados[1].textContent;
-        document.querySelector('#umidade').value = dados[2].textContent;
-        document.querySelector('#producao').value = dados[3].textContent;
+        document.querySelector('#tipo').value = dados[1].textContent;
+        document.querySelector('#motivos').value = dados[2].textContent;
+        document.querySelector('#descricao').value = dados[3].textContent;
         
-        document.querySelector('#modalTitulo').textContent = 'Editar Colheita';
+        document.querySelector('#modalTitulo').textContent = 'Editar Manejo';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
@@ -76,11 +76,11 @@ class GerenciadorColheitas {
         evento.preventDefault();
         
         const data = document.querySelector('#data').value;
-        const planta = document.querySelector('#planta').value;
-        const umidade = document.querySelector('#umidade').value;
-        const producao = document.querySelector('#producao').value;
+        const tipo = document.querySelector('#tipo').value;
+        const motivos = document.querySelector('#motivos').value;
+        const descricao = document.querySelector('#descricao').value;
         
-        if (!data || !planta || !umidade || !producao) {
+        if (!data || !tipo || !motivos || !descricao) {
             alert('Preencha todos os campos!');
             return;
         }
@@ -88,17 +88,17 @@ class GerenciadorColheitas {
         if (this.itemEditando) {
             const dados = this.itemEditando.querySelectorAll('span');
             dados[0].textContent = data;
-            dados[1].textContent = planta;
-            dados[2].textContent = umidade;
-            dados[3].textContent = producao;
+            dados[1].textContent = tipo;
+            dados[2].textContent = motivos;
+            dados[3].textContent = descricao;
         } else {
-            this.adicionarItem(data, planta, umidade, producao);
+            this.adicionarItem(data, tipo, motivos, descricao);
         }
         
         this.fecharModal();
     }
 
-    adicionarItem(data, planta, umidade, producao) {
+    adicionarItem(data, tipo, motivos, descricao) {
         this.contador++;
         
         const novoItem = document.createElement('article');
@@ -106,9 +106,9 @@ class GerenciadorColheitas {
         
         novoItem.innerHTML = `
             <span>${data}</span>
-            <span>${planta}</span>
-            <span>${umidade}</span>
-            <span>${producao}</span>
+            <span>${tipo}</span>
+            <span>${motivos}</span>
+            <span>${descricao}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
@@ -120,11 +120,11 @@ class GerenciadorColheitas {
 
     removerItem(item) {
         if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover esta colheita?')) {
+            if (confirm('Remover esta manejo?')) {
                 item.remove();
             }
         } else {
-            alert('Não é possível remover a última colheita!');
+            alert('Não é possível remover o último manejo!');
         }
     }
 }

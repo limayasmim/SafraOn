@@ -2,97 +2,243 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-img {
-  width: 10em;
-  height: 10em;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #E9E1C3;
+  display: flex;
+  min-height: 100vh;
 }
 
-body ul {
+nav {
   background-color: #0D4E19;
-  width: 10em;
-  height: 78vh;
-  margin-top: -0.5vh;
+  width: 12rem;
+  padding: 1rem 0;
 }
-body ul li {
+nav img {
+  width: 11rem;
+  height: 10.5rem;
+  display: block;
+  margin: auto 0.5rem;
+}
+nav ul {
+  list-style: none;
+}
+nav li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: #F5EED7;
-  padding-top: 1vh;
-  padding-left: 1vh;
+  text-decoration: none;
+  display: block;
+  padding: 0.9375rem 1.25rem;
+  transition: background-color 0.3s;
 }
-body article {
-  background-color: #D9D9D9;
-  width: 70%;
-  height: 40vh;
-  margin-top: 5vh;
-  margin-left: 40vh;
-  border-radius: 2em;
+nav li:hover {
+  background-color: #4a6a25;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #fff8e6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+header h1 {
+  color: #0D4E19;
+  font-size: 2.5rem;
+}
+
+button {
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn-adicionar {
+  background-color: #578424;
+  color: #F5EED7;
+}
+.btn-adicionar:hover {
+  background-color: #0D4E19;
+  transform: translateY(-2px);
+}
+
+.dados-container {
+  background-color: #4a6a25;
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+.dados-container:hover {
+  background-color: #3a551d;
+  transform: translateY(-2px);
+}
+
+.cabecalho-dados {
   display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "titulo titulo titulo" "t1 t2 t3";
-  gap: 1em;
-  padding: 2em;
-  align-items: start;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #F5EED7;
 }
-body article h2 {
-  grid-area: titulo;
-  justify-self: center;
-}
-body article section:nth-of-type(1) {
-  grid-area: t1;
+
+.lista-dados {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-dado {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: 1rem;
+  background-color: #3a551d;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
   align-items: center;
-  gap: 1;
+  border: 2px dashed #b5dc84;
+  transition: all 0.3s ease;
 }
-body article section:nth-of-type(1) h4 {
-  font-family: "Lexend";
-  width: 100%;
+.item-dado:hover {
+  background-color: #0D4E19;
+  border: 2px solid #b5dc84;
+}
+.item-dado span {
   text-align: center;
+  color: #b5dc84;
+  font-weight: 600;
 }
-body article section:nth-of-type(1) p {
-  width: 100%;
-  text-align: center;
-}
-body article section:nth-of-type(2) {
-  grid-area: t2;
+
+.acoes {
+  position: absolute;
+  right: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-body article section:nth-of-type(2) h4 {
-  font-family: "Lexend";
-  width: 100%;
-  text-align: center;
+
+.item-dado:hover .acoes {
+  opacity: 1;
 }
-body article section:nth-of-type(2) p {
-  width: 100%;
-  text-align: center;
-}
-body article section:nth-of-type(3) {
-  grid-area: t3;
+
+.btn-editar,
+.btn-remover {
+  background: none;
+  color: #b5dc84;
+  padding: 0.3rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1;
+  justify-content: center;
 }
-body article section:nth-of-type(3) h4 {
-  font-family: "Lexend";
+.btn-editar:hover,
+.btn-remover:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.btn-remover:hover {
+  color: #ff6b6b;
+}
+
+dialog {
+  border: none;
+  border-radius: 1rem;
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+  margin: 5em 34%;
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+dialog article {
+  background-color: #fff8e6;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+dialog header {
+  border-bottom: 2px solid #0D4E19;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+dialog header h3 {
+  color: #0D4E19;
+}
+dialog header .btn-fechar {
+  background: none;
+  font-size: 1.5rem;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  color: #0D4E19;
+}
+dialog header .btn-fechar:hover {
+  color: #3a551d;
+}
+dialog fieldset {
+  border: none;
+  margin-bottom: 1.5rem;
+}
+dialog label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #0D4E19;
+  font-weight: bold;
+}
+dialog input,
+dialog textarea {
   width: 100%;
-  text-align: center;
+  padding: 0.8rem;
+  border: 2px solid #4a6a25;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  resize: vertical;
 }
-body article section:nth-of-type(3) p {
-  width: 100%;
-  text-align: center;
+dialog input:focus,
+dialog textarea:focus {
+  outline: none;
+  border-color: #0D4E19;
+  box-shadow: 0 0 5px rgba(13, 78, 25, 0.3);
 }
-body main {
-  margin-top: -80vh;
+dialog footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
 }
-body h1 {
-  margin-left: 45vh;
-  font-family: "Lexend";
+
+.btn-cancelar {
+  background-color: #6c757d;
+  color: white;
+}
+.btn-cancelar:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+#btnSubmit {
+  background-color: #578424;
+  color: #F5EED7;
+}
+#btnSubmit:hover {
+  background-color: #0D4E19;
+  transform: translateY(-2px);
 }/*# sourceMappingURL=aplicacoes.css.map */

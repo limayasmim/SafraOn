@@ -1,44 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafraOn</title>
-    <link rel="stylesheet" href="css/aplicacoes.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png" style="border-radius: 50px;">
+    <title>SafraOn - Gestão de Aplicações</title>
+    <link rel="stylesheet" href="css/colheita.css">
 </head>
 
 <body>
-    <img src="/imagem/logo.png" alt="">
-    <ul>
-        <li>Início</li>
-        <li>Talhões</li>
-        <li>Dicas</li>
-        <li>Sobre Nós</li>
-    </ul>
+    <nav>
+        <img src="imagem/logo.png" alt="Logo SafraOn">
+        <ul>
+            <li>Início</li>
+            <li>Talhões</li>
+            <li>Dicas</li>
+            <li>Sobre Nós</li>
+        </ul>
+    </nav>
+
     <main>
-        <h1>Talhão 1</h1>
-        <article>
-            <h2>Aplicações</h2>
+        <header>
+            <h1>Talhão 1 - Aplicações</h1>
+            <button class="btn-adicionar">+ Adicionar Aplicação</button>
+        </header>
+
+        <section class="dados-container">
+            <header>
+                <span>Data</span>
+                <span>Motivos</span>
+                <span>Defensivos</span>
+            </header>
+
             <section>
-                <h4>Data</h4>
-                <p>00/00/00</p>
+                <article>
+                    <span>20/03/2024</span>
+                    <span>Controle de pragas e prevenção de doenças</span>
+                    <span>Herbicida Glifosato, Fungicida Cobre</span>
+
+                    <menu class="acoes">
+                        <button class="btn-editar" title="Editar">✎</button>
+                        <button class="btn-remover" title="Remover">×</button>
+                    </menu>
+                </article>
             </section>
-            <section>
-                <h4>Motivos da aplicações</h4>
-                <p>Motivos</p>
-            </section>
-            <section>
-                <h4>Nome dos Defensivos</h4>
-                <p>Defensivos usados</p>
-
-            </section>
-
-
-        </article>
-
+        </section>
     </main>
+
+    <dialog id="modalForm">
+        <article>
+            <header>
+                <h3 id="modalTitulo">Adicionar Aplicação</h3>
+                <button class="btn-fechar">&times;</button>
+            </header>
+
+            <form id="formDados">
+                <input type="hidden" id="itemId">
+
+                <fieldset>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" placeholder="DD/MM/AAAA">
+                </fieldset>
+
+                <fieldset>
+                    <label for="motivos">Motivos:</label>
+                    <textarea id="motivos" placeholder="Motivos da aplicação" rows="3"></textarea>
+                </fieldset>
+
+                <fieldset>
+                    <label for="defensivos">Defensivos:</label>
+                    <textarea id="defensivos" placeholder="Defensivos utilizados" rows="3"></textarea>
+                </fieldset>
+
+                <footer>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" id="btnSubmit">Adicionar</button>
+                </footer>
+            </form>
+        </article>
+    </dialog>
+
+    <script src="js/aplicacoes.js"></script>
 </body>
 
 </html>

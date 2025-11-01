@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafraOn - Gestão de Colheitas</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png">
     <link rel="stylesheet" href="css/colheita.css">
 </head>
+
 <body>
-    <button class="menu-toggle" title="Abrir menu">☰</button>
-    
     <nav>
-        <img src="/imagem/logo.png" alt="Logo SafraOn">
+        <img src="imagem/logo.png" alt="Logo SafraOn">
         <ul>
             <li>Início</li>
             <li>Talhões</li>
@@ -19,118 +18,70 @@
             <li>Sobre Nós</li>
         </ul>
     </nav>
-    
+
     <main>
         <header>
-            <h1>Talhão 1</h1>
+            <h1>Talhão 1 - Colheitas</h1>
+            <button class="btn-adicionar">+ Adicionar Colheita</button>
         </header>
-        
-        <section>
-            <article>
-                <header>
-                    <h2>Colheita #1</h2>
-                </header>
-                
-                <section class="campos-container">
-                    <header class="campos-header">
-                        <span>Data</span>
-                        <span>Planta</span>
-                        <span>Umidade</span>
-                        <span>Produção</span>
-                    </header>
-                    
-                    <section class="valores-container" id="valoresContainer">
-                        <article class="valores-linha">
-                            <span class="valor-campo">15/03/2024</span>
-                            <span class="valor-campo">Soja</span>
-                            <span class="valor-campo">14.5%</span>
-                            <span class="valor-campo">60 sacas</span>
-                            
-                            <menu class="acoes-linha">
-                                <button class="btn-acao btn-editar" title="Editar">✎</button>
-                                <button class="btn-acao btn-remover" title="Remover">×</button>
-                            </menu>
-                        </article>
-                    </section>
 
-                    <!-- Botão Adicionar Linha -->
-                    <button class="btn-adicionar-linha">+ Adicionar Linha</button>
-                </section>
-            </article>
+        <section class="dados-container">
+            <header>
+                <span>Data</span>
+                <span>Planta</span>
+                <span>Umidade</span>
+                <span>Produção</span>
+            </header>
+
+            <section>
+                <article>
+                    <span>15/03/2024</span>
+                    <span>Soja</span>
+                    <span>14.5%</span>
+                    <span>60 sacas</span>
+
+                    <menu class="acoes">
+                        <button class="btn-editar" title="Editar">✎</button>
+                        <button class="btn-remover" title="Remover">×</button>
+                    </menu>
+                </article>
+            </section>
         </section>
     </main>
 
-    <!-- Modal de Edição -->
-    <dialog id="modalEdicao">
+    <dialog id="modalForm">
         <article>
             <header>
-                <h3>Editar Dados da Colheita</h3>
+                <h3 id="modalTitulo">Adicionar Colheita</h3>
                 <button class="btn-fechar">&times;</button>
             </header>
-            
-            <form id="formEdicao">
-                <input type="hidden" id="linhaId">
-                
+
+            <form id="formDados">
+                <input type="hidden" id="itemId">
+
                 <fieldset>
-                    <label for="dataEdicao">Data da Colheita:</label>
-                    <input type="text" id="dataEdicao" placeholder="DD/MM/AAAA">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" placeholder="DD/MM/AAAA">
                 </fieldset>
-                
+
                 <fieldset>
-                    <label for="plantaEdicao">Tipo de Planta:</label>
-                    <input type="text" id="plantaEdicao" placeholder="Nome da planta">
+                    <label for="planta">Planta:</label>
+                    <input type="text" id="planta" placeholder="Nome da planta">
                 </fieldset>
-                
+
                 <fieldset>
-                    <label for="umidadeEdicao">Umidade:</label>
-                    <input type="text" id="umidadeEdicao" placeholder="% de umidade">
+                    <label for="umidade">Umidade:</label>
+                    <input type="number" id="umidade" placeholder="% de umidade">
                 </fieldset>
-                
+
                 <fieldset>
-                    <label for="producaoEdicao">Produção por Alqueire:</label>
-                    <input type="text" id="producaoEdicao" placeholder="Quantidade em sacas">
+                    <label for="producao">Produção:</label>
+                    <input type="number" id="producao" placeholder="Quantidade em sacas">
                 </fieldset>
-                
+
                 <footer>
                     <button type="button" class="btn-cancelar">Cancelar</button>
-                    <button type="submit">Salvar Alterações</button>
-                </footer>
-            </form>
-        </article>
-    </dialog>
-
-    <!-- Modal de Adição -->
-    <dialog id="modalAdicao">
-        <article>
-            <header>
-                <h3>Adicionar Nova Linha</h3>
-                <button class="btn-fechar-adicao">&times;</button>
-            </header>
-            
-            <form id="formAdicao">
-                <fieldset>
-                    <label for="dataAdicao">Data da Colheita:</label>
-                    <input type="text" id="dataAdicao" placeholder="DD/MM/AAAA" value="">
-                </fieldset>
-                
-                <fieldset>
-                    <label for="plantaAdicao">Tipo de Planta:</label>
-                    <input type="text" id="plantaAdicao" placeholder="Nome da planta" value="">
-                </fieldset>
-                
-                <fieldset>
-                    <label for="umidadeAdicao">Umidade:</label>
-                    <input type="text" id="umidadeAdicao" placeholder="% de umidade" value="">
-                </fieldset>
-                
-                <fieldset>
-                    <label for="producaoAdicao">Produção por Alqueire:</label>
-                    <input type="text" id="producaoAdicao" placeholder="Quantidade em sacas" value="">
-                </fieldset>
-                
-                <footer>
-                    <button type="button" class="btn-cancelar-adicao">Cancelar</button>
-                    <button type="submit">Adicionar Linha</button>
+                    <button type="submit" id="btnSubmit">Adicionar</button>
                 </footer>
             </form>
         </article>
@@ -138,4 +89,5 @@
 
     <script src="js/colheita.js"></script>
 </body>
+
 </html>

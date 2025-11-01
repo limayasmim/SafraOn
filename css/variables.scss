@@ -1,29 +1,28 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap');
 // Font-family
-$principalConteudo_font_family:"Inter";
-$titulos_font_family:"Lexend";
-$aberturaTalhao_Fazenda:"Lusitna";
+$principalConteudo_font_family: "Inter";
+$titulos_font_family: "Lexend";
+$aberturaTalhao_Fazenda: "Lusitna";
 
 // Váriaveis de cores
 $title_color: #E9E1C3;
-$blocoSecundario_color: #D9D9D9; 
+$blocoSecundario_color: #D9D9D9;
 $blocoTerciario_color: #F5EED7;
 
-
-    $color-primary: #0D4E19;
-    $color-secondary: #648a34;
-    $color-accent: #4a6a25;
-    $color-dark: #3a551d;
-    $color-light: #b5dc84;
-    $color-background: #E9E1C3;
-    $color-background-light: #fff8e6;
-    $color-text: #F5EED7;
-    $color-button: #578424;
-    $color-gray: #6c757d;
-    $color-gray-dark: #5a6268;
-    $color-error: #ff6b6b;
-    $sidebar-width: 12rem;
-    $header-height: 4rem;
+$color-primary: #0D4E19;
+$color-secondary: #648a34;
+$color-accent: #4a6a25;
+$color-dark: #3a551d;
+$color-light: #b5dc84;
+$color-background: #E9E1C3;
+$color-background-light: #fff8e6;
+$color-text: #F5EED7;
+$color-button: #578424;
+$color-gray: #6c757d;
+$color-gray-dark: #5a6268;
+$color-remove: #ff6b6b;
+$color-edit: #1aff00;
+$sidebar-width: 12rem;
+$header-height: 4rem;
