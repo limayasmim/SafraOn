@@ -14,10 +14,18 @@ body {
   min-height: 100vh;
 }
 
+<<<<<<< HEAD
 nav {
   background-color: #0D4E19;
   width: 12rem;
   padding: 1rem 0;
+=======
+body ul {
+  background-color: #E9E1C3;
+  width: 10em;
+  height: 78vh;
+  margin-top: -0.5vh;
+>>>>>>> 1690e1b9fe348cccd0355ff54fa6dedc5be632de
 }
 nav img {
   width: 11rem;
