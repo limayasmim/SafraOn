@@ -22,7 +22,7 @@ nav {
         width: 11rem;
         height: 10.5rem;
         display: block;
-        margin: 0.5% auto 1rem;
+        margin: auto 0.5rem;
     }
 
     ul {
@@ -105,43 +105,43 @@ button {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
 
-        article {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 1rem;
-            background-color: $color-dark;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            position: relative;
-            align-items: center;
-            border: 2px dashed $color-light;
-            transition: all 0.3s ease;
+    article {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+        background-color: $color-dark;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        position: relative;
+        align-items: center;
+        border: 2px dashed $color-light;
+        transition: all 0.3s ease;
 
-            &:hover {
-                background-color: $color-primary;
-                border: 2px solid $color-light;
+        &:hover {
+            background-color: $color-primary;
+            border: 2px solid $color-light;
+        }
 
-                .acoes {
-                    opacity: 1;
-                }
-            }
-
-            span {
-                text-align: center;
-                color: $color-light;
-                font-weight: 600;
-            }
+        span {
+            text-align: center;
+            color: $color-light;
+            font-weight: 600;
         }
     }
 
-    menu {
+    .acoes {
         position: absolute;
         right: 1rem;
         display: flex;
         gap: 0.5rem;
         opacity: 0;
         transition: opacity 0.3s;
+    }
+
+    &:hover .acoes {
+        opacity: 1;
     }
 }
 
@@ -172,16 +172,12 @@ dialog {
     padding: 0;
     width: 90%;
     max-width: 500px;
-    margin: 5em 34%;
+    background-color: $color-background-light;
+        border-radius: 1rem;
+        padding: 2rem;
 
     &::backdrop {
         background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    article {
-        background-color: $color-background-light;
-        border-radius: 1rem;
-        padding: 2rem;
     }
 
     header {
