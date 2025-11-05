@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Lexend", sans-serif ;
   background-color: #E9E1C3;
   display: flex;
   min-height: 100vh;
@@ -13,15 +13,15 @@ body {
 
 nav {
   background-color: #0D4E19;
-  width: 12rem;
-  padding: 1rem 0;
 }
 
 nav img {
-  width: 11rem;
+  width: 100%;
   height: 10.5rem;
   display: block;
-  margin: auto 0.5rem 0.5rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 nav ul {
