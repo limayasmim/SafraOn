@@ -14,38 +14,37 @@ body {
   display: flex;
   transition: all 0.3s ease;
 }
-img {
-  width: 10em;
-  height: 10em;
-  position: absolute;
-  z-index: 1000;
-}
-aside:first-of-type {
+
+nav {
   background-color: $color-primary;
-  width: 10em;
-  min-height: 25vh;
-  padding: 10em 0 0 0;
-  transition: background-color 0.3s ease;
-  flex-shrink: 0;
+  width: $sidebar-width;
+  padding: 1rem 0;
 
-  & ul {
+  img {
+    width: 11rem;
+    height: 10.5rem;
+    display: block;
+    margin: auto 0.5rem;
+  }
+
+  ul {
     list-style: none;
+  }
 
-    & li {
-      color: $color-text;
-      padding: 0.9375em 1.25em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: "Inter", sans-serif;
-      position: relative;
+  li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: $color-text;
+    text-decoration: none;
+    display: block;
+    padding: 0.9375rem 1.25rem;
+    transition: background-color 0.3s;
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        text-decoration: underline;
-      }
+    &:hover {
+      background-color: $color-accent;
     }
   }
 }
+
 main {
   flex: 1;
   padding: 2.5em;
@@ -71,6 +70,7 @@ main {
     margin: 0 auto;
     box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
     overflow: hidden;
+
     & h4 {
       font-weight: 600;
     }
@@ -87,6 +87,7 @@ main {
     color: #333;
   }
 }
+
 #pesquisa {
   background-color: $color-light;
   width: 100%;
@@ -110,6 +111,7 @@ main {
     box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.3);
   }
 }
+
 .toggle-button {
   background: none;
   border: none;
@@ -123,6 +125,7 @@ main {
     transform: scale(1.5);
   }
 }
+
 [id^="talhoes-"] {
   display: none;
   background-color: $color-secondary;
@@ -163,6 +166,7 @@ main {
     }
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -174,6 +178,7 @@ main {
     transform: translateY(0);
   }
 }
+
 #adicionarBtn {
   background-color: $color-button;
   border: none;
@@ -196,6 +201,7 @@ main {
     box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
   }
 }
+
 #inputFazenda {
   display: none;
   margin-top: 0.9375em;
