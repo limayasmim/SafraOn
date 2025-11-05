@@ -132,4 +132,3 @@ class GerenciadorColheitas {
 document.addEventListener('DOMContentLoaded', () => {
     new GerenciadorColheitas();
 });
-

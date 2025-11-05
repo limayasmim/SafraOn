@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafraOn - Gestão de Aplicações</title>
+    <title>SafraOn - Gestão de Manejos</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png">
     <link rel="stylesheet" href="css/colheita.css">
 </head>
 
@@ -26,7 +27,7 @@
         </header>
 
         <section class="dados-container">
-            <header>
+            <header style="grid-template-columns: 1fr 1fr 1fr 1fr;">
                 <span>Data</span>
                 <span>Tipo</span>
                 <span>Motivos</span>
@@ -34,7 +35,7 @@
             </header>
 
             <section>
-                <article>
+                <article class="item-dado" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
                     <span>20/03/2024</span>
                     <span>Controle de pragas e prevenção de doenças</span>
                     <span>Herbicida Glifosato, Fungicida Cobre</span>
@@ -63,20 +64,20 @@
                     <label for="data">Data:</label>
                     <input type="date" id="data" placeholder="DD/MM/AAAA">
                 </fieldset>
-                
+
                 <fieldset>
                     <label for="tipo">Tipo:</label>
-                    <textarea id="tipo" placeholder="Tipo do manejo" rows="3"></textarea>
+                    <input type="text" id="tipo" placeholder="Tipo do manejo"></input>
                 </fieldset>
 
                 <fieldset>
                     <label for="motivos">Motivos:</label>
-                    <textarea id="motivos" placeholder="Motivos do manejo" rows="3"></textarea>
+                    <input type="text" id="motivos" placeholder="Motivos do manejo"></input>
                 </fieldset>
 
                 <fieldset>
                     <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" placeholder="Descrição do manejo" rows="3"></textarea>
+                    <input type="text" id="descricao" placeholder="Descrição do manejo"></input>
                 </fieldset>
 
                 <footer>

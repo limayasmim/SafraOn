@@ -1,4 +1,4 @@
-class GerenciadorColheitas {
+class GerenciadorManejos {
     constructor() {
         this.contador = 1;
         this.itemEditando = null;
@@ -130,6 +130,6 @@ class GerenciadorColheitas {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new GerenciadorColheitas();
+    new GerenciadorManejos();
 });
 

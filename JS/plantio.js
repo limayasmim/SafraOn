@@ -1,4 +1,4 @@
-class GerenciadorAplicacoes {
+class GerenciadorPlantio {
     constructor() {
         this.contador = 1;
         this.itemEditando = null;
@@ -41,7 +41,7 @@ class GerenciadorAplicacoes {
 
     abrirModal() {
         this.itemEditando = null;
-        document.querySelector('#modalTitulo').textContent = 'Adicionar Aplicação';
+        document.querySelector('#modalTitulo').textContent = 'Adicionar Plantio';
         document.querySelector('#btnSubmit').textContent = 'Adicionar';
         this.limparFormulario();
         document.querySelector('#modalForm').showModal();
@@ -53,8 +53,9 @@ class GerenciadorAplicacoes {
 
     limparFormulario() {
         document.querySelector('#data').value = '';
-        document.querySelector('#motivos').value = '';
-        document.querySelector('#defensivos').value = '';
+        document.querySelector('#planta').value = '';
+        document.querySelector('#umidade').value = '';
+        document.querySelector('#producao').value = '';
     }
 
     editarItem(item) {
@@ -62,10 +63,11 @@ class GerenciadorAplicacoes {
         const dados = item.querySelectorAll('span');
         
         document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#motivos').value = dados[1].textContent;
-        document.querySelector('#defensivos').value = dados[2].textContent;
+        document.querySelector('#planta').value = dados[1].textContent;
+        document.querySelector('#umidade').value = dados[2].textContent;
+        document.querySelector('#producao').value = dados[3].textContent;
         
-        document.querySelector('#modalTitulo').textContent = 'Editar Aplicação';
+        document.querySelector('#modalTitulo').textContent = 'Editar Plantio';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
@@ -74,10 +76,11 @@ class GerenciadorAplicacoes {
         evento.preventDefault();
         
         const data = document.querySelector('#data').value;
-        const motivos = document.querySelector('#motivos').value;
-        const defensivos = document.querySelector('#defensivos').value;
+        const planta = document.querySelector('#planta').value;
+        const umidade = document.querySelector('#umidade').value;
+        const producao = document.querySelector('#producao').value;
         
-        if (!data || !motivos || !defensivos) {
+        if (!data || !planta || !umidade || !producao) {
             alert('Preencha todos os campos!');
             return;
         }
@@ -85,16 +88,17 @@ class GerenciadorAplicacoes {
         if (this.itemEditando) {
             const dados = this.itemEditando.querySelectorAll('span');
             dados[0].textContent = data;
-            dados[1].textContent = motivos;
-            dados[2].textContent = defensivos;
+            dados[1].textContent = planta;
+            dados[2].textContent = umidade;
+            dados[3].textContent = producao;
         } else {
-            this.adicionarItem(data, motivos, defensivos);
+            this.adicionarItem(data, planta, umidade, producao);
         }
         
         this.fecharModal();
     }
 
-    adicionarItem(data, motivos, defensivos) {
+    adicionarItem(data, planta, umidade, producao) {
         this.contador++;
         
         const novoItem = document.createElement('article');
@@ -102,8 +106,9 @@ class GerenciadorAplicacoes {
         
         novoItem.innerHTML = `
             <span>${data}</span>
-            <span>${motivos}</span>
-            <span>${defensivos}</span>
+            <span>${planta}</span>
+            <span>${umidade}</span>
+            <span>${producao}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
@@ -115,16 +120,15 @@ class GerenciadorAplicacoes {
 
     removerItem(item) {
         if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover esta aplicação?')) {
+            if (confirm('Remover este plantio?')) {
                 item.remove();
             }
         } else {
-            alert('Não é possível remover a última aplicação!');
+            alert('Não é possível remover o último plantio!');
         }
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    new GerenciadorAplicacoes();
-});    
+    new GerenciadorPlantio();
+});

@@ -1,45 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafraOn</title>
-    <link rel="stylesheet" href="css/plantio.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png" style="border-radius: 50px;">
+    <title>SafraOn - Gestão de Plantios</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png">
+    <link rel="stylesheet" href="css/colheita.css">
 </head>
 
 <body>
-    <img src="/imagem/logo.png" alt="">
-    <ul>
-        <li>Início</li>
-        <li>Talhões</li>
-        <li>Dicas</li>
-        <li>Sobre Nós</li>
-    </ul>
-    <main>
-        <h1>Talhão 1</h1>
-        <article>
-            <h2>Plantio</h2>
-            <section>
-                <h4>Planta de cultivo</h4>
-                <h4>Data</h4>
-                <h4>Variedades</h4>
-                <h4>Adubo</h4>
-                <h4>Inoculante</h4>
-                <h4>Sementes</h4>
-            </section>
-            <section>
-                <p>Planta</p>
-                <p>00/00/00</p>
-                <p>Nome da variedade</p>
-                <p>Nome do adubo</p>
-                <p>Nome do inoculante</p>
-                <p>Quantidades de sementes</p>
-            </section>
-        </article>
+    <nav>
+        <img src="imagem/logo.png" alt="Logo SafraOn">
+        <ul>
+            <li>Início</li>
+            <li>Talhões</li>
+            <li>Dicas</li>
+            <li>Sobre Nós</li>
+        </ul>
+    </nav>
 
+    <main>
+        <header>
+            <h1>Talhão 1 - Plantios</h1>
+            <button class="btn-adicionar">+ Adicionar Plantio</button>
+        </header>
+
+        <section class="dados-container">
+            <header style="grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;">
+                <span>Data</span>
+                <span>Planta de cultivo</span>
+                <span>Variedades</span>
+                <span>Adubo</span>
+                <span>Inoculante</span>
+                <span> Sementes</span>
+            </header>
+
+            <section>
+                <article class="item-dado" style="grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;">
+                    <span>20/03/2024</span>
+                    <span>Soja</span>
+                    <span>Nome da variedade</span>
+                    <span>Nome do adubo</span>
+                    <span>Nome do inoculante</span>
+                    <span>Quantidades de sementes</span>
+
+                    <menu class="acoes">
+                        <button class="btn-editar" title="Editar">✎</button>
+                        <button class="btn-remover" title="Remover">×</button>
+                    </menu>
+                </article>
+            </section>
+        </section>
     </main>
+
+    <dialog id="modalForm">
+        <article>
+            <header>
+                <h3 id="modalTitulo">Adicionar Plantio</h3>
+                <button class="btn-fechar">&times;</button>
+            </header>
+
+            <form id="formDados">
+                <input type="hidden" id="itemId">
+
+                <fieldset>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" placeholder="DD/MM/AAAA">
+                </fieldset>
+
+                <fieldset>
+                    <label for="tipo">Planta:</label>
+                    <input type="text" id="tipo" placeholder="Planta de cultivo"></input>
+                </fieldset>
+
+                <fieldset>
+                    <label for="motivos">Variedades:</label>
+                    <input type="text" id="motivos" placeholder="Nome da variedade"></input>
+                </fieldset>
+
+                <fieldset>
+                    <label for="descricao">Adubo:</label>
+                    <input type="text" id="descricao" placeholder="Nome do adubo"></input>
+                </fieldset>
+
+                <fieldset>
+                    <label for="descricao">Inoculante:</label>
+                    <input type="text" id="descricao" placeholder="Nome do inoculante"></input>
+                </fieldset>
+
+                <fieldset>
+                    <label for="descricao">Sementes:</label>
+                    <input type="text" id="descricao" placeholder="Quantidades de sementes"></input>
+                </fieldset>
+
+                <footer>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" id="btnSubmit">Adicionar</button>
+                </footer>
+            </form>
+        </article>
+    </dialog>
+
+    <script src="js/manejos.js"></script>
 </body>
 
 </html>
