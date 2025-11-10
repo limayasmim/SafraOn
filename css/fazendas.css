@@ -152,7 +152,7 @@ main h4 .botoes-controle {
   padding: 0.5em 0.625em;
   border-bottom: 0.0625em solid rgba(255, 255, 255, 0.3);
   font-family: "Lusitana", serif;
-  font-weight: normal;
+  font-size: 1rem;
 }
 [id^=talhoes-] h5 .nome-talhao {
   flex: 1;
