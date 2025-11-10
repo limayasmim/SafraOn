@@ -1,113 +1,104 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 @import 'variables';
 
+// Reset
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// Base
 body {
-  font-family: "Lexend", sans-serif;
-  background-color: $title_color;
+  font-family: $titulos_font_family;
+  background-color: $color-background;
   min-height: 100vh;
   display: flex;
-  transition: all 0.3s ease;
 }
 
+// Navegação
 nav {
   background-color: $color-primary;
   width: $sidebar-width;
-  padding: 1rem 0;
-
+  
   img {
-    width: 11rem;
+    width: 100%;
     height: 10.5rem;
     display: block;
-    margin: auto 0.5rem;
-    border: none;
-    outline: none;
-    box-shadow: none;
   }
-
+  
   ul {
     list-style: none;
   }
-
+  
   li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: $color-text;
-    text-decoration: none;
-    display: block;
     padding: 0.9375rem 1.25rem;
-    transition: background-color 0.3s;
-
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    
     &:hover {
       background-color: $color-accent;
     }
   }
 }
 
+// Conteúdo principal
 main {
   flex: 1;
   padding: 2.5em;
-  margin-left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  & h1 {
+  
+  h1 {
     color: $color-secondary;
-    font-size: 2.5em;
-    margin-bottom: 1.875em;
     text-align: center;
-    width: 100%;
+    margin-bottom: 1.875em;
+    font-size: 2.5em;
   }
-
-  & article {
-    background-color: $color-background;
+  
+  article {
+    background-color: $color-background-light;
     border-radius: 1.25em;
     padding: 1.875em;
-    width: 90%;
     max-width: 50em;
     margin: 0 auto;
     box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-
-    & h4 {
-      font-weight: 600;
-    }
-  }
-
-  & h4 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.9375em 0.625em;
-    border-bottom: 0.0625em solid $color-background;
-    margin: 0;
-    font-family: "Lexend", sans-serif;
-    color: #333;
   }
 }
 
+// Cabeçalhos das fazendas
+main h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375em 0.625em;
+  border-bottom: 0.0625em solid #eee;
+  
+  .nome-fazenda {
+    flex: 1;
+    font-family: $titulos_font_family;
+  }
+  
+  .botoes-controle {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+  }
+}
+
+// Pesquisa
 #pesquisa {
-  background-color: $color-light;
   width: 100%;
-  padding: 0.75em 0.9375em;
+  padding: 0.75em;
+  margin-bottom: 1.25em;
   border: 0.0625em solid $color-secondary;
   border-radius: 0.5em;
-  margin-bottom: 1.25em;
-  font-size: 1em;
-  font-family: "Inter", sans-serif;
-  color: #333;
-
+  background-color: $color-light;
+  font-family: $principalConteudo_font_family;
+  
   &::placeholder {
-    color: $color-placeholder;
+    color: #626261;
     font-style: italic;
-    opacity: 0.7;
   }
-
+  
   &:focus {
     outline: none;
     border-color: $color-accent;
@@ -115,194 +106,197 @@ main {
   }
 }
 
+// Botões
 .toggle-button {
   background: none;
   border: none;
-  font-size: 1.2em;
   cursor: pointer;
   padding: 0.3125em;
+  font-size: 1.1em;
   color: $color-secondary;
-  transition: transform 0.3s ease;
-
+  transition: transform 0.2s ease;
+  
   &:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
 }
 
+// Botões de ação
+.editar-btn, .local-btn, .editar-talhao-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.editar-btn, .editar-talhao-btn {
+  color: $color-secondary;
+}
+
+.local-btn {
+  color: $color-button;
+}
+
+// Container dos talhões
 [id^="talhoes-"] {
-  display: none;
   background-color: $color-secondary;
   border-radius: 0.625em;
   padding: 0.9375em;
-  margin: 0.625em 0 1.25em 0;
-  color: $color-background;
-  animation: fadeIn 0.3s ease;
-
-  & h5 {
-    padding: 0.5em 0.625em;
-    margin: 0.3125em 0;
-    font-family: "Lusitana", serif;
-    border-bottom: 0.0625em solid rgba(255, 255, 255, 0.3);
-    font-weight: normal;
-  }
-
-  & p {
-    color: $color-text;
+  margin: 0.625em 0;
+  color: $color-text;
+  display: none;
+  
+  .local-fazenda {
     margin-bottom: 0.625em;
     font-style: italic;
-    font-family: "Inter", sans-serif;
+    font-family: $principalConteudo_font_family;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.3125em;
+    border-left: 3px solid $color-light;
   }
-
-  & button {
+  
+  h5 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0.625em;
+    border-bottom: 0.0625em solid rgba(255, 255, 255, 0.3);
+    font-family: "Lusitana", serif;
+    font-weight: normal;
+    
+    .nome-talhao {
+      flex: 1;
+    }
+  }
+  
+  // Botão "Adicionar talhão +"
+  button {
     background-color: $color-accent;
-    color: $color-background;
+    color: $color-text;
     border: none;
-    padding: 0.5em 0.9375em;
     border-radius: 0.3125em;
     cursor: pointer;
     margin-top: 0.625em;
-    font-family: "Inter", sans-serif;
+    font-family: $principalConteudo_font_family;
     transition: background-color 0.3s ease;
-
+    
     &:hover {
       background-color: $color-dark;
+    }
+    
+    // Evitar que o estilo afete o botão de edição dentro do h5
+    &:not(.editar-talhao-btn) {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.5em 0.9375em;
     }
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-0.625em);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+// Botão adicionar fazenda
 #adicionarBtn {
   background-color: $color-button;
+  color: $color-text;
   border: none;
   padding: 0.75em 1.5625em;
   border-radius: 0.5em;
   cursor: pointer;
-  font-size: 1em;
   margin-top: 1.25em;
   display: block;
-  font-family: "Inter", sans-serif;
-  transition: all 0.3s ease;
-  width: 13em;
   margin-left: auto;
   margin-right: auto;
-  color: $color-text;
-
+  font-family: $principalConteudo_font_family;
+  transition: all 0.3s ease;
+  
   &:hover {
     background-color: $color-accent;
     transform: translateY(-0.125em);
-    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
   }
 }
 
+// Input nova fazenda
 #inputFazenda {
-  display: none;
   margin-top: 0.9375em;
-  animation: slideDown 0.3s ease;
-
-  & input {
-    background-color: $color-light;
-    width: 100%;
-    padding: 0.75em 0.9375em;
-    border: 0.0625em solid $color-secondary;
-    border-radius: 0.5em;
-    font-size: 1em;
-    font-family: "Inter", sans-serif;
-    color: #333;
-
-    &:focus {
-      outline: none;
-      border-color: $color-accent;
-      box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.3);
+  
+  .container-input {
+    display: flex;
+    gap: 0.625em;
+    margin-top: 0.625em;
+    
+    input {
+      background-color: $color-light;
+      width: 100%;
+      padding: 0.75em;
+      border: 0.0625em solid $color-secondary;
+      border-radius: 0.5em;
+      font-family: $principalConteudo_font_family;
+      flex: 1;
+      
+      &:focus {
+        outline: none;
+        border-color: $color-accent;
+      }
+      
+      &::placeholder {
+        color: #626261;
+        font-style: italic;
+      }
     }
-
-    &::placeholder {
-      color: $color-placeholder;
-      font-style: italic;
-      opacity: 0.7;
-    }
-  }
-
-  & button {
-    background-color: $color-accent;
-    color: $color-background;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 0.3125em;
-    cursor: pointer;
-    font-family: "Inter", sans-serif;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: $color-dark;
+    
+    button {
+      background-color: $color-accent;
+      color: $color-text;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 0.3125em;
+      cursor: pointer;
+      font-family: $principalConteudo_font_family;
+      white-space: nowrap;
+      
+      &:hover {
+        background-color: $color-dark;
+      }
     }
   }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-0.625em);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsividade */
-@media (max-width: 48em) {
+// Responsividade
+@media (max-width: 768px) {
   body {
     flex-direction: column;
   }
-
-  aside:first-of-type {
+  
+  nav {
     width: 100%;
-    min-height: auto;
-    padding: 6.25em 0 1.25em 0;
+    
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      li {
+        padding: 0.625em 0.9375em;
+      }
+    }
   }
-
-  aside:first-of-type ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  aside:first-of-type ul li {
-    padding: 0.625em 0.9375em;
-  }
-
+  
   main {
     padding: 1.25em;
+    
+    article {
+      padding: 1.25em;
+    }
   }
-
-  main article {
-    width: 100%;
-    padding: 1.25em;
+  
+  main h4 .botoes-controle {
+    gap: 0.25em;
   }
-
-  img {
-    width: 7.5em;
-    height: 7.5em;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-/* Efeitos de transição para todos os elementos interativos */
-button,
-input,
-[id^="talhoes-"] {
-  transition: all 0.3s ease;
 }

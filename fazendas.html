@@ -1,79 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafraOn - Fazendas</title>
-  <link rel="shortcut icon" type="image/x-icon" href="/imagem/logo.png">
   <link rel="stylesheet" href="/css/fazendas.css">
 </head>
-
 <body>
   <nav>
     <img src="imagem/logo.png" alt="Logo SafraOn">
     <ul>
       <li>Início</li>
       <li>Talhões</li>
-      <a href="sobrenos.html">
-        <li>Sobre Nós</li>
-      </a>
+      <li>Sobre Nós</li>
     </ul>
   </nav>
 
   <main>
     <h1>Fazendas</h1>
     <article>
-      <input type="text" id="pesquisa" placeholder="Pesquisar fazendas..." required>
+      <input type="text" id="pesquisa" placeholder="Pesquisar fazendas...">
 
-      <h4>Fazenda-1 <button class="toggle-button" onclick="toggleTalhoes(1)">▼</button></h4>
+      <!-- Fazenda 1 -->
+      <h4>
+        <span class="nome-fazenda">Fazenda São João</span>
+        <div class="botoes-controle">
+          <button class="editar-btn" onclick="editarFazenda(1, this)" title="Editar nome">✎</button>
+          <button class="local-btn" onclick="editarLocalidade(1, this)" title="Editar localidade">⚲</button>
+          <button class="toggle-button" onclick="toggleTalhoes(1)">▼</button>
+        </div>
+      </h4>
       <div id="talhoes-1">
-        <p>Local: São Paulo - SP</p>
-        <h5>Talhão 1</h5>
-        <h5>Talhão 2</h5>
-        <h5>Talhão 3</h5>
-        <h5>Talhão 4</h5>
-        <button>Adicionar talhão +</button>
+        <p class="local-fazenda">Local: São Paulo - SP</p>
+        <h5>
+          <span class="nome-talhao">Talhão Norte</span>
+          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
+        </h5>
+        <h5>
+          <span class="nome-talhao">Talhão Sul</span>
+          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
+        </h5>
+        <button onclick="adicionarTalhao(1)">Adicionar talhão +</button>
       </div>
 
-      <h4>Fazenda-2 <button class="toggle-button" onclick="toggleTalhoes(2)">▼</button></h4>
+      <!-- Fazenda 2 -->
+      <h4>
+        <span class="nome-fazenda">Fazenda Boa Vista</span>
+        <div class="botoes-controle">
+          <button class="editar-btn" onclick="editarFazenda(2, this)" title="Editar nome">✎</button>
+          <button class="local-btn" onclick="editarLocalidade(2, this)" title="Editar localidade">⚲</button>
+          <button class="toggle-button" onclick="toggleTalhoes(2)">▼</button>
+        </div>
+      </h4>
       <div id="talhoes-2">
-        <p>Local: Minas Gerais - MG</p>
-        <h5>Talhão 1</h5>
-        <h5>Talhão 2</h5>
-        <h5>Talhão 3</h5>
-        <h5>Talhão 4</h5>
-        <button>Adicionar talhão +</button>
+        <p class="local-fazenda">Local: Minas Gerais - MG</p>
+        <h5>
+          <span class="nome-talhao">Talhão Leste</span>
+          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
+        </h5>
+        <h5>
+          <span class="nome-talhao">Talhão Oeste</span>
+          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
+        </h5>
+        <button onclick="adicionarTalhao(2)">Adicionar talhão +</button>
       </div>
 
-      <h4>Fazenda-3 <button class="toggle-button" onclick="toggleTalhoes(3)">▼</button></h4>
+      <!-- Fazenda 3 -->
+      <h4>
+        <span class="nome-fazenda">Fazenda Esperança</span>
+        <div class="botoes-controle">
+          <button class="editar-btn" onclick="editarFazenda(3, this)" title="Editar nome">✎</button>
+          <button class="local-btn" onclick="editarLocalidade(3, this)" title="Editar localidade">⚲</button>
+          <button class="toggle-button" onclick="toggleTalhoes(3)">▼</button>
+        </div>
+      </h4>
       <div id="talhoes-3">
-        <p>Local: Paraná - PR</p>
-        <h5>Talhão 1</h5>
-        <h5>Talhão 2</h5>
-        <h5>Talhão 3</h5>
-        <h5>Talhão 4</h5>
-        <button>Adicionar talhão +</button>
-      </div>
-
-      <h4>Fazenda-4 <button class="toggle-button" onclick="toggleTalhoes(4)">▼</button></h4>
-      <div id="talhoes-4">
-        <p>Local: Goiás - GO</p>
-        <h5>Talhão 1</h5>
-        <h5>Talhão 2</h5>
-        <h5>Talhão 3</h5>
-        <h5>Talhão 4</h5>
-        <button>Adicionar talhão +</button>
+        <p class="local-fazenda">Local: Paraná - PR</p>
+        <h5>
+          <span class="nome-talhao">Talhão Central</span>
+          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
+        </h5>
+        <button onclick="adicionarTalhao(3)">Adicionar talhão +</button>
       </div>
 
       <button id="adicionarBtn">Adicionar fazenda +</button>
-
-      <div id="inputFazenda">
-        <input type="text" placeholder="Nome da fazenda" required>
-      </div>
+      <div id="inputFazenda"></div>
     </article>
   </main>
-  <script src="JS/fazendas.js"> </script>
+  <script src="/js/fazendas.js"></script>
 </body>
-
 </html>
