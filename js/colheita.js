@@ -1,8 +1,10 @@
 class GerenciadorColheitas {
     constructor() {
-        this.contador = 1;
+        this.contador = 1; // Yasmim
+        this.dados = JSON.parse(localStorage.getItem("colheitas")) || [];
         this.itemEditando = null;
         this.iniciar();
+        this.renderizarItens();
     }
 
     iniciar() {
@@ -14,8 +16,8 @@ class GerenciadorColheitas {
             if (e.target.classList.contains('btn-editar')) {
                 this.editarItem(e.target.closest('.item-dado'));
             }
-            
-            if (e.target.classList.contains('btn-remover')) {
+
+            else if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
         });
@@ -60,13 +62,14 @@ class GerenciadorColheitas {
 
     editarItem(item) {
         this.itemEditando = item;
-        const dados = item.querySelectorAll('span');
-        
-        document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#planta').value = dados[1].textContent;
-        document.querySelector('#umidade').value = dados[2].textContent;
-        document.querySelector('#producao').value = dados[3].textContent;
-        
+        const index = item.dataset.index;
+        const dados = this.dados[index]; // dois apos comentario gpt
+
+        document.querySelector('#data').value = dados.data;             
+        document.querySelector('#planta').value = dados.planta;         
+        document.querySelector('#umidade').value = dados.umidade;       
+        document.querySelector('#producao').value = dados.producao;     
+
         document.querySelector('#modalTitulo').textContent = 'Editar Colheita';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
@@ -74,60 +77,72 @@ class GerenciadorColheitas {
 
     salvar(evento) {
         evento.preventDefault();
-        
+
         const data = document.querySelector('#data').value;
         const planta = document.querySelector('#planta').value;
         const umidade = document.querySelector('#umidade').value;
         const producao = document.querySelector('#producao').value;
-        
+
         if (!data || !planta || !umidade || !producao) {
             alert('Preencha todos os campos!');
             return;
         }
+        const novoItem = { data, planta, umidade, producao }; //gpt
 
-        if (this.itemEditando) {
-            const dados = this.itemEditando.querySelectorAll('span');
-            dados[0].textContent = data;
-            dados[1].textContent = planta;
-            dados[2].textContent = umidade;
-            dados[3].textContent = producao;
+        if (this.itemEditando !== null) {
+            const index = this.itemEditando.dataset.index;
+            this.dados[index] = novoItem;
         } else {
-            this.adicionarItem(data, planta, umidade, producao);
-        }
-        
+            this.dados.push(novoItem);
+        }  
+
+        this.salvarLocal(); //gpt
+        this.renderizarItens(); //gpt
         this.fecharModal();
     }
 
-    adicionarItem(data, planta, umidade, producao) {
-        this.contador++;
-        
-        const novoItem = document.createElement('article');
-        novoItem.className = 'item-dado';
-        
-        novoItem.innerHTML = `
-            <span>${data}</span>
-            <span>${planta}</span>
-            <span>${umidade}</span>
-            <span>${producao}</span>
+    renderizarItens() { 
+
+        const container = document.querySelector('.dados-container section');
+        container.innerHTML = '';
+        this.dados.forEach((item, index) => {
+            const novoItem = document.createElement('article');
+            novoItem.className = 'item-dado';
+            novoItem.dataset.index = index;
+            novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+
+            novoItem.innerHTML = `
+            <span>${item.data}</span>
+            <span>${item.planta}</span>
+            <span>${item.umidade}</span>
+            <span>${item.producao}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
-        `;
-        
-        document.querySelector('#listaDados').appendChild(novoItem);
+         `;
+
+            container.appendChild(novoItem);
+        });
     }
 
     removerItem(item) {
-        if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover esta colheita?')) {
-                item.remove();
-            }
+        const index = item.dataset.index;
+     
+        if (confirm('Remover esta colheita?')) {
+        this.dados.splice(index, 1);
+        this.salvarLocal();
+        this.renderizarItens();
         } else {
             alert('Não é possível remover a última colheita!');
         }
     }
-}
+
+    salvarLocal() {
+        localStorage.setItem("colheitas", JSON.stringify(this.dados));
+    }
+
+}   
 
 document.addEventListener('DOMContentLoaded', () => {
     new GerenciadorColheitas();
