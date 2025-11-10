@@ -1,8 +1,10 @@
 class GerenciadorManejos {
     constructor() {
         this.contador = 1;
+        this.dados = JSON.parse(localStorage.getItem("manejos")) || [];
         this.itemEditando = null;
         this.iniciar();
+        this.renderizarItens();
     }
 
     iniciar() {
@@ -15,7 +17,7 @@ class GerenciadorManejos {
                 this.editarItem(e.target.closest('.item-dado'));
             }
             
-            if (e.target.classList.contains('btn-remover')) {
+            else if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
         });
@@ -60,12 +62,14 @@ class GerenciadorManejos {
 
     editarItem(item) {
         this.itemEditando = item;
-        const dados = item.querySelectorAll('span');
+       // const dados = item.querySelectorAll('span');
+        const index = item.dataset.index;
+        const dados = this.dados[index];
         
-        document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#tipo').value = dados[1].textContent;
-        document.querySelector('#motivos').value = dados[2].textContent;
-        document.querySelector('#descricao').value = dados[3].textContent;
+        document.querySelector('#data').value = dados.data;
+        document.querySelector('#tipo').value = dados.tipo;
+        document.querySelector('#motivos').value = dados.motivos;
+        document.querySelector('#descricao').value = dados.descricao;
         
         document.querySelector('#modalTitulo').textContent = 'Editar Manejo';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
@@ -84,48 +88,61 @@ class GerenciadorManejos {
             alert('Preencha todos os campos!');
             return;
         }
+        const novoItem = { data, tipo, motivos, descricao };
 
-        if (this.itemEditando) {
-            const dados = this.itemEditando.querySelectorAll('span');
-            dados[0].textContent = data;
-            dados[1].textContent = tipo;
-            dados[2].textContent = motivos;
-            dados[3].textContent = descricao;
+        if (this.itemEditando !==null) {
+            const index = this.itemEditando.dataset.index;
+            this.dados[index] = novoItem;
         } else {
-            this.adicionarItem(data, tipo, motivos, descricao);
+            this.dados.push(novoItem);
         }
         
+        this.salvarLocal();
+        this.renderizarItens();
         this.fecharModal();
     }
 
-    adicionarItem(data, tipo, motivos, descricao) {
-        this.contador++;
+    renderizarItens() {
         
-        const novoItem = document.createElement('article');
-        novoItem.className = 'item-dado';
+        const container = document.querySelector('.dados-container section');
+        container.innerHTML = '';
         
-        novoItem.innerHTML = `
-            <span>${data}</span>
-            <span>${tipo}</span>
-            <span>${motivos}</span>
-            <span>${descricao}</span>
+        this.dados.forEach((item, index) => {
+            const novoItem = document.createElement('article');
+            novoItem.className = 'item-dado';
+            novoItem.dataset.index = index;
+            novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+
+            novoItem.innerHTML = `
+            <span>${item.data}</span>
+            <span>${item.tipo}</span>
+            <span>${item.motivos}</span>
+            <span>${item.descricao}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
-        `;
-        
-        document.querySelector('#listaDados').appendChild(novoItem);
+         `;
+
+           container.appendChild(novoItem);
+        });
+       
     }
 
     removerItem(item) {
-        if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover esta manejo?')) {
-                item.remove();
-            }
+        const index = item.dataset.index
+
+        if (confirm('Remover este manejo?')) {
+        this.dados.splice(index, 1);
+        this.salvarLocal();
+        this.renderizarItens();
         } else {
             alert('Não é possível remover o último manejo!');
         }
+    }
+
+    salvarLocal(){
+        localStorage.setItem("manejos", JSON.stringify(this.dados));
     }
 }
 

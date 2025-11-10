@@ -1,8 +1,10 @@
 class GerenciadorAplicacoes {
     constructor() {
         this.contador = 1;
+        this.dados = JSON.parse(localStorage.getItem("aplicacoes")) || [];
         this.itemEditando = null;
         this.iniciar();
+        this.renderizarItens();
     }
 
     iniciar() {
@@ -15,7 +17,7 @@ class GerenciadorAplicacoes {
                 this.editarItem(e.target.closest('.item-dado'));
             }
             
-            if (e.target.classList.contains('btn-remover')) {
+            else if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
         });
@@ -59,11 +61,13 @@ class GerenciadorAplicacoes {
 
     editarItem(item) {
         this.itemEditando = item;
-        const dados = item.querySelectorAll('span');
+        //const dados = item.querySelectorAll('span');
+        const index = item.dataset.index;
+        const dados = this.dados[index];
         
-        document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#motivos').value = dados[1].textContent;
-        document.querySelector('#defensivos').value = dados[2].textContent;
+        document.querySelector('#data').value = dados.data;
+        document.querySelector('#motivos').value = dados.motivos;
+        document.querySelector('#defensivos').value = dados.defensivos;
         
         document.querySelector('#modalTitulo').textContent = 'Editar Aplicação';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
@@ -82,45 +86,60 @@ class GerenciadorAplicacoes {
             return;
         }
 
-        if (this.itemEditando) {
-            const dados = this.itemEditando.querySelectorAll('span');
-            dados[0].textContent = data;
-            dados[1].textContent = motivos;
-            dados[2].textContent = defensivos;
+        const novoItem = {data, motivos, defensivos};
+
+        if (this.itemEditando !==null) {
+            const index = this.itemEditando.dataset.index;
+            this.dados[index]=novoItem;
         } else {
-            this.adicionarItem(data, motivos, defensivos);
+            this.dados.push(novoItem);
         }
         
+        this.salvarLocal();
+        this.renderizarItens();
         this.fecharModal();
     }
 
-    adicionarItem(data, motivos, defensivos) {
-        this.contador++;
+    renderizarItens() {
+        const container = document.querySelector('.dados-container section');
+        container.innerHTML=" ";
         
-        const novoItem = document.createElement('article');
-        novoItem.className = 'item-dado';
-        
-        novoItem.innerHTML = `
-            <span>${data}</span>
-            <span>${motivos}</span>
-            <span>${defensivos}</span>
+        this.dados.forEach((item, index) => {
+
+            const novoItem = document.createElement('article');
+            novoItem.className = 'item-dado';
+            novoItem.dataset.index = index;
+            novoItem.style.gridTemplateColumns = '1fr 1fr 1fr';
+
+            novoItem.innerHTML = `
+            <span>${item.data}</span>
+            <span>${item.motivos}</span>
+            <span>${item.defensivos}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
-        `;
-        
-        document.querySelector('#listaDados').appendChild(novoItem);
+          `;
+
+          container.appendChild(novoItem);
+        });
+       
     }
 
     removerItem(item) {
-        if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover esta aplicação?')) {
-                item.remove();
-            }
+        const index = item.dataset.index
+
+        if (confirm('Remover esta aplicação')) {
+        this.dados.splice(index,1);
+        this.salvarLocal();
+        this.renderizarItens              
         } else {
             alert('Não é possível remover a última aplicação!');
         }
+    }
+
+    salvarLocal(){
+        localStorage.setItem("manejos", JSON.stringify(this.dados));
     }
 }
 

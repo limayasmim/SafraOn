@@ -105,6 +105,7 @@ class GerenciadorColheitas {
 
         const container = document.querySelector('.dados-container section');
         container.innerHTML = '';
+        
         this.dados.forEach((item, index) => {
             const novoItem = document.createElement('article');
             novoItem.className = 'item-dado';
