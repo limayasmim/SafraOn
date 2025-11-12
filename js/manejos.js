@@ -10,7 +10,7 @@ class GerenciadorManejos {
         this.iniciar();
         this.renderizarItens();
         this.carregarBanco();
-    }a
+    }
 
     iniciar() {
         document.querySelector('.btn-adicionar').addEventListener('click', () => {
