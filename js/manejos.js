@@ -1,11 +1,16 @@
+// Usa o cliente já criado no HTML
+const supabaseClient = window.supabase;
+
+
 class GerenciadorManejos {
     constructor() {
-        this.contador = 1;
-        this.dados = JSON.parse(localStorage.getItem("manejos")) || [];
+        // this.contador = 1;
+        this.dados = [];
         this.itemEditando = null;
         this.iniciar();
         this.renderizarItens();
-    }
+        this.carregarBanco();
+    }a
 
     iniciar() {
         document.querySelector('.btn-adicionar').addEventListener('click', () => {
@@ -16,7 +21,7 @@ class GerenciadorManejos {
             if (e.target.classList.contains('btn-editar')) {
                 this.editarItem(e.target.closest('.item-dado'));
             }
-            
+
             else if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
@@ -56,57 +61,107 @@ class GerenciadorManejos {
     limparFormulario() {
         document.querySelector('#data').value = '';
         document.querySelector('#tipo').value = '';
-        document.querySelector('#motivos').value = '';
+        document.querySelector('#motivo').value = '';
         document.querySelector('#descricao').value = '';
+    }
+
+    async carregarBanco() {
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('manejo')
+                .select('*')
+                .order('id', { ascending: true });
+
+            if (error) throw error;
+
+            this.dados = data || [];
+            this.renderizarItens();
+        } catch (err) {
+            console.error('Erro ao carregar dados do banco:', err);
+            alert('Erro ao carregar dados do banco! Veja o console.');
+        }
     }
 
     editarItem(item) {
         this.itemEditando = item;
-       // const dados = item.querySelectorAll('span');
+        // const dados = item.querySelectorAll('span');
         const index = item.dataset.index;
         const dados = this.dados[index];
-        
-        document.querySelector('#data').value = dados.data;
-        document.querySelector('#tipo').value = dados.tipo;
-        document.querySelector('#motivos').value = dados.motivos;
-        document.querySelector('#descricao').value = dados.descricao;
-        
+
+        if (!dados) {
+            alert('Erro: item não encontrado.');
+            return;
+        }
+
+        document.querySelector('#data').value = dados.data || '';
+        document.querySelector('#tipo').value = dados.tipo || '';
+        document.querySelector('#motivo').value = dados.motivo || '';
+        document.querySelector('#descricao').value = dados.descricao || '';
+
         document.querySelector('#modalTitulo').textContent = 'Editar Manejo';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
 
-    salvar(evento) {
+    async salvar(evento) {
         evento.preventDefault();
-        
+
         const data = document.querySelector('#data').value;
         const tipo = document.querySelector('#tipo').value;
-        const motivos = document.querySelector('#motivos').value;
+        const motivo = document.querySelector('#motivo').value;
         const descricao = document.querySelector('#descricao').value;
+
         
-        if (!data || !tipo || !motivos || !descricao) {
+        if (!data || !tipo || !motivo || !descricao) {
             alert('Preencha todos os campos!');
             return;
         }
-        const novoItem = { data, tipo, motivos, descricao };
 
-        if (this.itemEditando !==null) {
-            const index = this.itemEditando.dataset.index;
-            this.dados[index] = novoItem;
-        } else {
-            this.dados.push(novoItem);
+        const novoItem = { data, tipo, motivo, descricao };
+
+
+       try {
+            if (this.itemEditando !== null) {
+                // atualizar: pega o id do item que veio do banco
+                const index = this.itemEditando.dataset.index;
+                const itemBanco = this.dados[index];
+                if (!itemBanco || !itemBanco.id) {
+                    alert('Erro ao identificar item para atualizar.');
+                    return;
+                }
+
+                const { error } = await supabaseClient
+                    .from('manejo')
+                    .update(novoItem)           
+                    .eq('id', itemBanco.id);
+
+                if (error) throw error;
+            } else {
+                // inserir novo registro
+                const { error } = await supabaseClient
+                    .from('manejo')
+                    .insert([novoItem]);
+
+                if (error) throw error;
+            }
+
+            // recarrega do banco para garantir IDs e dados atualizados
+            await this.carregarBanco();
+            this.fecharModal();
+
+        } catch (err) {
+            console.error('Erro ao salvar manejo:', err);
+            alert('Erro ao salvar/atualizar. Veja o console.');
         }
-        
-        this.salvarLocal();
-        this.renderizarItens();
-        this.fecharModal();
     }
 
     renderizarItens() {
-        
+
         const container = document.querySelector('.dados-container section');
+        if (!container) return;
         container.innerHTML = '';
-        
+
         this.dados.forEach((item, index) => {
             const novoItem = document.createElement('article');
             novoItem.className = 'item-dado';
@@ -114,36 +169,50 @@ class GerenciadorManejos {
             novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
 
             novoItem.innerHTML = `
-            <span>${item.data}</span>
-            <span>${item.tipo}</span>
-            <span>${item.motivos}</span>
-            <span>${item.descricao}</span>
+            <span>${item.data || ''}</span>
+            <span>${item.tipo || ''}</span>
+            <span>${item.motivo || ''}</span>
+            <span>${item.descricao || ''}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
          `;
 
-           container.appendChild(novoItem);
+            container.appendChild(novoItem);
         });
-       
+
     }
 
-    removerItem(item) {
-        const index = item.dataset.index
+    async removerItem(item) {
+        const index = item.dataset.index;
+        const itemBanco = this.dados[index];
+
+      if (!itemBanco || !itemBanco.id) {
+            alert('Erro: não foi possível identificar item para remover.');
+            return;
+        }
 
         if (confirm('Remover este manejo?')) {
-        this.dados.splice(index, 1);
-        this.salvarLocal();
-        this.renderizarItens();
-        } else {
-            alert('Não é possível remover o último manejo!');
+            try {
+                const { error } = await supabaseClient
+                    .from('manejo')
+                    .delete()
+                    .eq('id', itemBanco.id);
+
+                if (error) throw error;
+                await this.carregarBanco();
+            } catch (err) {
+                console.error('Erro ao remover manejo:', err);
+                alert('Erro ao remover! Veja o console.');
+            }
         }
+
     }
 
-    salvarLocal(){
-        localStorage.setItem("manejos", JSON.stringify(this.dados));
-    }
+    // salvarLocal() {
+    //     localStorage.setItem("manejos", JSON.stringify(this.dados));
+    // }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
