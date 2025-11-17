@@ -61,7 +61,7 @@ class GerenciadorManejos {
     limparFormulario() {
         document.querySelector('#data').value = '';
         document.querySelector('#tipo').value = '';
-        document.querySelector('#motivo').value = '';
+        document.querySelector('#motivos').value = '';
         document.querySelector('#descricao').value = '';
     }
 
@@ -71,7 +71,7 @@ class GerenciadorManejos {
             const { data, error } = await supabaseClient
                 .from('manejo')
                 .select('*')
-                .order('id', { ascending: true });
+                .order('id_manejo', { ascending: true });
 
             if (error) throw error;
 
@@ -96,7 +96,7 @@ class GerenciadorManejos {
 
         document.querySelector('#data').value = dados.data || '';
         document.querySelector('#tipo').value = dados.tipo || '';
-        document.querySelector('#motivo').value = dados.motivo || '';
+        document.querySelector('#motivos').value = dados.motivos || '';
         document.querySelector('#descricao').value = dados.descricao || '';
 
         document.querySelector('#modalTitulo').textContent = 'Editar Manejo';
@@ -109,11 +109,11 @@ class GerenciadorManejos {
 
         const data = document.querySelector('#data').value;
         const tipo = document.querySelector('#tipo').value;
-        const motivo = document.querySelector('#motivo').value;
+        const motivo = document.querySelector('#motivos').value;
         const descricao = document.querySelector('#descricao').value;
 
         
-        if (!data || !tipo || !motivo || !descricao) {
+        if (!data || !tipo || !motivos || !descricao) {
             alert('Preencha todos os campos!');
             return;
         }
@@ -126,7 +126,7 @@ class GerenciadorManejos {
                 // atualizar: pega o id do item que veio do banco
                 const index = this.itemEditando.dataset.index;
                 const itemBanco = this.dados[index];
-                if (!itemBanco || !itemBanco.id) {
+                if (!itemBanco || !itemBanco.id_manejo) {
                     alert('Erro ao identificar item para atualizar.');
                     return;
                 }
@@ -134,7 +134,7 @@ class GerenciadorManejos {
                 const { error } = await supabaseClient
                     .from('manejo')
                     .update(novoItem)           
-                    .eq('id', itemBanco.id);
+                    .eq('id_manejo', itemBanco.id_manejo);
 
                 if (error) throw error;
             } else {

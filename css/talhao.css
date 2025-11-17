@@ -1,126 +1,115 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-img {
-  width: 10em;
-  height: 10em;
-}
-
-body ul {
+body {
+  font-family: "Lexend", sans-serif;
   background-color: #E9E1C3;
-  width: 10em;
-  height: 78vh;
-  margin-top: -0.5vh;
+  display: flex;
+  min-height: 100vh;
 }
-body ul li {
+
+nav {
+  background-color: #0D4E19;
+}
+
+nav img {
+  width: 100%;
+  height: 10.5rem;
+  display: block;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: #F5EED7;
-  padding-top: 1vh;
-  padding-left: 1vh;
+  text-decoration: none;
+  display: block;
+  padding: 0.9375rem 1.25rem;
+  transition: background-color 0.3s;
 }
-body main {
-  padding: 2em;
-  margin-left: 10em;
-  margin-top: -47.5em;
+
+nav li:hover {
+  background-color: #4a6a25;
 }
-body main div {
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #fff8e6;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+
+header h1 {
+  color: #0D4E19;
+  font-size: 2.5rem;
+  margin-left: 0;
+}
+
+button {
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-family: "Lexend", sans-serif;
+}
+
+.btn-adicionar {
+  background-color: #578424;
+  color: #F5EED7;
+}
+
+.btn-adicionar:hover {
+  background-color: #0D4E19;
+  transform: translateY(-2px);
+}
+
+section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5em;
-  margin-bottom: 2em;
-}
-body main div button {
-  border-radius: 3.5em;
-  height: 3em;
-  background-color: #F5EED7;
-  border: 2px solid #E9E1C3;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-  color: #E9E1C3;
-}
-body main div button:hover,
-body main div button .ativo {
-  background: #E9E1C3;
-  color: #F5EED7;
-  transform: scale(0.97);
-}
-body main section {
-  display: none;
-}
-body main section.ativo {
-  display: block;
-}
-body main section article {
-  background-color: #F5EED7;
-  padding: 20px;
-  margin-top: 20px;
-}
-body main section article h3 {
-  margin-bottom: 15px;
-  color: #E9E1C3;
-}
-body main section article input,
-body main section article select {
-  width: 98%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #E9E1C3;
-  border-radius: 4px;
-}
-body main section article button {
-  background-color: #E9E1C3;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-body main section table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-  overflow: hidden;
-}
-body main section table th {
-  background-color: #F5EED7;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-  border-bottom: 2px solid #E9E1C3;
-}
-body main section table td {
-  padding: 15px;
-  border-bottom: 1px solid #E9E1C3;
-}
-body main section table tr:last-child td {
-  border-bottom: none;
-}
-body h1 {
-  margin: 0.2em;
-  color: #E9E1C3;
-  font-size: 1.5em;
-}
-body h2 {
-  font-size: 1.4rem;
-  color: #E9E1C3;
-  margin: 30px 0 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #E9E1C3;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  padding: 0 2rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-  nav {
-    display: none;
-  }
-  .botoes-navegacao {
-    grid-template-columns: 1fr;
-  }
-}/*# sourceMappingURL=talhao.css.map */
+section button {
+  background-color: #4a6a25;
+  color: #F5EED7;
+  font-size: 1.2rem;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+section button:hover {
+  background-color: #0D4E19;
+  transform: translateY(-5px);
+  border-color: #b5dc84;
+  box-shadow: 0 5px 15px rgba(13, 78, 25, 0.3);
+}

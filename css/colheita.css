@@ -31,10 +31,13 @@ nav ul {
 nav li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: #F5EED7;
-  text-decoration: none;
   display: block;
   padding: 0.9375rem 1.25rem;
   transition: background-color 0.3s;
+}
+
+nav a {
+  text-decoration: none;
 }
 
 nav li:hover {

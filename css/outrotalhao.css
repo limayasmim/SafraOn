@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
+  background-color: #E9E1C3;
+  min-height: 100vh;
+  display: flex;
+}
+
+nav {
+  background-color: #0D4E19;
+  width: 12rem;
+}
+nav img {
+  width: 100%;
+  height: 10.5rem;
+  display: block;
+}
+nav ul {
+  list-style: none;
+}
+nav li {
+  color: #F5EED7;
+  padding: 0.9375rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+nav li:hover {
+  background-color: #4a6a25;
+}
+
+main {
+  flex: 1;
+  padding: 2.5em;
+}
+main h1 {
+  color: #648a34;
+  text-align: center;
+  margin-bottom: 1.875em;
+  font-size: 2.5em;
+}
+main article {
+  background-color: #fff8e6;
+  border-radius: 1.25em;
+  padding: 1.875em;
+  max-width: 50em;
+  margin: 0 auto;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+}
+
+main h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375em 0.625em;
+  border-bottom: 0.0625em solid #eee;
+}
+main h4 .nome-fazenda {
+  flex: 1;
+  font-family: "Lexend", sans-serif;
+}
+main h4 .botoes-controle {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+#pesquisa {
+  width: 100%;
+  padding: 0.75em;
+  margin-bottom: 1.25em;
+  border: 0.0625em solid #648a34;
+  border-radius: 0.5em;
+  background-color: #b5dc84;
+  font-family: "Inter";
+}
+#pesquisa::-moz-placeholder {
+  color: #626261;
+  font-style: italic;
+}
+#pesquisa::placeholder {
+  color: #626261;
+  font-style: italic;
+}
+#pesquisa:focus {
+  outline: none;
+  border-color: #4a6a25;
+  box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.3);
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3125em;
+  font-size: 1.1em;
+  color: #648a34;
+  transition: transform 0.2s ease;
+}
+.toggle-button:hover {
+  transform: scale(1.2);
+}
+
+.editar-btn, .local-btn, .editar-talhao-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+.editar-btn:hover, .local-btn:hover, .editar-talhao-btn:hover {
+  transform: scale(1.2);
+}
+
+.editar-btn, .editar-talhao-btn {
+  color: #648a34;
+}
+
+.local-btn {
+  color: #578424;
+}
+
+[id^=talhoes-] {
+  background-color: #648a34;
+  border-radius: 0.625em;
+  padding: 0.9375em;
+  margin: 0.625em 0;
+  color: #F5EED7;
+  display: none;
+}
+[id^=talhoes-] .local-fazenda {
+  margin-bottom: 0.625em;
+  font-style: italic;
+  font-family: "Inter";
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.3125em;
+  border-left: 3px solid #b5dc84;
+}
+[id^=talhoes-] h5, a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0.625em;
+  border-bottom: 0.0625em solid rgba(255, 255, 255, 0.3);
+  font-family: "Lusitana", serif;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #E9E1C3;
+}
+[id^=talhoes-] h5 .nome-talhao {
+  flex: 1;
+}
+[id^=talhoes-] button {
+  background-color: #4a6a25;
+  color: #F5EED7;
+  border: none;
+  border-radius: 0.3125em;
+  cursor: pointer;
+  margin-top: 0.625em;
+  font-family: "Inter";
+  transition: background-color 0.3s ease;
+}
+[id^=talhoes-] button:hover {
+  background-color: #3a551d;
+}
+[id^=talhoes-] button:not(.editar-talhao-btn) {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.5em 0.9375em;
+}
+
+#adicionarBtn {
+  background-color: #578424;
+  color: #F5EED7;
+  border: none;
+  padding: 0.75em 1.5625em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  margin-top: 1.25em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Inter";
+  transition: all 0.3s ease;
+}
+#adicionarBtn:hover {
+  background-color: #4a6a25;
+  transform: translateY(-0.125em);
+}
+
+#inputFazenda {
+  margin-top: 0.9375em;
+}
+#inputFazenda .container-input {
+  display: flex;
+  gap: 0.625em;
+  margin-top: 0.625em;
+}
+#inputFazenda .container-input input {
+  background-color: #b5dc84;
+  width: 100%;
+  padding: 0.75em;
+  border: 0.0625em solid #648a34;
+  border-radius: 0.5em;
+  font-family: "Inter";
+  flex: 1;
+}
+#inputFazenda .container-input input:focus {
+  outline: none;
+  border-color: #4a6a25;
+}
+#inputFazenda .container-input input::-moz-placeholder {
+  color: #626261;
+  font-style: italic;
+}
+#inputFazenda .container-input input::placeholder {
+  color: #626261;
+  font-style: italic;
+}
+#inputFazenda .container-input button {
+  background-color: #4a6a25;
+  color: #F5EED7;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 0.3125em;
+  cursor: pointer;
+  font-family: "Inter";
+  white-space: nowrap;
+}
+#inputFazenda .container-input button:hover {
+  background-color: #3a551d;
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  nav {
+    width: 100%;
+  }
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav ul li {
+    padding: 0.625em 0.9375em;
+  }
+  main {
+    padding: 1.25em;
+  }
+  main article {
+    padding: 1.25em;
+  }
+  main h4 .botoes-controle {
+    gap: 0.25em;
+  }
+}/*# sourceMappingURL=fazendas.css.map */
