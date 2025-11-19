@@ -4,7 +4,6 @@ const supabaseClient = window.supabase;
 
 class GerenciadorManejos {
     constructor() {
-        // this.contador = 1;
         this.dados = [];
         this.itemEditando = null;
         this.iniciar();
@@ -123,7 +122,6 @@ class GerenciadorManejos {
 
        try {
             if (this.itemEditando !== null) {
-                // atualizar: pega o id do item que veio do banco
                 const index = this.itemEditando.dataset.index;
                 const itemBanco = this.dados[index];
                 if (!itemBanco || !itemBanco.id_manejo) {
@@ -146,7 +144,7 @@ class GerenciadorManejos {
                 if (error) throw error;
             }
 
-            // recarrega do banco para garantir IDs e dados atualizados
+           
             await this.carregarBanco();
             this.fecharModal();
 

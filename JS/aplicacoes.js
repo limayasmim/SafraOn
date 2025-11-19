@@ -1,10 +1,15 @@
+
+// Usa o cliente já criado no HTML
+const supabaseClient = window.supabase;
+
+
 class GerenciadorAplicacoes {
     constructor() {
-        this.contador = 1;
-        this.dados = JSON.parse(localStorage.getItem("aplicacoes")) || [];
+        this.dados = [];
         this.itemEditando = null;
         this.iniciar();
         this.renderizarItens();
+        this.carregarBanco();
     }
 
     iniciar() {
@@ -16,7 +21,7 @@ class GerenciadorAplicacoes {
             if (e.target.classList.contains('btn-editar')) {
                 this.editarItem(e.target.closest('.item-dado'));
             }
-            
+
             else if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
@@ -55,55 +60,100 @@ class GerenciadorAplicacoes {
 
     limparFormulario() {
         document.querySelector('#data').value = '';
-        document.querySelector('#motivos').value = '';
+        document.querySelector('#motivo').value = '';
         document.querySelector('#defensivos').value = '';
     }
+
+    async carregarBanco() {
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('aplicacao')
+                .select('*')
+                .order('id_aplicacao', { ascending: true });
+
+            if (error) throw error;
+
+            this.dados = data || [];
+            this.renderizarItens();
+        } catch (err) {
+            console.error('Erro ao carregar dados do banco:', err);
+            alert('Erro ao carregar dados do banco! Veja o console.');
+        }
+    }
+
+
 
     editarItem(item) {
         this.itemEditando = item;
         //const dados = item.querySelectorAll('span');
         const index = item.dataset.index;
         const dados = this.dados[index];
-        
+
+        if (!dados) {
+            alert('Erro: item não encontrado.');
+            return;
+        }
+
         document.querySelector('#data').value = dados.data;
-        document.querySelector('#motivos').value = dados.motivos;
+        document.querySelector('#motivo').value = dados.motivo;
         document.querySelector('#defensivos').value = dados.defensivos;
-        
+
         document.querySelector('#modalTitulo').textContent = 'Editar Aplicação';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
 
-    salvar(evento) {
+    async salvar(evento) {
         evento.preventDefault();
-        
+
         const data = document.querySelector('#data').value;
-        const motivos = document.querySelector('#motivos').value;
+        const motivo = document.querySelector('#motivo').value;
         const defensivos = document.querySelector('#defensivos').value;
-        
-        if (!data || !motivos || !defensivos) {
+
+        if (!data || !motivo || !defensivos) {
             alert('Preencha todos os campos!');
             return;
         }
 
-        const novoItem = {data, motivos, defensivos};
+        const novoItem = { data, motivo, defensivos };
 
-        if (this.itemEditando !==null) {
-            const index = this.itemEditando.dataset.index;
-            this.dados[index]=novoItem;
-        } else {
-            this.dados.push(novoItem);
+        try {
+
+            if (this.itemEditando !== null) {
+                const index = this.itemEditando.dataset.index;
+                const itemBanco = this.dados[index];
+                if (!itemBanco || !itemBanco.id_aplicacao) {
+                    alert('Erro ao identificar o item para atualizar.');
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('aplicacao')
+                    .update(novoItem)
+                    .eq('id_aplicacao', itemBanco.id_aplicacao);
+                if (error) throw error;
+
+            } else {
+                const { error } = await supabaseClient
+                    .from('aplicacao')
+                    .insert([novoItem]);
+                if (error) throw error;
+            }
+
+            await this.carregarBanco();
+            this.fecharModal();
+        } catch (err) {
+            console.error('Erro ao salvar a aplicação:', err);
+            alert('Erro ao salvar/atualizar. Veja o console.')
         }
-        
-        this.salvarLocal();
-        this.renderizarItens();
-        this.fecharModal();
+
     }
 
     renderizarItens() {
         const container = document.querySelector('.dados-container section');
-        container.innerHTML=" ";
-        
+        if (!container) return;
+        container.innerHTML = "";
+
         this.dados.forEach((item, index) => {
 
             const novoItem = document.createElement('article');
@@ -112,37 +162,49 @@ class GerenciadorAplicacoes {
             novoItem.style.gridTemplateColumns = '1fr 1fr 1fr';
 
             novoItem.innerHTML = `
-            <span>${item.data}</span>
-            <span>${item.motivos}</span>
-            <span>${item.defensivos}</span>
+            <span>${item.data || ''}</span>
+            <span>${item.motivo || ''}</span>
+            <span>${item.defensivos || ''}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
           `;
 
-          container.appendChild(novoItem);
+            container.appendChild(novoItem);
         });
-       
+
     }
 
-    removerItem(item) {
-        const index = item.dataset.index
+    async removerItem(item) {
+        const index = item.dataset.index;
+        const itemBanco = this.dados[index];
+
+        if (!itemBanco || !itemBanco.id_aplicacao) {
+            alert('Erro: não foi possível identificar item para remover.');
+            return;
+        }
 
         if (confirm('Remover esta aplicação')) {
-        this.dados.splice(index,1);
-        this.salvarLocal();
-        this.renderizarItens              
-        } else {
-            alert('Não é possível remover a última aplicação!');
-        }
-    }
+            try {
+                const { error } = await supabaseClient
+                    .from('aplicacao')
+                    .delete()
+                    .eq('id', itemBanco.id_aplicacao);
 
-    salvarLocal(){
-        localStorage.setItem("manejos", JSON.stringify(this.dados));
+                if (error) throw error;
+                await this.carregarBanco();
+            } catch (err) {
+                console.error('Erro ao remover a aplicação:', err);
+                alert('Erro ao remover! Veja o console.');
+            }
+        }
+
+        // salvarLocal() {
+        //     localStorage.setItem("manejos", JSON.stringify(this.dados));
+        // }
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     new GerenciadorAplicacoes();
