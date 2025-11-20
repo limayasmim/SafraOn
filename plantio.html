@@ -67,32 +67,32 @@
 
                 <fieldset>
                     <label for="data">Data:</label>
-                    <input type="date" id="data" placeholder="DD/MM/AAAA">
+                    <input type="datetime-local" id="data" placeholder="DD/MM/AAAA">
                 </fieldset>
 
                 <fieldset>
-                    <label for="tipo">Planta:</label>
-                    <input type="text" id="tipo" placeholder="Planta de cultivo"></input>
+                    <label for="planta">Planta:</label>
+                    <input type="text" id="planta" placeholder="Planta de cultivo"></input>
                 </fieldset>
 
                 <fieldset>
-                    <label for="motivos">Variedades:</label>
-                    <input type="text" id="motivos" placeholder="Nome da variedade"></input>
+                    <label for="variedade">Variedades:</label>
+                    <input type="text" id="variedade" placeholder="Nome da variedade"></input>
                 </fieldset>
 
                 <fieldset>
-                    <label for="descricao">Adubo:</label>
-                    <input type="text" id="descricao" placeholder="Nome do adubo"></input>
+                    <label for="adubo">Adubo:</label>
+                    <input type="text" id="adubo" placeholder="Nome do adubo"></input>
                 </fieldset>
 
                 <fieldset>
-                    <label for="descricao">Inoculante:</label>
-                    <input type="text" id="descricao" placeholder="Nome do inoculante"></input>
+                    <label for="inoculantes">Inoculante:</label>
+                    <input type="text" id="inoculantes" placeholder="Nome do inoculante"></input>
                 </fieldset>
 
                 <fieldset>
-                    <label for="descricao">Sementes:</label>
-                    <input type="text" id="descricao" placeholder="Quantidades de sementes"></input>
+                    <label for="populacao">Sementes:</label>
+                    <input type="text" id="populacao" placeholder="Quantidades de sementes"></input>
                 </fieldset>
 
                 <footer>
@@ -103,7 +103,19 @@
         </article>
     </dialog>
 
-    <script src="js/manejos.js"></script>
+    
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <script>
+        const supabase_url = "https://ocuphkmhwzhbioqkupii.supabase.co";
+        const supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdXBoa21od3poYmlvcWt1cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDI3OTgsImV4cCI6MjA3Nzc3ODc5OH0.u2ZIzmlQlVsA0_eiNyyLWQGvnCWR66c4BAj8wd8pUJM";
+
+        // Cria o cliente global do Supabase
+        window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
+    </script>
+    
+
+    <script src="js/plantio.js"></script>
 </body>
 
 </html>

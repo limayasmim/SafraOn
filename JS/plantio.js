@@ -1,8 +1,16 @@
+
+// Usa o cliente já criado no HTML
+const supabaseClient = window.supabase;
+
+
+
 class GerenciadorPlantio {
     constructor() {
-        this.contador = 1;
+        this.dados = [];
         this.itemEditando = null;
         this.iniciar();
+        this.renderizarItens();
+        this.carregarBanco();
     }
 
     iniciar() {
@@ -14,7 +22,7 @@ class GerenciadorPlantio {
             if (e.target.classList.contains('btn-editar')) {
                 this.editarItem(e.target.closest('.item-dado'));
             }
-            
+
             if (e.target.classList.contains('btn-remover')) {
                 this.removerItem(e.target.closest('.item-dado'));
             }
@@ -54,77 +62,148 @@ class GerenciadorPlantio {
     limparFormulario() {
         document.querySelector('#data').value = '';
         document.querySelector('#planta').value = '';
-        document.querySelector('#umidade').value = '';
-        document.querySelector('#producao').value = '';
+        document.querySelector('#variedade').value = '';
+        document.querySelector('#adubo').value = '';
+        document.querySelector('#inoculantes').value = '';
+        document.querySelector('#populacao').value = '';
     }
+
+    async carregarBanco() {
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('plantio')
+                .select('*')
+                .order('id_plantio', { ascending: true });
+
+            if (error) throw error;
+
+            this.dados = data || [];
+            this.renderizarItens();
+        } catch (err) {
+            console.error('Erro ao carregar dados do banco:', err);
+            alert('Erro ao carregar dados do banco! Veja o console.');
+        }
+    }
+
 
     editarItem(item) {
         this.itemEditando = item;
-        const dados = item.querySelectorAll('span');
-        
-        document.querySelector('#data').value = dados[0].textContent;
-        document.querySelector('#planta').value = dados[1].textContent;
-        document.querySelector('#umidade').value = dados[2].textContent;
-        document.querySelector('#producao').value = dados[3].textContent;
-        
+        const index = item.dataset.index;
+        const dados = this.dados[index];
+
+        document.querySelector('#data').value = dados.data;
+        document.querySelector('#planta').value = dados.planta;
+        document.querySelector('#variedade').value = dados.variedade;
+        document.querySelector('#adubo').value = dados.adubo;
+        document.querySelector('#inoculantes').value = dados.inoculantes;
+        document.querySelector('#populacao').value = dados.populacao;
+
         document.querySelector('#modalTitulo').textContent = 'Editar Plantio';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
 
-    salvar(evento) {
+    async salvar(evento) {
         evento.preventDefault();
-        
+
         const data = document.querySelector('#data').value;
         const planta = document.querySelector('#planta').value;
-        const umidade = document.querySelector('#umidade').value;
-        const producao = document.querySelector('#producao').value;
-        
-        if (!data || !planta || !umidade || !producao) {
+        const variedade = document.querySelector('#variedade').value;
+        const adubo = document.querySelector('#adubo').value;
+        const inoculantes = document.querySelector('#inoculantes').value;
+        const populacao = document.querySelector('#populacao').value;
+
+        if (!data || !planta || !variedade || !adubo || !inoculantes || !populacao) {
             alert('Preencha todos os campos!');
             return;
         }
 
-        if (this.itemEditando) {
-            const dados = this.itemEditando.querySelectorAll('span');
-            dados[0].textContent = data;
-            dados[1].textContent = planta;
-            dados[2].textContent = umidade;
-            dados[3].textContent = producao;
-        } else {
-            this.adicionarItem(data, planta, umidade, producao);
+        const novoItem = { data, planta, variedade, adubo, inoculantes, populacao };
+
+        try {
+            if (this.itemEditando !== null) {
+                const index = this.itemEditando.dataset.index;
+                const itemBanco = this.dados[index];
+                if (!itemBanco || !itemBanco.id_plantio) {
+                    alert('Erro ao identificar o item para atualizar.');
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('plantio')
+                    .update(novoItem)
+                    .eq('id_plantio', itemBanco.id_plantio);
+                if (error) throw error;
+
+            } else {
+                const { error } = await supabaseClient
+                    .from('plantio')
+                    .insert ([novoItem]);
+                if (error) throw error;
+            }
+
+            await this.carregarBanco();
+            this.fecharModal();
+
+        } catch (err) {
+            console.error('Erro ao salvar o plantio:', err);
+            alert('Erro ao salvar/atualizar. Veja o console.')
         }
-        
-        this.fecharModal();
     }
 
-    adicionarItem(data, planta, umidade, producao) {
-        this.contador++;
-        
-        const novoItem = document.createElement('article');
-        novoItem.className = 'item-dado';
-        
-        novoItem.innerHTML = `
-            <span>${data}</span>
-            <span>${planta}</span>
-            <span>${umidade}</span>
-            <span>${producao}</span>
+    renderizarItens() {
+
+        const container = document.querySelector('.dados-container section');
+        if (!container) return;
+        container.innerHTML = "";
+
+        this.dados.forEach((item, index) => {
+
+            const novoItem = document.createElement('article');
+            novoItem.className = 'item-dado';
+            novoItem.dataset.index = index;
+            novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr 1fr';
+
+            novoItem.innerHTML = ` 
+            <span>${item.data || ''}</span>
+            <span>${item.planta || ''}</span>
+            <span>${item.variedade || ''}</span>
+            <span>${item.adubo || ''}</span>
+            <span>${item.inoculantes || ''}</span>
+            <span>${item.populacao || ''}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
             </menu>
-        `;
-        
-        document.querySelector('#listaDados').appendChild(novoItem);
+            `;
+
+            container.appendChild(novoItem);
+        })
     }
 
-    removerItem(item) {
-        if (document.querySelectorAll('.item-dado').length > 1) {
-            if (confirm('Remover este plantio?')) {
-                item.remove();
+    async removerItem(item) {
+        const index = item.dataset.index;
+        const itemBanco = this.dados[index];
+
+
+        if (!itemBanco || !itemBanco.id_plantio) {
+            alert('Erro: não foi possível identificar item para remover.');
+            return;
+        }
+
+        if (confirm('Remover esta aplicação')) {
+            try {
+                const { error } = await supabaseClient
+                    .from('plantio')
+                    .delete()
+                    .eq('id_plantio', itemBanco.id_plantio);
+
+                if (error) throw error;
+                await this.carregarBanco();
+            } catch (err) {
+                console.error('Erro ao remover a plantio:', err.message, err);
+                alert('Erro ao remover! Veja o console.');
             }
-        } else {
-            alert('Não é possível remover o último plantio!');
         }
     }
 }

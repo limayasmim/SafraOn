@@ -1,10 +1,17 @@
+
+
+// Usa o cliente já criado no HTML
+const supabaseClient = window.supabase;
+
+
+
 class GerenciadorColheitas {
     constructor() {
-        this.contador = 1; // Yasmim
-        this.dados = JSON.parse(localStorage.getItem("colheitas")) || [];
+        this.dados = [];
         this.itemEditando = null;
         this.iniciar();
         this.renderizarItens();
+        this.carregarBanco();
     }
 
     iniciar() {
@@ -60,22 +67,41 @@ class GerenciadorColheitas {
         document.querySelector('#producao').value = '';
     }
 
+    async carregarBanco() {
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('colheita')
+                .select('*')
+                .order('id_colheita', { ascending: true });
+
+            if (error) throw error;
+
+            this.dados = data || [];
+            this.renderizarItens();
+        } catch (err) {
+            console.error('Erro ao carregar dados do banco:', err);
+            alert('Erro ao carregar dados do banco! Veja o console.');
+        }
+    }
+
+
     editarItem(item) {
         this.itemEditando = item;
         const index = item.dataset.index;
-        const dados = this.dados[index]; // dois apos comentario gpt
+        const dados = this.dados[index];
 
-        document.querySelector('#data').value = dados.data;             
-        document.querySelector('#planta').value = dados.planta;         
-        document.querySelector('#umidade').value = dados.umidade;       
-        document.querySelector('#producao').value = dados.producao;     
+        document.querySelector('#data').value = dados.data;
+        document.querySelector('#planta').value = dados.planta;
+        document.querySelector('#umidade').value = dados.umidade;
+        document.querySelector('#producao').value = dados.producao;
 
         document.querySelector('#modalTitulo').textContent = 'Editar Colheita';
         document.querySelector('#btnSubmit').textContent = 'Salvar';
         document.querySelector('#modalForm').showModal();
     }
 
-    salvar(evento) {
+    async salvar(evento) {
         evento.preventDefault();
 
         const data = document.querySelector('#data').value;
@@ -87,25 +113,43 @@ class GerenciadorColheitas {
             alert('Preencha todos os campos!');
             return;
         }
-        const novoItem = { data, planta, umidade, producao }; //gpt
+        const novoItem = { data, planta, umidade, producao };
 
-        if (this.itemEditando !== null) {
-            const index = this.itemEditando.dataset.index;
-            this.dados[index] = novoItem;
-        } else {
-            this.dados.push(novoItem);
-        }  
+        try {
 
-        this.salvarLocal(); //gpt
-        this.renderizarItens(); //gpt
-        this.fecharModal();
+            if (this.itemEditando !== null) {
+                const index = this.itemEditando.dataset.index;
+                const itemBanco = this.dados[index];
+                if (!itemBanco || !itemBanco.id_colheita) {
+                    alert('Erro ao identificar o item para atualizar.');
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('colheita')
+                    .update(novoItem)
+                    .eq('id_colheita', itemBanco.id_colheita);
+                if (error) throw error
+            } else {
+                const { error } = await supabaseClient
+                    .from('colheita')
+                    .insert([novoItem]);
+                if (error) throw error;
+            }
+
+            await this.carregarBanco();
+            this.fecharModal();
+        } catch (err) {
+            console.error('Erro ao salvar a colheita', err);
+            alert('Erro ao salvar/atualizar. Veja o console.')
+        }
     }
 
-    renderizarItens() { 
+    renderizarItens() {
 
         const container = document.querySelector('.dados-container section');
-        container.innerHTML = '';
-        
+        if (!container) return;
+        container.innerHTML = "";
+
         this.dados.forEach((item, index) => {
             const novoItem = document.createElement('article');
             novoItem.className = 'item-dado';
@@ -113,10 +157,10 @@ class GerenciadorColheitas {
             novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
 
             novoItem.innerHTML = `
-            <span>${item.data}</span>
-            <span>${item.planta}</span>
-            <span>${item.umidade}</span>
-            <span>${item.producao}</span>
+            <span>${item.data || ''}</span>
+            <span>${item.planta || ''}</span>
+            <span>${item.umidade || ''}</span>
+            <span>${item.producao || ''}</span>
             <menu class="acoes">
                 <button class="btn-editar" title="Editar">✎</button>
                 <button class="btn-remover" title="Remover">×</button>
@@ -127,23 +171,33 @@ class GerenciadorColheitas {
         });
     }
 
-    removerItem(item) {
+    async removerItem(item) {
         const index = item.dataset.index;
-     
-        if (confirm('Remover esta colheita?')) {
-        this.dados.splice(index, 1);
-        this.salvarLocal();
-        this.renderizarItens();
-        } else {
-            alert('Não é possível remover a última colheita!');
+        const itemBanco = this.dados[index];
+
+        if (!itemBanco || !itemBanco.id_colheita) {
+            alert('Erro: não foi possível identificar item para remover.');
+            return;
         }
+
+        if (confirm('Remover esta colheita?')) {
+            try{
+                const {error} = await supabaseClient
+                    .from('colheita')
+                    .delete()
+                    .eq('id', itemBanco.id_colheita);
+                if (error) throw error;
+                await this.carregarBanco();
+            }catch(err){
+                console.error('Erro ao remover a colheita', err);
+                alert('Não é possível remover a última colheita!');
+            }
+        } 
     }
 
-    salvarLocal() {
-        localStorage.setItem("colheitas", JSON.stringify(this.dados));
-    }
+    
 
-}   
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     new GerenciadorColheitas();

@@ -190,7 +190,7 @@ class GerenciadorAplicacoes {
                 const { error } = await supabaseClient
                     .from('aplicacao')
                     .delete()
-                    .eq('id', itemBanco.id_aplicacao);
+                    .eq('id_aplicacao', itemBanco.id_aplicacao);
 
                 if (error) throw error;
                 await this.carregarBanco();

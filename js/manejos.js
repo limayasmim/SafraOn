@@ -60,7 +60,7 @@ class GerenciadorManejos {
     limparFormulario() {
         document.querySelector('#data').value = '';
         document.querySelector('#tipo').value = '';
-        document.querySelector('#motivos').value = '';
+        document.querySelector('#motivo').value = '';
         document.querySelector('#descricao').value = '';
     }
 
@@ -95,7 +95,7 @@ class GerenciadorManejos {
 
         document.querySelector('#data').value = dados.data || '';
         document.querySelector('#tipo').value = dados.tipo || '';
-        document.querySelector('#motivos').value = dados.motivos || '';
+        document.querySelector('#motivo').value = dados.motivo || '';
         document.querySelector('#descricao').value = dados.descricao || '';
 
         document.querySelector('#modalTitulo').textContent = 'Editar Manejo';
@@ -108,11 +108,11 @@ class GerenciadorManejos {
 
         const data = document.querySelector('#data').value;
         const tipo = document.querySelector('#tipo').value;
-        const motivo = document.querySelector('#motivos').value;
+        const motivo = document.querySelector('#motivo').value;
         const descricao = document.querySelector('#descricao').value;
 
         
-        if (!data || !tipo || !motivos || !descricao) {
+        if (!data || !tipo || !motivo || !descricao) {
             alert('Preencha todos os campos!');
             return;
         }
@@ -125,7 +125,7 @@ class GerenciadorManejos {
                 const index = this.itemEditando.dataset.index;
                 const itemBanco = this.dados[index];
                 if (!itemBanco || !itemBanco.id_manejo) {
-                    alert('Erro ao identificar item para atualizar.');
+                    alert('Erro ao identificar item para atualizar.', err.message, err);
                     return;
                 }
 
@@ -186,7 +186,7 @@ class GerenciadorManejos {
         const index = item.dataset.index;
         const itemBanco = this.dados[index];
 
-      if (!itemBanco || !itemBanco.id) {
+      if (!itemBanco || !itemBanco.id_manejo) {
             alert('Erro: não foi possível identificar item para remover.');
             return;
         }
@@ -196,7 +196,7 @@ class GerenciadorManejos {
                 const { error } = await supabaseClient
                     .from('manejo')
                     .delete()
-                    .eq('id', itemBanco.id);
+                    .eq('id_manejo', itemBanco.id_manejo);
 
                 if (error) throw error;
                 await this.carregarBanco();
