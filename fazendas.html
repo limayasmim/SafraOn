@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafraOn - Fazendas</title>
   <link rel="stylesheet" href="/css/fazendas.css">
 </head>
+
 <body>
   <nav>
     <img src="imagem/logo.png" alt="Logo SafraOn">
@@ -21,72 +23,70 @@
     <article>
       <input type="text" id="pesquisa" placeholder="Pesquisar fazendas...">
 
-      <!-- Fazenda 1 -->
-      <h4>
-        <span class="nome-fazenda">Fazenda São João</span>
-        <div class="botoes-controle">
-          <button class="editar-btn" onclick="editarFazenda(1, this)" title="Editar nome">✎</button>
-          <button class="local-btn" onclick="editarLocalidade(1, this)" title="Editar localidade">⚲</button>
-          <button class="toggle-button" onclick="toggleTalhoes(1)">▼</button>
-        </div>
-      </h4>
-      <div id="talhoes-1">
-        <p class="local-fazenda">Local: São Paulo - SP</p>
-        <h5>
-          <span class="nome-talhao">Talhão Norte</span>
-          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-        </h5>
-        <h5>
-          <span class="nome-talhao">Talhão Sul</span>
-          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-        </h5>
-        <button onclick="adicionarTalhao(1)">Adicionar talhão +</button>
-      </div>
+      <section id="listaFazendas"></section>
 
-      <!-- Fazenda 2 -->
-      <h4>
-        <span class="nome-fazenda">Fazenda Boa Vista</span>
-        <div class="botoes-controle">
-          <button class="editar-btn" onclick="editarFazenda(2, this)" title="Editar nome">✎</button>
-          <button class="local-btn" onclick="editarLocalidade(2, this)" title="Editar localidade">⚲</button>
-          <button class="toggle-button" onclick="toggleTalhoes(2)">▼</button>
-        </div>
-      </h4>
-      <div id="talhoes-2">
-        <p class="local-fazenda">Local: Minas Gerais - MG</p>
-        <h5>
-          <span class="nome-talhao">Talhão Leste</span>
-          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-        </h5>
-        <h5>
-          <span class="nome-talhao">Talhão Oeste</span>
-          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-        </h5>
-        <button onclick="adicionarTalhao(2)">Adicionar talhão +</button>
-      </div>
-
-      <!-- Fazenda 3 -->
-      <h4>
-        <span class="nome-fazenda">Fazenda Esperança</span>
-        <div class="botoes-controle">
-          <button class="editar-btn" onclick="editarFazenda(3, this)" title="Editar nome">✎</button>
-          <button class="local-btn" onclick="editarLocalidade(3, this)" title="Editar localidade">⚲</button>
-          <button class="toggle-button" onclick="toggleTalhoes(3)">▼</button>
-        </div>
-      </h4>
-      <div id="talhoes-3">
-        <p class="local-fazenda">Local: Paraná - PR</p>
-        <h5>
-          <span class="nome-talhao">Talhão Central</span>
-          <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-        </h5>
-        <button onclick="adicionarTalhao(3)">Adicionar talhão +</button>
-      </div>
-
-      <button id="adicionarBtn">Adicionar fazenda +</button>
+      <button id="btnAdicionarFazenda">Adicionar fazenda +</button>
       <div id="inputFazenda"></div>
     </article>
+
+    <dialog id="modalFazenda" class="modal">
+      <form id="formFazenda" method="dialog">
+
+        <h3 id="tituloModalFazenda">Adicionar Fazenda</h3>
+
+        <input type="hidden" id="id_fazendas">
+
+        <fieldset>
+          <label for="inputNomeFazenda">Nome da fazenda:</label>
+          <input type="text" id="inputNomeFazenda" required>
+        </fieldset>
+
+        <fieldset>
+          <label for="inputLocalFazenda">Localidade:</label>
+          <input type="text" id="inputLocalFazenda">
+        </fieldset>
+
+        <menu>
+          <button type="button" data-close>Cancelar</button>
+          <button type="submit">Salvar</button>
+        </menu>
+
+      </form>
+    </dialog>
+
+    <dialog id="modalTalhao" class="modal">
+      <form id="formTalhao" method="dialog">
+
+        <h3 id="tituloModalTalhao">Adicionar Talhão</h3>
+
+        <input type="hidden" id="id_talhao">
+        <input type="hidden" id="id_fazendas_relacionada">
+
+        <fieldset>
+          <label for="inputNomeTalhao">Nome do talhão:</label>
+          <input type="text" id="inputNomeTalhao" required>
+        </fieldset>
+
+        <menu>
+          <button type="button" data-close>Cancelar</button>
+          <button type="submit">Salvar</button>
+        </menu>
+
+      </form>
+    </dialog>
+
   </main>
-  <script src="/js/fazendas.js"></script>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+  <script>
+    const supabase_url = "https://ocuphkmhwzhbioqkupii.supabase.co";
+    const supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdXBoa21od3poYmlvcWt1cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDI3OTgsImV4cCI6MjA3Nzc3ODc5OH0.u2ZIzmlQlVsA0_eiNyyLWQGvnCWR66c4BAj8wd8pUJM";
+
+    // Cria o cliente global do Supabase
+    window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
+  </script>
+  <script src="js/fazendas.js"></script>
 </body>
+
 </html>

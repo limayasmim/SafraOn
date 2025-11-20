@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+/* /* @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lusitana:wght@400;700&display=swap");
 * {
@@ -263,4 +263,606 @@ main h4 .botoes-controle {
   main h4 .botoes-controle {
     gap: 0.25em;
   }
-}/*# sourceMappingURL=fazendas.css.map */
+}# sourceMappingURL=fazendas.css.map */
+
+/* ============================================
+   RESET E CONFIGURAÇÕES GERAIS
+=============================================== */
+
+
+/* nav {
+  background-color: #0D4E19;
+  width: 12rem;
+}
+nav img {
+  width: 100%;
+  height: 10.5rem;
+  display: block;
+}
+nav ul {
+  list-style: none;
+}
+nav li {
+  color: #F5EED7;
+  padding: 0.9375rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+nav li:hover {
+  background-color: #4a6a25;
+} */
+
+
+
+
+/* ============================================
+   RESET E CONFIGURAÇÕES GERAIS
+=============================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.conteudo {
+  width: min(90vw, 70rem);
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #E6DDBF;
+  min-height: 100vh;
+  /* display: grid; */
+  /* grid-template-columns: 20rem 1fr;
+  grid-template-rows: 1fr; */
+  display: flex;
+}
+
+/* ============================================
+   NAVEGAÇÃO LATERAL
+=============================================== */
+nav {
+  background-color: #0D3B1F;
+  width: 12rem;
+}
+
+nav img {
+  width: 100%;
+  height: 10.5rem;
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  color: #F5EED7;
+  padding: 0.9375rem 1.25rem;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+nav li:hover {
+  background-color: #4A6A25;
+}
+
+/* ============================================
+   CONTEÚDO PRINCIPAL - CENTRALIZADO
+=============================================== */
+main {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+main h1 {
+  color: #5E7F3E;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.875rem;
+}
+
+/* ============================================
+   CARTÃO DE CONTEÚDO - RESPONSIVO
+=============================================== */
+main article {
+  background-color: #f9f5e6;
+  border-radius: 1.25rem;
+  padding: 1.875rem;
+  width: min(90vw, 50rem);
+  margin: 0 auto;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* ============================================
+   BARRA DE PESQUISA - RESPONSIVA
+=============================================== */
+#pesquisa {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: #A8D08D;
+  font-size: 1rem;
+}
+
+/* #pesquisa, h4{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} */
+
+#pesquisa::placeholder {
+  color: #626261;
+  font-style: italic;
+}
+
+/* ============================================
+   LISTA DE FAZENDAS - RESPONSIVA
+=============================================== */
+#listaFazendas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centraliza os cards */
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.fazenda-item {
+  background-color: #FFFFFF;
+  border-radius: 0.8rem;
+  padding: 1.4rem 2rem;
+  margin: 0;
+
+  width: 100;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+
+  border-left: 0.35rem solid #5E7F3E;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  overflow:visible;
+
+
+}
+
+.fazenda-item h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #47622c;
+}
+
+.fazenda-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nome-fazenda {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #5E7F3E;
+}
+
+.botoes-controle {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.botoes-controle button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.toggle-button,
+.editar-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #5E7F3E;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover,
+.editar-btn:hover {
+  background-color: rgba(94, 127, 62, 0.1);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   PAINEL DE TALHÕES - RESPONSIVO
+=============================================== */
+.painel-talhoes {
+  background-color: #5E7F3E;
+  border-radius: 0.8rem;
+  padding: 1.2rem 1.5rem;
+  /* margin-top: 1rem; */
+  color: white;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.painel-talhoes .local-fazenda {
+  font-style: italic;
+  padding: 0.8rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  border-left: 0.2rem solid #A8D08D;
+  font-size: 1rem;
+}
+
+.lista-talhoes {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4); */
+  width: 100%;
+
+}
+
+.lista-talhoes h5 {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.talhao-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.3);
+  gap: 1rem;
+}
+
+.acoes-talhao button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.nome-talhao {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.editar-talhao-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.editar-talhao-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   BOTÕES - RESPONSIVOS
+=============================================== */
+.btn-adicionar-talhao {
+  background: #6b9442;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: white;
+  width: fit-content;
+  cursor: pointer;
+  margin: 0.5rem 0 0 auto;
+  justify-self: start;
+  transition: all 0.3s ease;
+}
+
+.btn-adicionar-talhao:hover {
+  background-color: #3B5A1C;
+  transform: translateY(-0.1rem);
+}
+
+#btnAdicionarFazenda {
+  background-color: #5E7F3E;
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  align-self: center;
+  margin-top: 1rem;
+}
+
+#btnAdicionarFazenda:hover {
+  background-color: #4A7023;
+  transform: translateY(-0.1rem);
+}
+
+/* ============================================
+   MODAIS - RESPONSIVOS
+=============================================== */
+.modal {
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0;
+  background: #F6F1DE;
+  width: min(90vw, 35rem);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal h3 {
+  color: #5E7F3E;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modal label {
+  color: #5E7F3E;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.modal input {
+  padding: 1rem;
+  border: 0.1rem solid #A8D08D;
+  border-radius: 0.6rem;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.modal menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.modal button[type="submit"] {
+  background-color: #5E7F3E;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.modal button:hover {
+  transform: translateY(-0.1rem);
+}
+
+/* ============================================
+   RESPONSIVIDADE PARA TABLETS
+=============================================== */
+@media (max-width: 75rem) {
+  body {
+    grid-template-columns: 15rem 1fr;
+  }
+
+  nav {
+    width: 15rem;
+  }
+
+  nav img {
+    height: 8rem;
+  }
+
+  nav li {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 2rem 1.5rem;
+  }
+
+  main h1 {
+    font-size: 2rem;
+  }
+
+  article {
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    width: min(95vw, 45rem);
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE PARA MOBILE
+=============================================== */
+@media (max-width: 48rem) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+
+  nav img {
+    width: 4rem;
+    height: auto;
+    margin: 0;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  nav li {
+    border-bottom: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 0.4rem;
+  }
+
+  main {
+    padding: 1.5rem 1rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  main h1 {
+    font-size: 1.8rem;
+  }
+
+  article {
+    width: 95vw;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    gap: 1.2rem;
+  }
+
+  .fazenda-header {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .botoes-controle {
+    justify-self: end;
+  }
+
+  .nome-fazenda {
+    font-size: 1.1rem;
+  }
+
+  .modal {
+    width: 95vw;
+  }
+
+  .modal form {
+    padding: 1.5rem;
+  }
+
+  .modal menu {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE PARA MOBILE PEQUENO
+=============================================== */
+@media (max-width: 30rem) {
+  nav {
+    padding: 0.8rem 1rem;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  main {
+    padding: 1rem 0.8rem;
+  }
+
+  main h1 {
+    font-size: 1.5rem;
+  }
+
+  article {
+    padding: 1rem;
+    width: 98vw;
+  }
+
+  .fazenda-item {
+    padding: 1rem;
+  }
+
+  .painel-talhoes {
+    padding: 1rem;
+  }
+
+  .talhao-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .btn-adicionar-talhao,
+  #btnAdicionarFazenda {
+    width: 100%;
+    text-align: center;
+  }
+} 

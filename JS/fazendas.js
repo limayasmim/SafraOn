@@ -1,183 +1,284 @@
-// Função para mostrar feedback
-function mostrarFeedback(mensagem) {
-    alert(mensagem);
-}
 
-// Função para alternar talhões
-function toggleTalhoes(num) {
-    const talhoes = document.getElementById("talhoes-" + num);
-    const botao = document.querySelector(`button[onclick="toggleTalhoes(${num})"]`);
-    
-    if (!talhoes || !botao) return;
+ const supabaseClient = window.supabase;
 
-    if (talhoes.style.display === "block") {
-        talhoes.style.display = "none";
-        botao.innerHTML = "▼";
-    } else {
-        talhoes.style.display = "block";
-        botao.innerHTML = "▲";
+
+
+
+class GerenciadorFazendas {
+    constructor() {
+        this.fazendas = [];
+        this.talhoes = {}; // id_fazenda → array de talhões
+        this.init();
     }
-}
 
-// Função para editar nome da fazenda
-function editarFazenda(numFazenda, botao) {
-    const h4 = botao.closest('h4');
-    const spanNome = h4.querySelector('.nome-fazenda');
-    const nomeAtual = spanNome.textContent;
-    
-    const novoNome = prompt("Digite o novo nome da fazenda:", nomeAtual);
-    
-    if (novoNome && novoNome.trim() !== "") {
-        spanNome.textContent = novoNome.trim();
-        mostrarFeedback(`Fazenda renomeada para "${novoNome}"`);
+    init() {
+        // Elementos principais
+        this.lista = document.getElementById("listaFazendas");
+        this.pesquisa = document.getElementById("pesquisa");
+        this.btnAdicionar = document.getElementById("btnAdicionarFazenda");
+
+        // Modal fazenda
+        this.modalFazenda = document.getElementById("modalFazenda");
+        this.formFazenda = document.getElementById("formFazenda");
+        this.tituloModalFazenda = document.getElementById("tituloModalFazenda");
+        this.inputIdFazenda = document.getElementById("id_fazendas");
+        this.inputNomeFazenda = document.getElementById("inputNomeFazenda");
+        this.inputLocalFazenda = document.getElementById("inputLocalFazenda");
+
+        // Modal talhão
+        this.modalTalhao = document.getElementById("modalTalhao");
+        this.formTalhao = document.getElementById("formTalhao");
+        this.tituloModalTalhao = document.getElementById("tituloModalTalhao");
+        this.inputIdTalhao = document.getElementById("id_talhao");
+        this.inputIdFazendaRelacionado = document.getElementById("id_fazendas_relacionada");
+        this.inputNomeTalhao = document.getElementById("inputNomeTalhao");
+
+        // Eventos
+        this.btnAdicionar.addEventListener("click", () => this.abrirModalFazenda());
+        this.formFazenda.addEventListener("submit", (e) => this.salvarFazenda(e));
+        this.formTalhao.addEventListener("submit", (e) => this.salvarTalhao(e));
+        this.pesquisa.addEventListener("input", () => this.renderizar());
+
+        // Botões de fechar / cancelar
+        document.querySelectorAll("[data-close], [data-cancel]").forEach(btn => {
+            btn.addEventListener("click", () => this.fecharModais());
+        });
+
+        // Delegação de eventos (editar/remover/toggle/adicionar)
+        document.addEventListener("click", (e) => this.tratarClique(e));
+
+        // Carregar dados
+        this.carregarBanco();
     }
-}
 
-// Função para editar localidade da fazenda
-function editarLocalidade(numFazenda, botao) {
-    const talhoesContainer = document.getElementById(`talhoes-${numFazenda}`);
-    if (!talhoesContainer) return;
-    
-    const localAtualElement = talhoesContainer.querySelector('.local-fazenda');
-    const localAtual = localAtualElement ? localAtualElement.textContent.replace('Local: ', '') : '';
-    
-    const novoLocal = prompt("Digite a nova localidade da fazenda:", localAtual);
-    
-    if (novoLocal !== null) {
-        if (!localAtualElement) {
-            // Se não existe elemento de local, cria um
-            const p = document.createElement('p');
-            p.className = 'local-fazenda';
-            p.textContent = `Local: ${novoLocal.trim()}`;
-            talhoesContainer.insertBefore(p, talhoesContainer.firstChild);
-        } else {
-            localAtualElement.textContent = `Local: ${novoLocal.trim()}`;
-        }
-        mostrarFeedback(`Localidade atualizada para "${novoLocal}"`);
-    }
-}
+    async carregarBanco() {
+        try {
+            const { data: fazendas, error: erroF } = await supabaseClient
+                .from("fazendas")
+                .select("*")
+                .order("id_fazendas", { ascending: true });
 
-// Função para editar nome do talhão
-function editarTalhao(botao) {
-    const h5 = botao.closest('h5');
-    const spanNome = h5.querySelector('.nome-talhao');
-    const nomeAtual = spanNome.textContent;
-    
-    const novoNome = prompt("Digite o novo nome do talhão:", nomeAtual);
-    
-    if (novoNome && novoNome.trim() !== "") {
-        spanNome.textContent = novoNome.trim();
-        mostrarFeedback(`Talhão renomeado para "${novoNome}"`);
-    }
-}
+            if (erroF) throw erroF;
+            this.fazendas = fazendas || [];
 
-// Adicionar nova fazenda
-document.getElementById('adicionarBtn').addEventListener('click', function () {
-    const inputSection = document.getElementById('inputFazenda');
-    inputSection.style.display = inputSection.style.display === 'block' ? 'none' : 'block';
-});
+            const { data: talhoes, error: erroT } = await supabaseClient
+                .from("talhao")
+                .select("*")
+                .order("id_talhao", { ascending: true });
 
-function adicionarFazenda() {
-    const input = document.getElementById('nomeFazenda');
-    const nomeFazenda = input.value.trim();
-
-    if (nomeFazenda) {
-        criarFazendaNaLista(nomeFazenda);
-        input.value = '';
-        document.getElementById('inputFazenda').style.display = 'none';
-        mostrarFeedback(`Fazenda "${nomeFazenda}" adicionada com sucesso!`);
-    } else {
-        mostrarFeedback('Por favor, digite um nome para a fazenda');
-    }
-}
-
-function criarFazendaNaLista(nomeFazenda) {
-    const adicionarBtn = document.getElementById('adicionarBtn');
-    const novoId = Date.now();
-    
-    const novaFazendaHTML = `
-        <h4>
-            <span class="nome-fazenda">${nomeFazenda}</span>
-            <div class="botoes-controle">
-                <button class="editar-btn" onclick="editarFazenda(${novoId}, this)" title="Editar nome">✎</button>
-                <button class="local-btn" onclick="editarLocalidade(${novoId}, this)" title="Editar localidade">⚲</button>
-                <button class="toggle-button" onclick="toggleTalhoes(${novoId})">▼</button>
-            </div>
-        </h4>
-        <div id="talhoes-${novoId}" style="display: none;">
-            <p class="local-fazenda">Local: A definir</p>
-            <button onclick="adicionarTalhao(${novoId})">Adicionar talhão +</button>
-        </div>
-    `;
-    
-    adicionarBtn.insertAdjacentHTML('beforebegin', novaFazendaHTML);
-}
-
-// Função para adicionar talhão
-function adicionarTalhao(numFazenda) {
-    const talhoesContainer = document.getElementById(`talhoes-${numFazenda}`);
-    if (!talhoesContainer) return;
-
-    // Encontra o último botão (que é o "Adicionar talhão +")
-    const botoes = talhoesContainer.querySelectorAll('button');
-    const botaoAdicionar = botoes[botoes.length - 1];
-    
-    // Conta quantos talhões já existem
-    const talhoesExistentes = talhoesContainer.querySelectorAll('h5').length;
-    const novoNumeroTalhao = talhoesExistentes + 1;
-
-    // Cria o novo talhão
-    const novoTalhao = document.createElement('h5');
-    novoTalhao.innerHTML = `
-        <span class="nome-talhao">Talhão ${novoNumeroTalhao}</span>
-        <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button>
-    `;
-    
-    // Insere antes do botão "Adicionar talhão +"
-    talhoesContainer.insertBefore(novoTalhao, botaoAdicionar);
-
-    mostrarFeedback(`Talhão ${novoNumeroTalhao} adicionado à fazenda`);
-}
-
-// Pesquisa em tempo real
-document.getElementById('pesquisa').addEventListener('input', function (e) {
-    const termo = e.target.value.toLowerCase();
-    const fazendas = document.querySelectorAll('main article h4');
-
-    fazendas.forEach(fazenda => {
-        const nomeElement = fazenda.querySelector('.nome-fazenda');
-        const textoFazenda = nomeElement ? nomeElement.textContent.toLowerCase() : '';
-        const containerTalhoes = fazenda.nextElementSibling;
-
-        if (textoFazenda.includes(termo)) {
-            fazenda.style.display = 'flex';
-            if (containerTalhoes && containerTalhoes.id.startsWith('talhoes-')) {
-                // Mantém o estado atual (aberto/fechado) durante a pesquisa
+            if (erroT) {
+                console.warn("Tabela talhao pode não existir:", erroT);
+                this.talhoes = {};
+            } else {
+                this.talhoes = {};
+                talhoes.forEach(t => {
+                    if (!this.talhoes[t.id_fazendas]) {
+                        this.talhoes[t.id_fazendas] = [];
+                    }
+                    this.talhoes[t.id_fazendas].push(t);
+                });
             }
-        } else {
-            fazenda.style.display = 'none';
-            if (containerTalhoes && containerTalhoes.id.startsWith('talhoes-')) {
-                // Não altera o display dos talhões durante a pesquisa
-            }
-        }
-    });
-});
 
-// Inicialização
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('inputFazenda').style.display = 'none';
-    
-    // Esconder todos os talhões inicialmente
-    document.querySelectorAll('[id^="talhoes-"]').forEach(t => {
-        t.style.display = 'none';
-    });
-    
-    // Configurar input de nova fazenda
-    const inputSection = document.getElementById('inputFazenda');
-    inputSection.innerHTML = `
-        <div class="container-input">
-            <input type="text" id="nomeFazenda" placeholder="Nome da fazenda" required>
-            <button onclick="adicionarFazenda()">Confirmar</button>
-        </div>
-    `;
-});
+            this.renderizar();
+        } catch (err) {
+            console.error("Erro ao carregar dados:", err.message);
+            alert("Erro ao carregar dados");
+        }
+    }
+
+    abrirModalFazenda(f = null) {
+        if (f) {
+            this.tituloModalFazenda.textContent = "Editar Fazenda";
+            this.inputIdFazenda.value = f.id_fazendas;
+            this.inputNomeFazenda.value = f.fazenda;
+            this.inputLocalFazenda.value = f.local || "";
+        } else {
+            this.tituloModalFazenda.textContent = "Adicionar Fazenda";
+            this.inputIdFazenda.value = "";
+            this.inputNomeFazenda.value = "";
+            this.inputLocalFazenda.value = "";
+        }
+        this.modalFazenda.showModal();
+    }
+
+    abrirModalTalhao(id_fazendas, talhao = null) {
+        this.inputIdFazendaRelacionado.value = id_fazendas;
+
+        if (talhao) {
+            this.tituloModalTalhao.textContent = "Editar Talhão";
+            this.inputIdTalhao.value = talhao.id_talhao;
+            this.inputNomeTalhao.value = talhao.nome_talhao;
+        } else {
+            this.tituloModalTalhao.textContent = "Adicionar Talhão";
+            this.inputIdTalhao.value = "";
+            this.inputNomeTalhao.value = "";
+        }
+        this.modalTalhao.showModal();
+    }
+
+    fecharModais() {
+        if (this.modalFazenda.open) this.modalFazenda.close();
+        if (this.modalTalhao.open) this.modalTalhao.close();
+    }
+
+    async salvarFazenda(e) {
+        e.preventDefault();
+        const id = this.inputIdFazenda.value;
+        const nome = this.inputNomeFazenda.value.trim();
+        const local = this.inputLocalFazenda.value.trim();
+
+        if (!nome) return alert("Digite o nome da fazenda");
+
+        try {
+            if (id) {
+                await supabaseClient
+                    .from("fazendas")
+                    .update({ nome_fazenda: nome, local: local })
+                    .eq("id_fazendas", id);
+            } else {
+                await supabaseClient
+                    .from("fazendas")
+                    .insert([{ nome_fazenda: nome, local:local }]);
+            }
+
+            this.fecharModais();
+            this.carregarBanco();
+        } catch (err) {
+            console.error("Erro ao salvar fazenda:", err.message);
+            alert("Erro ao salvar fazenda");
+        }
+    }
+
+    async salvarTalhao(e) {
+        e.preventDefault();
+
+        const id_talhao = this.inputIdTalhao.value;
+        const id_fazendas = this.inputIdFazendaRelacionado.value;
+        const nome = this.inputNomeTalhao.value.trim();
+
+        if (!nome) return alert("Digite o nome do talhão");
+
+        try {
+            if (id_talhao) {
+                await supabaseClient
+                    .from("talhao")
+                    .update({ nome_talhao: nome })
+                    .eq("id_talhao", id_talhao);
+            } else {
+                await supabaseClient
+                    .from("talhao")
+                    .insert([{ id_fazendas, nome_talhao: nome }]);
+            }
+
+            this.fecharModais();
+            this.carregarBanco();
+        } catch (err) {
+            console.error("Erro ao salvar talhão:", err.message);
+            alert("Erro ao salvar talhão");
+        }
+    }
+
+    async removerFazenda(id) {
+        if (!confirm("Remover esta fazenda?")) return;
+
+        try {
+            await supabaseClient.from("talhao").delete().eq("id_fazendas", id);
+            await supabaseClient.from("fazendas").delete().eq("id_fazendas", id);
+
+            this.carregarBanco();
+        } catch (err) {
+            console.error("Erro ao remover fazenda:", err.message);
+        }
+    }
+
+    async removerTalhao(id) {
+        if (!confirm("Remover este talhão?")) return;
+
+        try {
+            await supabaseClient.from("talhao").delete().eq("id_talhao", id);
+            this.carregarBanco();
+        } catch (err) {
+            console.error("Erro ao remover talhão:", err.message);
+        }
+    }
+
+    tratarClique(e) {
+        const el = e.target;
+
+        if (el.classList.contains("btn-editar-fazenda")) {
+            const id = el.dataset.id;
+            const fazenda = this.fazendas.find(f => f.id_fazendas == id);
+            this.abrirModalFazenda(fazenda); // mudado agora
+        }
+
+        if (el.classList.contains("btn-remover-fazenda")) {
+            this.removerFazenda(el.dataset.id);
+        }
+
+        if (el.classList.contains("btn-toggle-talhoes")) {
+            const painel = document.getElementById(`talhoes-${el.dataset.id}`);
+            painel.style.display = painel.style.display === "block" ? "none" : "block";
+        }
+
+        if (el.classList.contains("btn-adicionar-talhao")) {
+            this.abrirModalTalhao(el.dataset.id);
+        }
+
+        if (el.classList.contains("btn-editar-talhao")) {
+            const fazendaId = el.dataset.id;
+            const talhaoId = el.dataset.tid;
+            const talhao = Object.values(this.talhoes).flat().find(t => t.id_talhao == talhaoId);
+            this.abrirModalTalhao(fazendaId, talhao);
+        }
+
+        if (el.classList.contains("btn-remover-talhao")) {
+            this.removerTalhao(el.dataset.tid);
+        }
+    }
+
+    renderizar() {
+        const termo = this.pesquisa.value.toLowerCase();
+        this.lista.innerHTML = "";
+
+        this.fazendas.forEach(f => {
+            if (termo && !fazenda.toLowerCase().includes(termo)) return;
+
+            const artigo = document.createElement("article");
+
+            artigo.innerHTML = `
+                <h4>
+                    <span class="nome-fazenda">${f.nome_fazenda}</span>
+                    <div class="botoes-controle">
+                        <button class="btn-editar-fazenda" data-id="${f.id_fazendas}">✎</button>
+                        <button class="btn-remover-fazenda" data-id="${f.id_fazendas}">✖</button>
+                        <button class="btn-toggle-talhoes" data-id="${f.id_fazendas}">▼</button>
+                    </div>
+                </h4>
+
+                <div id="talhoes-${f.id_fazendas}" class="painel-talhoes" style="display:none">
+                    <p class="local-fazenda">Local: ${f.local || "A definir"}</p>
+
+                    <div class="lista-talhoes">
+                        ${ (this.talhoes[f.id_fazendas] || []).map(t => `
+                            <h5>
+                                <span>${t.nome_talhao}</span>
+                                <div class="acoes-talhao">
+                                    <button class="btn-editar-talhao" data-id="${f.id_fazendas}" data-tid="${t.id_talhao}">✎</button>
+                                    <button class="btn-remover-talhao" data-tid="${t.id_talhao}">✖</button>
+                                </div>
+                            </h5>
+                        `).join("") }
+                    </div>
+
+                    <button class="btn-adicionar-talhao" data-id="${f.id_fazendas}">
+                        Adicionar talhão +
+                    </button>
+                </div>
+            `;
+
+            this.lista.appendChild(artigo);
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => new GerenciadorFazendas());
