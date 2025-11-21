@@ -304,7 +304,9 @@ nav li:hover {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -389,6 +391,20 @@ main article {
   align-items: stretch;
 }
 
+
+section2 {
+  background-color: #f9f5e6;
+  border-radius: 1.25rem;
+  padding: 1.875rem;
+  width: max(95%);
+  margin: 0 auto;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+}
+
 /* ============================================
    BARRA DE PESQUISA - RESPONSIVA
 =============================================== */
@@ -419,8 +435,6 @@ main article {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Centraliza os cards */
-  width: 100%;
   gap: 1.5rem;
 }
 
@@ -438,7 +452,7 @@ main article {
   flex-direction: column;
   gap: 1rem;
   align-items: stretch;
-  overflow:visible;
+  overflow: visible;
 
 
 }
@@ -625,10 +639,16 @@ main article {
   padding: 0;
   background: #F6F1DE;
   width: min(90vw, 35rem);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .modal::backdrop {
   background: rgba(0, 0, 0, 0.5);
+  display: block;
 }
 
 .modal form {
@@ -708,11 +728,11 @@ main article {
   }
 
   nav {
-    width: 15rem;
+    width: 100%;
   }
 
   nav img {
-    height: 8rem;
+    height: 9rem;
   }
 
   nav li {
@@ -742,6 +762,7 @@ main article {
   body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
+    display: block;
   }
 
   nav {
@@ -761,15 +782,15 @@ main article {
 
   nav ul {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     gap: 0.5rem;
   }
 
   nav li {
     border-bottom: none;
     padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 0.4rem;
+    /* font-size: 0.9rem;
+    border-radius: 0.4rem; */
   }
 
   main {
@@ -818,7 +839,7 @@ main article {
 /* ============================================
    RESPONSIVIDADE PARA MOBILE PEQUENO
 =============================================== */
-@media (max-width: 30rem) {
+/* @media (max-width: 30rem) {
   nav {
     padding: 0.8rem 1rem;
   }
@@ -865,4 +886,4 @@ main article {
     width: 100%;
     text-align: center;
   }
-} 
+} */

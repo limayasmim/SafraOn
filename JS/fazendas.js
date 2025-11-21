@@ -243,7 +243,7 @@ class GerenciadorFazendas {
         this.fazendas.forEach(f => {
             if (termo && !fazenda.toLowerCase().includes(termo)) return;
 
-            const artigo = document.createElement("article");
+            const artigo = document.createElement("section2");
 
             artigo.innerHTML = `
                 <h4>
