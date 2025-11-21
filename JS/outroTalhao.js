@@ -27,10 +27,12 @@ async function carregarTalhoesDaFazenda(idFazenda) {
             <div class="talhao-card">
                 <h4>${t.nome_talhao}</h4>
 
-                <a href="plantio.html?id=${t.id_talhao}">Plantio</a>
-                <a href="manejos.html?id=${t.id_talhao}">Manejo</a>
-                <a href="aplicacoes.html?id=${t.id_talhao}">Aplicações</a>
-                <a href="colheita.html?id=${t.id_talhao}">Colheita</a>
+                <div class="talhao-grid">
+                    <a href="plantio.html?id=${t.id_talhao}">Plantio</a>
+                    <a href="manejos.html?id=${t.id_talhao}">Manejo</a>
+                    <a href="aplicacoes.html?id=${t.id_talhao}">Aplicações</a>
+                    <a href="colheita.html?id=${t.id_talhao}">Colheita</a>
+                </div>
             </div>
         `;
     });
