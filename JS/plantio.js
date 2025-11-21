@@ -1,13 +1,47 @@
+const params = new URLSearchParams(window.location.search);
+const idTalhao = params.get("id");
+
+console.log("ID TALHÃO =", idTalhao);
+carregarTituloTalhao(idTalhao);
 
 // Usa o cliente já criado no HTML
 const supabaseClient = window.supabase;
 
+async function carregarTituloTalhao(idTalhao) {
+const titulo = document.getElementById("tituloTalhao");
+if (!titulo) return;
+
+
+if (!idTalhao) {
+titulo.textContent = "Talhão não encontrado";
+return;
+}
+
+
+const { data, error } = await supabaseClient
+.from("talhao")
+.select("nome_talhao")
+.eq("id_talhao", idTalhao)
+.single();
+
+
+if (error || !data) {
+titulo.textContent = "Talhão não encontrado";
+return;
+}
+
+
+titulo.textContent = data.nome_talhao;
+}
 
 
 class GerenciadorPlantio {
     constructor() {
         this.dados = [];
         this.itemEditando = null;
+        
+        carregarTituloTalhao(idTalhao);
+
         this.iniciar();
         this.renderizarItens();
         this.carregarBanco();
@@ -71,9 +105,16 @@ class GerenciadorPlantio {
     async carregarBanco() {
 
         try {
+
+            if (!idTalhao) {
+                alert("Erro: Talhão não informado!");
+                return;
+            }
+
             const { data, error } = await supabaseClient
                 .from('plantio')
                 .select('*')
+                .eq('id_talhao', idTalhao)
                 .order('id_plantio', { ascending: true });
 
             if (error) throw error;
@@ -119,7 +160,8 @@ class GerenciadorPlantio {
             return;
         }
 
-        const novoItem = { data, planta, variedade, adubo, inoculantes, populacao };
+        const novoItem = { data, planta, variedade, adubo, inoculantes, populacao, id_talhao: idTalhao
+        };
 
         try {
             if (this.itemEditando !== null) {
@@ -138,7 +180,7 @@ class GerenciadorPlantio {
             } else {
                 const { error } = await supabaseClient
                     .from('plantio')
-                    .insert ([novoItem]);
+                    .insert([novoItem]);
                 if (error) throw error;
             }
 

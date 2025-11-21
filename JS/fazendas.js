@@ -1,5 +1,5 @@
 
- const supabaseClient = window.supabase;
+const supabaseClient = window.supabase;
 
 
 
@@ -46,6 +46,7 @@ class GerenciadorFazendas {
 
         // Delegação de eventos (editar/remover/toggle/adicionar)
         document.addEventListener("click", (e) => this.tratarClique(e));
+
 
         // Carregar dados
         this.carregarBanco();
@@ -138,7 +139,7 @@ class GerenciadorFazendas {
             } else {
                 await supabaseClient
                     .from("fazendas")
-                    .insert([{ nome_fazenda: nome, local:local }]);
+                    .insert([{ nome_fazenda: nome, local: local }]);
             }
 
             this.fecharModais();
@@ -234,6 +235,14 @@ class GerenciadorFazendas {
         if (el.classList.contains("btn-remover-talhao")) {
             this.removerTalhao(el.dataset.tid);
         }
+
+        if (el.classList.contains("btn-ver-talhoes") ||
+            el.closest(".btn-ver-talhoes")) {
+
+            const id = el.dataset.id || el.closest(".btn-ver-talhoes")?.dataset.id;
+            if (id) window.location.href = `outrotalhao.html?id=${id}`;
+        }
+
     }
 
     renderizar() {
@@ -241,13 +250,14 @@ class GerenciadorFazendas {
         this.lista.innerHTML = "";
 
         this.fazendas.forEach(f => {
-            if (termo && !fazenda.toLowerCase().includes(termo)) return;
+            if (termo && !f.nome_fazenda.toLowerCase().includes(termo)) return;
 
             const artigo = document.createElement("section2");
 
             artigo.innerHTML = `
-                <h4>
+                <h4 class="abrir-talhoes" data-id="${f.id_fazendas}">
                     <span class="nome-fazenda">${f.nome_fazenda}</span>
+
                     <div class="botoes-controle">
                         <button class="btn-editar-fazenda" data-id="${f.id_fazendas}">✎</button>
                         <button class="btn-remover-fazenda" data-id="${f.id_fazendas}">✖</button>
@@ -255,11 +265,15 @@ class GerenciadorFazendas {
                     </div>
                 </h4>
 
-                <div id="talhoes-${f.id_fazendas}" class="painel-talhoes" style="display:none">
+                 <button class="btn-ver-talhoes" data-id="${f.id_fazendas}">
+                    Ver talhões 
+                 </button>
+
+                    <div id="talhoes-${f.id_fazendas}" class="painel-talhoes" style="display:none">
                     <p class="local-fazenda">Local: ${f.local || "A definir"}</p>
 
                     <div class="lista-talhoes">
-                        ${ (this.talhoes[f.id_fazendas] || []).map(t => `
+                        ${(this.talhoes[f.id_fazendas] || []).map(t => `
                             <h5>
                                 <span>${t.nome_talhao}</span>
                                 <div class="acoes-talhao">
@@ -267,7 +281,7 @@ class GerenciadorFazendas {
                                     <button class="btn-remover-talhao" data-tid="${t.id_talhao}">✖</button>
                                 </div>
                             </h5>
-                        `).join("") }
+                        `).join("")}
                     </div>
 
                     <button class="btn-adicionar-talhao" data-id="${f.id_fazendas}">
@@ -282,3 +296,6 @@ class GerenciadorFazendas {
 }
 
 document.addEventListener("DOMContentLoaded", () => new GerenciadorFazendas());
+
+
+

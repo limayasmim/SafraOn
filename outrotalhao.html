@@ -21,105 +21,32 @@
     <main>
         <h1>Talhoes</h1>
         <article>
-            <input type="text" id="pesquisa" placeholder="Pesquisar Talhoes...">
 
-            <!-- Fazenda 1 -->
-            <h4>
-                <span class="nome-fazenda">Talhão 1</span>
-                <div class="botoes-controle">
-                    <button class="editar-btn" onclick="editarTalhao(1, this)" title="Editar nome">✎</button>
-                    <button class="local-btn" onclick="editarLocalidade(1, this)" title="Editar localidade">⚲</button>
-                    <button class="toggle-button" onclick="toggleTalhoes(1)">▼</button>
-                </div>
-            </h4>
-            <div id="talhoes-1">
-                <p class="local-fazenda">Local: São Paulo - SP</p>
-                <h5>
-                    <a href="plantio.html"> <span class="nome-talhao">Plantio</span></a>
-                    <!-- //<button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="manejos.html"><span class="nome-talhao">Manejo</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="aplicacoes.html"><span class="nome-talhao">Aplicação</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="colheita.html"><span class="nome-talhao">Colheita</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <!-- <button onclick="adicionarTalhao(1)">Adicionar talhão +</button> -->
+            <!-- Campo de pesquisa -->
+            <input type="text" id="pesquisa" placeholder="Pesquisar talhões...">
+
+            <!-- Nome da fazenda carregado dinamicamente -->
+            <h2 id="nomeFazenda" style="text-align:center; margin: 1rem 0;"></h2>
+
+            <!-- Lista dinâmica de talhões -->
+            <div id="listaTalhoes" class="lista-talhoes-container">
+                <!-- Os talhões serão carregados pelo outroTalhao.js -->
             </div>
 
-            <!-- Fazenda 2 -->
-            <h4>
-                <span class="nome-fazenda">Fazenda Boa Vista</span>
-                <div class="botoes-controle">
-                    <button class="editar-btn" onclick="editarFazenda(2, this)" title="Editar nome">✎</button>
-                    <button class="local-btn" onclick="editarLocalidade(2, this)" title="Editar localidade">⚲</button>
-                    <button class="toggle-button" onclick="toggleTalhoes(2)">▼</button>
-                </div>
-            </h4>
-            <div id="talhoes-2">
-                
-                <p class="local-fazenda">Local: São Paulo - SP</p>
-                <h5>
-                    <a href="plantio.html"> <span class="nome-talhao">Plantio</span></a>
-                    <!-- //<button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="manejos.html"><span class="nome-talhao">Manejo</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="aplicacoes.html"><span class="nome-talhao">Aplicação</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="colheita.html"><span class="nome-talhao">Colheita</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <!-- <button onclick="adicionarTalhao(1)">Adicionar talhão +</button> -->
-            </div>
-
-            <!-- Fazenda 3 -->
-            <h4>
-                <span class="nome-fazenda">Fazenda Esperança</span>
-                <div class="botoes-controle">
-                    <button class="editar-btn" onclick="editarFazenda(3, this)" title="Editar nome">✎</button>
-                    <button class="local-btn" onclick="editarLocalidade(3, this)" title="Editar localidade">⚲</button>
-                    <button class="toggle-button" onclick="toggleTalhoes(3)">▼</button>
-                </div>
-            </h4>
-            <div id="talhoes-3">
-                
-                <p class="local-fazenda">Local: São Paulo - SP</p>
-                <h5>
-                    <a href="plantio.html"> <span class="nome-talhao">Plantio</span></a>
-                    <!-- //<button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="manejos.html"><span class="nome-talhao">Manejo</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="aplicacoes.html"><span class="nome-talhao">Aplicação</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <h5>
-                    <a href="colheita.html"><span class="nome-talhao">Colheita</span></a>
-                    <!-- <button class="editar-talhao-btn" onclick="editarTalhao(this)" title="Editar nome">✎</button> -->
-                </h5>
-                <!-- <button onclick="adicionarTalhao(1)">Adicionar talhão +</button> -->
-            </div>
-
-            <button id="adicionarBtn">Adicionar fazenda +</button>
-            <div id="inputFazenda"></div>
         </article>
     </main>
-    <script src="/js/fazendas.js"></script>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <script>
+        const supabase_url = "https://ocuphkmhwzhbioqkupii.supabase.co";
+        const supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdXBoa21od3poYmlvcWt1cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDI3OTgsImV4cCI6MjA3Nzc3ODc5OH0.u2ZIzmlQlVsA0_eiNyyLWQGvnCWR66c4BAj8wd8pUJM";
+
+        window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
+    </script>
+
+    <script src="/js/outroTalhao.js"></script>
 </body>
 
 </html>
+</main> 
