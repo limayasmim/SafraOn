@@ -160,6 +160,14 @@ button {
   color: #ff6b6b;
 }
 
+#manejo article, section header {
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+}
+
 dialog {
   border: none;
   border-radius: 1rem;
@@ -260,10 +268,6 @@ dialog footer {
     grid-template-columns: 15rem 1fr;
   }
 
-  nav {
-    width: 100%;
-  }
-
   nav img {
     height: 9rem;
   }
@@ -281,10 +285,12 @@ dialog footer {
     font-size: 2rem;
   }
 
-  article {
-    padding: 1.5rem;
-    border-radius: 1.2rem;
-    width: min(95vw, 45rem);
+  #manejo article, section header {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
   }
 }
 
@@ -336,11 +342,12 @@ dialog footer {
     font-size: 1.8rem;
   }
 
-  article {
-    width: 95vw;
+  #manejo article, section header {
+    width: 100%;
     padding: 1.2rem;
     border-radius: 1rem;
-    gap: 1.2rem;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
   }
 
 }
@@ -371,9 +378,23 @@ dialog footer {
     font-size: 1.5rem;
   }
 
-  article {
-    padding: 1rem;
-    width: 98vw;
+  .dados-container, .dados-container section {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #manejo article, section header {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr;
+  }
+
+  .acoes {
+    margin-top: 14rem;
+    gap: 1.5rem !important;
   }
 }
 /*# sourceMappingURL=colheita.css.map */
