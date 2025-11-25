@@ -3,14 +3,14 @@ const supabaseClient = window.supabase;
 class GerenciadorLogin {
     
     constructor() {
-        this.usuarioInput = document.getElementById("usuario");
-        this.senhaInput = document.getElementById("senha");
+        this.usuarioInput = document.getElementById("nomeusuario");
+        this.senhaInput = document.getElementById("senha_usuario");
 
         this.iniciar();
     }
 
     iniciar() {
-        const botaoLogin = document.querySelector("button");
+        const botaoLogin = document.getElementById("btnLogin");
         botaoLogin.addEventListener("click", (e) => {
             e.preventDefault();
             this.realizarLogin();
@@ -28,11 +28,11 @@ class GerenciadorLogin {
 
         // Consulta no banco
         const { data, error } = await supabaseClient
-            .from("usuarios")
+            .from("cadastro")
             .select("*")
-            .eq("usuario", usuario)
-            .eq("senha", senha)
-            .single();
+            .eq("nomeusuario", usuario)
+            .eq("senha_usuario", senha)
+            .maybeSingle();
 
         if (error || !data) {
             alert("Usuário ou senha incorretos!");

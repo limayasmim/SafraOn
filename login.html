@@ -14,19 +14,17 @@
         <img src="/imagem/logo.png" alt="">
         <article>
             <label for="usuario">Usuário</label>
-            <input type="text" id="usuario" placeholder="Digite o seu usuário" required>
+            <input type="text" id="nomeusuario" placeholder="Digite o seu usuário" required>
         </article>
         <article>
             <label for="senha">Senha</label>
-            <input type="text" id="senha" placeholder="Digite sua senha" required>
+            <input type="text" id="senha_usuario" placeholder="Digite sua senha" required>
             <p>Esqueceu a senha?</p>
         </article>
-        <a href="fazendas.html">
-            <button>
-                <h1>Login</h1>
-            </button>
-        </a>
-        <a href="cadastro.html">
+        <button id="btnLogin">
+            <h1>Login</h1>
+        </button>
+        <a href=" cadastro.html">
             <button>
                 <h1>Cadastrar-se</h1>
             </button>
@@ -43,7 +41,7 @@
         // Cria o cliente global do Supabase
         window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
     </script>
-    <script src="JS/login.js"></script>
+    <script src="/js/login.js"></script>
 </body>
 
 </html>
