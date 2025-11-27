@@ -204,7 +204,7 @@ class GerenciadorPlantio {
             const novoItem = document.createElement('article');
             novoItem.className = 'item-dado';
             novoItem.dataset.index = index;
-            novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr 1fr';
+            // novoItem.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr 1fr';
 
             novoItem.innerHTML = ` 
             <span>${item.data || ''}</span>
