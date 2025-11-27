@@ -29,7 +29,6 @@ section {
   align-items: end;
   justify-items: center;
   box-shadow: 0rem 0rem 11rem 5rem;
-
 }
 
 input {
@@ -61,7 +60,7 @@ input::placeholder {
 
 button {
   background-color: #648a34;
-  width: 20em;
+  width: 16em;
   border-radius: 4rem;
   font-size: 1rem;
   cursor: pointer;
@@ -100,39 +99,75 @@ h1 {
 
 @media (max-width: 48rem) {
   section {
-    max-width: 55%;
+    max-width: 65%;
     max-height: 80%;
     border-radius: 2rem;
-    margin: 10% 20%;
+    margin: 10% 17%;
   }
 }
 
-@media (max-width:30rem) {
+@media (max-width: 35rem) {
   section {
-    max-width: 65%;
-    max-height: 75%;
+    max-width: 85%;
+    max-height: 85%;
     border-radius: 2rem;
-    margin: 25% 13%;
+    left: -3rem;
+  }
+}
+
+
+@media (max-width: 23.5rem) {
+  body {
+    padding: 1rem;
   }
 
-  button {
-    max-width: 50%;
-    position: relative;
-    left: 25%;
+  section {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 2rem;
+    left: -2rem;
   }
 
   input {
-    max-width: 50%;
+    max-width: 90%;
   }
 
   article {
     position: relative;
-    left: 25%;
+    left: 5%;
   }
 
   p {
     position: relative;
-    right: 50%;
+    right: 10%;
   }
 }
+
+@media (max-width: 21rem) {
+  body {
+    padding: 3rem;
+  }
+
+  section {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 2rem;
+    left: -1.5rem;
+  }
+
+  input {
+    max-width: 85%;
+  }
+
+  article {
+    position: relative;
+    left: 9%;
+  }
+
+  p {
+    position: relative;
+    right: 15%;
+  }
+}
+
 /*# sourceMappingURL=login.css.map */
