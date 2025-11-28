@@ -1,5 +1,38 @@
+const params = new URLSearchParams(window.location.search);
+const idTalhao = params.get("id");
+
+console.log("ID TALHÃO =", idTalhao);
+carregarTituloTalhao(idTalhao);
+
 // Usa o cliente já criado no HTML
 const supabaseClient = window.supabase;
+
+async function carregarTituloTalhao(idTalhao) {
+    const titulo = document.getElementById("tituloTalhao");
+    if (!titulo) return;
+
+
+    if (!idTalhao) {
+        titulo.textContent = "Talhão não encontrado";
+        return;
+    }
+
+
+    const { data, error } = await supabaseClient
+        .from("talhao")
+        .select("nome_talhao")
+        .eq("id_talhao", idTalhao)
+        .single();
+
+
+    if (error || !data) {
+        titulo.textContent = "Talhão não encontrado";
+        return;
+    }
+
+
+    titulo.textContent = data.nome_talhao;
+}
 
 
 class GerenciadorManejos {
@@ -67,9 +100,16 @@ class GerenciadorManejos {
     async carregarBanco() {
 
         try {
+
+            if (!idTalhao) {
+                alert("Erro: Talhão não informado!");
+                return;
+            }
+
             const { data, error } = await supabaseClient
                 .from('manejo')
                 .select('*')
+                .eq('id_talhao', idTalhao)
                 .order('id_manejo', { ascending: true });
 
             if (error) throw error;
@@ -84,7 +124,6 @@ class GerenciadorManejos {
 
     editarItem(item) {
         this.itemEditando = item;
-        // const dados = item.querySelectorAll('span');
         const index = item.dataset.index;
         const dados = this.dados[index];
 
@@ -111,16 +150,18 @@ class GerenciadorManejos {
         const motivo = document.querySelector('#motivo').value;
         const descricao = document.querySelector('#descricao').value;
 
-        
+
         if (!data || !tipo || !motivo || !descricao) {
             alert('Preencha todos os campos!');
             return;
         }
 
-        const novoItem = { data, tipo, motivo, descricao };
+        const novoItem = { data, tipo, motivo, descricao , 
+            id_talhao: idTalhao
+        };
 
 
-       try {
+        try {
             if (this.itemEditando !== null) {
                 const index = this.itemEditando.dataset.index;
                 const itemBanco = this.dados[index];
@@ -131,12 +172,11 @@ class GerenciadorManejos {
 
                 const { error } = await supabaseClient
                     .from('manejo')
-                    .update(novoItem)           
+                    .update(novoItem)
                     .eq('id_manejo', itemBanco.id_manejo);
 
                 if (error) throw error;
             } else {
-                // inserir novo registro
                 const { error } = await supabaseClient
                     .from('manejo')
                     .insert([novoItem]);
@@ -144,7 +184,7 @@ class GerenciadorManejos {
                 if (error) throw error;
             }
 
-           
+
             await this.carregarBanco();
             this.fecharModal();
 
@@ -186,7 +226,7 @@ class GerenciadorManejos {
         const index = item.dataset.index;
         const itemBanco = this.dados[index];
 
-      if (!itemBanco || !itemBanco.id_manejo) {
+        if (!itemBanco || !itemBanco.id_manejo) {
             alert('Erro: não foi possível identificar item para remover.');
             return;
         }
@@ -208,9 +248,7 @@ class GerenciadorManejos {
 
     }
 
-    // salvarLocal() {
-    //     localStorage.setItem("manejos", JSON.stringify(this.dados));
-    // }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {

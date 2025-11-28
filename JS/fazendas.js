@@ -1,9 +1,6 @@
 
 const supabaseClient = window.supabase;
 
-
-
-
 class GerenciadorFazendas {
     constructor() {
         this.fazendas = [];
@@ -53,18 +50,56 @@ class GerenciadorFazendas {
     }
 
     async carregarBanco() {
+
         try {
+            // const id_usuario = localStorage.getItem("id_usuario");
+
+            // if (!id_usuario) {
+            //     console.error("Usuário não está logado");
+            //     alert("Erro: usuário não identificado.");
+            //     return;
+            // }
+
+            const id_usuario = localStorage.getItem("id_usuario");
+
+            if (!id_usuario) {
+                console.error("Usuário não identificado.");
+                alert("Você precisa fazer login novamente.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const { data: relacoes, error: erroRel } = await supabaseClient
+                .from("usuario_fazendas")
+                .select("id_fazendas")
+                .eq("id_usuario", id_usuario);
+
+            if (erroRel) throw erroRel;
+
+            const idsFazendas = relacoes.map(r => r.id_fazendas);
+
+            if (idsFazendas.length === 0) {
+                this.fazendas = [];
+                this.talhoes = [];
+                this.renderizar();
+                return;
+            }
+
             const { data: fazendas, error: erroF } = await supabaseClient
                 .from("fazendas")
                 .select("*")
+                .in("id_fazendas", idsFazendas)
                 .order("id_fazendas", { ascending: true });
 
             if (erroF) throw erroF;
+
             this.fazendas = fazendas || [];
 
+            // 3️⃣ BUSCA TALHÕES DE SOMENTE ESSAS FAZENDAS
             const { data: talhoes, error: erroT } = await supabaseClient
                 .from("talhao")
                 .select("*")
+                .in("id_fazendas", idsFazendas)
                 .order("id_talhao", { ascending: true });
 
             if (erroT) {
@@ -81,10 +116,13 @@ class GerenciadorFazendas {
             }
 
             this.renderizar();
+
         } catch (err) {
             console.error("Erro ao carregar dados:", err.message);
             alert("Erro ao carregar dados");
         }
+
+
     }
 
     abrirModalFazenda(f = null) {
@@ -137,13 +175,32 @@ class GerenciadorFazendas {
                     .update({ nome_fazenda: nome, local: local })
                     .eq("id_fazendas", id);
             } else {
-                await supabaseClient
+
+
+                const id_usuario = localStorage.getItem("id_usuario");
+
+                // 1️⃣ Insere a fazenda
+                const { data: fazendaInserida, error: erroFaz } = await supabaseClient
                     .from("fazendas")
-                    .insert([{ nome_fazenda: nome, local: local }]);
+                    .insert([{ nome_fazenda: nome, local: local }])
+                    .select()
+                    .single();
+
+                if (erroFaz) throw erroFaz;
+
+                const novaFazendaId = fazendaInserida.id_fazendas;
+
+                // 2️⃣ Vincula a fazenda ao usuário
+                const { error: erroRelacao } = await supabaseClient
+                    .from("usuario_fazendas")
+                    .insert([{ id_usuario: id_usuario, id_fazendas: novaFazendaId }]);
+
+                if (erroRelacao) throw erroRelacao;
             }
 
             this.fecharModais();
             this.carregarBanco();
+
         } catch (err) {
             console.error("Erro ao salvar fazenda:", err.message);
             alert("Erro ao salvar fazenda");

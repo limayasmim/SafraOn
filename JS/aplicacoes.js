@@ -1,6 +1,39 @@
+const params = new URLSearchParams(window.location.search);
+const idTalhao = params.get("id");
+
+console.log("ID TALHÃO =", idTalhao);
+carregarTituloTalhao(idTalhao);
 
 // Usa o cliente já criado no HTML
 const supabaseClient = window.supabase;
+
+async function carregarTituloTalhao(idTalhao) {
+    const titulo = document.getElementById("tituloTalhao");
+    if (!titulo) return;
+
+
+    if (!idTalhao) {
+        titulo.textContent = "Talhão não encontrado";
+        return;
+    }
+
+
+    const { data, error } = await supabaseClient
+        .from("talhao")
+        .select("nome_talhao")
+        .eq("id_talhao", idTalhao)
+        .single();
+
+
+    if (error || !data) {
+        titulo.textContent = "Talhão não encontrado";
+        return;
+    }
+
+
+    titulo.textContent = data.nome_talhao;
+}
+
 
 
 class GerenciadorAplicacoes {
@@ -66,10 +99,16 @@ class GerenciadorAplicacoes {
 
     async carregarBanco() {
 
+        if (!idTalhao) {
+            alert("Erro: Talhão não informado!");
+            return;
+        }
+
         try {
             const { data, error } = await supabaseClient
                 .from('aplicacao')
                 .select('*')
+                .eq('id_talhao', idTalhao)
                 .order('id_aplicacao', { ascending: true });
 
             if (error) throw error;
@@ -116,7 +155,7 @@ class GerenciadorAplicacoes {
             return;
         }
 
-        const novoItem = { data, motivo, defensivos };
+        const novoItem = { data, motivo, defensivos, id_talhao: idTalhao };
 
         try {
 

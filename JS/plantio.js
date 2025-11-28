@@ -62,9 +62,9 @@ class GerenciadorPlantio {
             }
         });
 
-        document.querySelector('.btn-fechar').addEventListener('click', () => {
-            this.fecharModal();
-        });
+        // document.querySelector('.btn-fechar').addEventListener('click', () => {
+        //     this.fecharModal();
+        // });
 
         document.querySelector('.btn-cancelar').addEventListener('click', () => {
             this.fecharModal();
@@ -233,7 +233,7 @@ class GerenciadorPlantio {
             return;
         }
 
-        if (confirm('Remover esta aplicação')) {
+        if (confirm('Remover este plantio')) {
             try {
                 const { error } = await supabaseClient
                     .from('plantio')

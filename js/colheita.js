@@ -1,7 +1,39 @@
+const params = new URLSearchParams(window.location.search);
+const idTalhao = params.get("id");
 
+console.log("ID TALHÃO =", idTalhao);
+carregarTituloTalhao(idTalhao);
 
 // Usa o cliente já criado no HTML
 const supabaseClient = window.supabase;
+
+async function carregarTituloTalhao(idTalhao) {
+const titulo = document.getElementById("tituloTalhao");
+if (!titulo) return;
+
+
+if (!idTalhao) {
+titulo.textContent = "Talhão não encontrado";
+return;
+}
+
+
+const { data, error } = await supabaseClient
+.from("talhao")
+.select("nome_talhao")
+.eq("id_talhao", idTalhao)
+.single();
+
+
+if (error || !data) {
+titulo.textContent = "Talhão não encontrado";
+return;
+}
+
+
+titulo.textContent = data.nome_talhao;
+}
+
 
 
 
@@ -70,9 +102,17 @@ class GerenciadorColheitas {
     async carregarBanco() {
 
         try {
+
+            if (!idTalhao) {
+                alert("Erro: Talhão não informado!");
+                return;
+            }
+            
+        
             const { data, error } = await supabaseClient
                 .from('colheita')
                 .select('*')
+                .eq('id_talhao', idTalhao)
                 .order('id_colheita', { ascending: true });
 
             if (error) throw error;
@@ -113,7 +153,8 @@ class GerenciadorColheitas {
             alert('Preencha todos os campos!');
             return;
         }
-        const novoItem = { data, planta, umidade, producao };
+        const novoItem = { data, planta, umidade, producao,
+            id_talhao: idTalhao };
 
         try {
 

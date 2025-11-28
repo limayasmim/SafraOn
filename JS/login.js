@@ -1,7 +1,7 @@
 const supabaseClient = window.supabase;
 
 class GerenciadorLogin {
-    
+
     constructor() {
         this.usuarioInput = document.getElementById("nomeusuario");
         this.senhaInput = document.getElementById("senha_usuario");
@@ -27,23 +27,43 @@ class GerenciadorLogin {
         }
 
         // Consulta no banco
-        const { data, error } = await supabaseClient
+        const { data: cadastro, error } = await supabaseClient
             .from("cadastro")
             .select("*")
             .eq("nomeusuario", usuario)
             .eq("senha_usuario", senha)
             .maybeSingle();
 
-        if (error || !data) {
+        if (error || !cadastro) {
             alert("Usuário ou senha incorretos!");
             return;
         }
 
-        // Login bem-sucedido
+        const id_cadastro = cadastro.id_cadastro;
+
+        // 2️⃣ BUSCA O USUÁRIO (id_usuario)
+        const { data: usuarioData, error: usuarioError } = await supabaseClient
+            .from("usuario")
+            .select("id_usuario")
+            .eq("id_cadastro", id_cadastro)
+            .maybeSingle();
+
+        if (usuarioError || !usuarioData) {
+            alert("Erro ao carregar dados do usuário.");
+            return;
+        }
+
+        const id_usuario = usuarioData.id_usuario;
+
+        // 3️⃣ SALVA ID NO LOCALSTORAGE (ESSENCIAL!)
+        localStorage.setItem("id_usuario", id_usuario);
+
+        // 4️⃣ PROSSEGUE
         alert("Login realizado com sucesso!");
         window.location.href = "fazendas.html";
     }
 }
+
 
 // Iniciar o sistema
 document.addEventListener("DOMContentLoaded", () => {
