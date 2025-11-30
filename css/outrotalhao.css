@@ -36,6 +36,21 @@ nav li:hover {
   background-color: #4a6a25;
 }
 
+nav a {
+  text-decoration: none;
+}
+
+nav a {
+  color: #F5EED7; 
+}
+nav a:visited {
+  color: #F5EED7;
+}
+
+nav a:hover {
+  color: #FFFFFF; 
+}
+
 main {
   flex: 1;
   padding: 2.5em;

@@ -20,13 +20,11 @@
 }
 
 
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lexend", sans-serif;
   background-color: #E6DDBF;
   min-height: 100vh;
-  /* display: grid; */
-  /* grid-template-columns: 20rem 1fr;
-  grid-template-rows: 1fr; */
   display: flex;
 }
 
@@ -50,6 +48,17 @@ nav ul {
 
 nav a {
   text-decoration: none;
+}
+
+nav a {
+  color: #F5EED7; 
+}
+nav a:visited {
+  color: #F5EED7;
+}
+
+nav a:hover {
+  color: #FFFFFF; 
 }
 
 nav li {

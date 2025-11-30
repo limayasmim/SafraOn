@@ -13,11 +13,11 @@
     <nav>
         <img src="imagem/logo.png" alt="Logo SafraOn">
         <ul>
-            <li>Início</li>
-            <li>Talhões</li>
-            <a href="sobrenos.html">
-                <li>Sobre Nós</li>
-            </a>
+            <li>
+                <a href="fazendas.html">
+                    Início
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -91,15 +91,15 @@
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-    <script> 
-    const supabase_url = "https://ocuphkmhwzhbioqkupii.supabase.co";
-    const supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdXBoa21od3poYmlvcWt1cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDI3OTgsImV4cCI6MjA3Nzc3ODc5OH0.u2ZIzmlQlVsA0_eiNyyLWQGvnCWR66c4BAj8wd8pUJM";
+    <script>
+        const supabase_url = "https://ocuphkmhwzhbioqkupii.supabase.co";
+        const supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdXBoa21od3poYmlvcWt1cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDI3OTgsImV4cCI6MjA3Nzc3ODc5OH0.u2ZIzmlQlVsA0_eiNyyLWQGvnCWR66c4BAj8wd8pUJM";
 
-    // Cria o cliente global do Supabase
-    window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
+        // Cria o cliente global do Supabase
+        window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
     </script>
 
-<script src="js/manejos.js"></script>
+    <script src="js/manejos.js"></script>
 
 </body>
 

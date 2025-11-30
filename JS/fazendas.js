@@ -266,7 +266,7 @@ class GerenciadorFazendas {
         if (el.classList.contains("btn-editar-fazenda")) {
             const id = el.dataset.id;
             const fazenda = this.fazendas.find(f => f.id_fazendas == id);
-            this.abrirModalFazenda(fazenda); // mudado agora
+            this.abrirModalFazenda(fazenda); 
         }
 
         if (el.classList.contains("btn-remover-fazenda")) {

@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Lexend", sans-serif ;
+ font-family: "Lexend", sans-serif;
   background-color: #E9E1C3;
   display: flex;
   min-height: 100vh;
@@ -28,6 +28,17 @@ nav ul {
 
 nav a {
   text-decoration: none;
+}
+
+nav a {
+  color: #F5EED7; 
+}
+nav a:visited {
+  color: #F5EED7;
+}
+
+nav a:hover {
+  color: #FFFFFF; 
 }
 
 nav li {
@@ -316,6 +327,7 @@ dialog footer {
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
   }
+  
 }
 
 /* ============================================
