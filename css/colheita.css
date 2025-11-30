@@ -442,8 +442,8 @@ dialog footer {
     padding: 1.2rem;
     border-radius: 1rem;
     gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; /* Mantém grid horizontal */
-    min-width: 37.5rem; /* Largura mínima para os itens */
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    min-width: 37.5rem;
   }
 
   #aplicacoes article, #aplicacoes section header {
