@@ -168,6 +168,30 @@ button {
   grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
 }
 
+#colheita article, section header {
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  grid-template-columns:  1fr 1fr 1fr 1fr;
+}
+
+#aplicacoes article, section header {
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr 2fr 0.5fr;
+}
+
+#plantio article, section header {
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;
+}
+
 dialog {
   border: none;
   border-radius: 1rem;
@@ -342,6 +366,10 @@ dialog footer {
     font-size: 1.8rem;
   }
 
+  .dados-container {
+    width: 105%;
+  }
+
   #manejo article, #manejo section header {
     width: 100%;
     padding: 1.2rem;
@@ -363,7 +391,7 @@ dialog footer {
     padding: 1.2rem;
     border-radius: 1rem;
     gap: 1rem;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   }
 
   #colheita article, #colheita section header {
@@ -373,25 +401,27 @@ dialog footer {
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  
+  .dados-container .acoes {
+    opacity: 1;
+  }
 }
 
-/* ============================================
-   RESPONSIVIDADE PARA MOBILE PEQUENO
-=============================================== */
 @media (max-width: 30rem) {
   .dados-container {
-    overflow-x: auto; /* Rolagem HORIZONTAL */
-    overflow-y: hidden; /* Remove rolagem vertical */
-    max-height: none; /* Remove limite de altura */
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: none; 
     width: 105%;
   }
 
   .dados-container > section {
-    min-width: 37.5rem; /* Força largura mínima para criar rolagem horizontal */
+    min-width: 37.5rem;
   }
 
   .dados-container header {
-    min-width: 37.5rem; /* Mesma largura mínima para o cabeçalho */
+    min-width: 37.5rem;
     position: sticky;
     left: 0;
     background-color: #4a6a25;
@@ -403,8 +433,8 @@ dialog footer {
     padding: 1.2rem;
     border-radius: 1rem;
     gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr; /* Mantém grid horizontal */
-    min-width: 37.5rem; /* Largura mínima para os itens */
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
+    min-width: 37.5rem;
   }
 
   #plantio article, #plantio section header {
