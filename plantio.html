@@ -13,11 +13,11 @@
     <nav>
         <img src="imagem/logo.png" alt="Logo SafraOn">
         <ul>
-            <li>Início</li>
-            <li>Talhões</li>
-            <a href="sobrenos.html">
-                <li>Sobre Nós</li>
-            </a>
+            <li>
+                <a href="fazendas.html">
+                    Início
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -44,7 +44,7 @@
 
     <dialog id="modalForm">
         <article>
-                <h3 id="modalTitulo">Adicionar Plantio</h3>
+            <h3 id="modalTitulo">Adicionar Plantio</h3>
 
             <form id="formDados">
                 <input type="hidden" id="itemId">
@@ -87,7 +87,7 @@
         </article>
     </dialog>
 
-    
+
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
     <script>
@@ -97,7 +97,7 @@
         // Cria o cliente global do Supabase
         window.supabase = supabase.createClient(supabase_url, supabase_anon_key);
     </script>
-    
+
 
     <script src="js/plantio.js"></script>
 </body>
